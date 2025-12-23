@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>로그인 | 결정러</title>
+  <style>
+/* ===== 파워레인저 스타일 - 밝은 버전 ===== */
+
+:root {
+  --bg: linear-gradient(180deg, #e0e7ff 0%, #c7d2fe 30%, #ddd6fe 60%, #ede9fe 100%);
+  --card: rgba(255, 255, 255, 0.9);
+  --text: #1e1b4b;
+  --muted: #6b7280;
+  --line: rgba(139, 92, 246, 0.2);
+  
+  --red: #f97316;
+  --purple: #a855f7;
+  --green: #22c55e;
+  --blue: #3b82f6;
+  --yellow: #fbbf24;
+  
+  --primary: linear-gradient(135deg, #8b5cf6, #a855f7);
+  --shadow: 0 20px 45px rgba(139, 92, 246, 0.15);
+  --radius: 24px;
+  --topbar-h: 70px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Segoe UI', Pretendard, -apple-system, sans-serif;
+  font-size: 16px;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: 
+    radial-gradient(ellipse at 20% 20%, rgba(249, 115, 22, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 30%, rgba(168, 85, 247, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 40% 80%, rgba(34, 197, 94, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.wrap {
+  width: min(1100px, 92vw);
+  margin: 0 auto;
+  padding: calc(var(--topbar-h) + 30px) 0 40px;
+  position: relative;
+  z-index: 1;
+}
+
+/* TOPBAR */
+.topbar {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: var(--topbar-h);
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.topbar-inner {
+  width: min(1100px, 92vw);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 900;
+  font-size: 22px;
+  background: linear-gradient(135deg, var(--red), var(--yellow), var(--green), var(--blue), var(--purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.logo { font-size: 28px; -webkit-text-fill-color: initial; }
+
+.top-actions { display: flex; gap: 12px; }
+
+.pill {
+  padding: 10px 20px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--text);
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.8);
+  transition: all 0.3s;
+}
+
+.pill:hover { background: rgba(139, 92, 246, 0.1); }
+
+.pill.active {
+  background: var(--primary);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+}
+
+/* GRID */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 24px;
+}
+
+/* LEFT */
+.left {
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow);
+}
+
+.character-wrap {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0 20px;
+}
+
+.ranger-team {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.ranger {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 12px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.5);
+  transition: all 0.3s;
+}
+
+.ranger:hover {
+  transform: translateY(-5px);
+}
+
+.ranger-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  animation: float 3s ease-in-out infinite;
+}
+
+.ranger.red .ranger-icon { background: linear-gradient(135deg, #dc2626, #f97316); animation-delay: 0s; }
+.ranger.purple .ranger-icon { background: linear-gradient(135deg, #7c3aed, #a855f7); animation-delay: 0.2s; }
+.ranger.green .ranger-icon { background: linear-gradient(135deg, #059669, #22c55e); animation-delay: 0.4s; }
+.ranger.blue .ranger-icon { background: linear-gradient(135deg, #2563eb, #3b82f6); animation-delay: 0.6s; }
+
+.ranger-name {
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.ranger.red .ranger-name { color: #ea580c; }
+.ranger.purple .ranger-name { color: #7c3aed; }
+.ranger.green .ranger-name { color: #059669; }
+.ranger.blue .ranger-name { color: #2563eb; }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.bubble {
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.95);
+  position: relative;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.bubble:before {
+  content: "";
+  position: absolute;
+  left: 40px; top: -12px;
+  width: 20px; height: 20px;
+  background: rgba(255, 255, 255, 0.95);
+  border-left: 1px solid var(--line);
+  border-top: 1px solid var(--line);
+  transform: rotate(45deg);
+}
+
+.bubble h3 {
+  margin: 0 0 10px;
+  font-size: 22px;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--red), var(--purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.bubble p { margin: 0; color: var(--muted); line-height: 1.6; }
+
+.hint {
+  margin-top: 12px;
+  font-size: 12px;
+  color: rgba(107, 114, 128, 0.8);
+  padding: 8px 12px;
+  background: rgba(249, 115, 22, 0.1);
+  border-radius: 10px;
+}
+
+/* CARD */
+.card {
+  padding: 36px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--card);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow);
+}
+
+.card h2 {
+  margin: 0 0 8px;
+  font-size: 32px;
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--text), #4c1d95);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.sub { margin: 0 0 28px; color: var(--muted); font-size: 16px; }
+
+.field { margin-bottom: 20px; }
+
+.label {
+  font-size: 14px;
+  margin-bottom: 8px;
+  color: #4c1d95;
+  font-weight: 800;
+}
+
+input {
+  width: 100%;
+  padding: 16px 18px;
+  border-radius: 16px;
+  border: 2px solid var(--line);
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--text);
+  font-size: 15px;
+  outline: none;
+  transition: all 0.3s;
+}
+
+input:focus {
+  border-color: rgba(139, 92, 246, 0.6);
+  box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.15);
+}
+
+input::placeholder { color: #9ca3af; }
+
+.actions { display: flex; gap: 14px; margin-top: 28px; }
+
+.btn {
+  flex: 1;
+  padding: 16px 20px;
+  border-radius: 16px;
+  border: 2px solid var(--line);
+  background: #fff;
+  color: var(--text);
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 16px;
+  transition: all 0.3s;
+}
+
+.btn:hover { transform: translateY(-2px); }
+
+.btn.primary {
+  color: #fff;
+  border: none;
+  background: var(--primary);
+  box-shadow: 0 8px 25px rgba(139, 92, 246, 0.3);
+}
+
+.btn.primary:hover { box-shadow: 0 12px 30px rgba(139, 92, 246, 0.4); }
+
+.btn.outline { background: rgba(255, 255, 255, 0.9); }
+.btn.outline:hover { background: rgba(139, 92, 246, 0.1); }
+
+.error {
+  margin-top: 16px;
+  padding: 14px;
+  border-radius: 16px;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #dc2626;
+  font-size: 14px;
+}
+
+@media (max-width: 900px) {
+  .grid { grid-template-columns: 1fr; }
+  .character-box { width: 140px; height: 140px; font-size: 60px; }
+}
+  </style>
+</head>
+
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="logo">⚡</div>
+        <div>결정러</div>
+      </div>
+      <div class="top-actions">
+        <a class="pill active" href="login_powerranger.html">로그인</a>
+        <a class="pill" href="join_powerranger.html">회원가입</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="left">
+      <div class="character-wrap">
+        <div class="ranger-team">
+          <div class="ranger red">
+            <div class="ranger-icon">🍜</div>
+            <div class="ranger-name">맛레인저</div>
+          </div>
+          <div class="ranger purple">
+            <div class="ranger-icon">🎬</div>
+            <div class="ranger-name">무비레인저</div>
+          </div>
+          <div class="ranger green">
+            <div class="ranger-icon">📚</div>
+            <div class="ranger-name">북레인저</div>
+          </div>
+          <div class="ranger blue">
+            <div class="ranger-icon">🎵</div>
+            <div class="ranger-name">뮤직레인저</div>
+          </div>
+        </div>
+      </div>
+      <div class="bubble">
+        <h3>다시 만나서 반가워! 😊</h3>
+        <p>아이디/비밀번호로 로그인해줘!</p>
+        <div class="hint">※ 로그인하면 전대원들이 추천해줄게!</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>로그인</h2>
+      <p class="sub">결정러 전대에 합류하세요!</p>
+
+      <form id="loginForm" method="post" action="#">
+        <div class="field">
+          <div class="label">아이디</div>
+          <input type="text" name="login_id" id="login_id" placeholder="아이디 입력">
+        </div>
+
+        <div class="field">
+          <div class="label">비밀번호</div>
+          <input type="password" name="pw" id="pw" placeholder="비밀번호 입력">
+        </div>
+
+        <div class="actions">
+          <button type="submit" class="btn primary">🔥 출동하기!</button>
+          <a class="btn outline" href="join_powerranger.html">회원가입</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+document.getElementById("loginForm").addEventListener("submit", (e) => {
+  const id = document.getElementById("login_id").value.trim();
+  const pw = document.getElementById("pw").value.trim();
+  if(!id || !pw) {
+    alert("아이디와 비밀번호를 입력하세요.");
+    e.preventDefault();
+  }
+});
+</script>
+</body>
+</html>

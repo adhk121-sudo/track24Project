@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>회원가입 | 결정러</title>
+  <style>
+/* ===== 파워레인저 스타일 - 밝은 버전 ===== */
+
+:root {
+  --bg: linear-gradient(180deg, #e0e7ff 0%, #c7d2fe 30%, #ddd6fe 60%, #ede9fe 100%);
+  --card: rgba(255, 255, 255, 0.9);
+  --text: #1e1b4b;
+  --muted: #6b7280;
+  --line: rgba(139, 92, 246, 0.2);
+  
+  --red: #f97316;
+  --purple: #a855f7;
+  --green: #22c55e;
+  --blue: #3b82f6;
+  --yellow: #fbbf24;
+  
+  --primary: linear-gradient(135deg, #8b5cf6, #a855f7);
+  --shadow: 0 20px 45px rgba(139, 92, 246, 0.15);
+  --radius: 24px;
+  --topbar-h: 70px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Segoe UI', Pretendard, -apple-system, sans-serif;
+  font-size: 16px;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: 
+    radial-gradient(ellipse at 20% 20%, rgba(249, 115, 22, 0.12) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 30%, rgba(168, 85, 247, 0.12) 0%, transparent 50%),
+    radial-gradient(ellipse at 40% 80%, rgba(34, 197, 94, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 70%, rgba(59, 130, 246, 0.08) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.wrap {
+  width: min(1100px, 92vw);
+  margin: 0 auto;
+  padding: calc(var(--topbar-h) + 20px) 0 40px;
+  position: relative;
+  z-index: 1;
+}
+
+/* TOPBAR */
+.topbar {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: var(--topbar-h);
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.topbar-inner {
+  width: min(1100px, 92vw);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 900;
+  font-size: 22px;
+  background: linear-gradient(135deg, var(--red), var(--yellow), var(--green), var(--blue), var(--purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.logo { font-size: 28px; -webkit-text-fill-color: initial; }
+
+.top-actions { display: flex; gap: 12px; }
+
+.pill {
+  padding: 10px 20px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--text);
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.8);
+  transition: all 0.3s;
+}
+
+.pill:hover { background: rgba(139, 92, 246, 0.1); }
+
+.pill.active {
+  background: var(--primary);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+}
+
+/* STEPBAR */
+.stepbar {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 0 24px;
+}
+
+.step {
+  padding: 12px 20px;
+  font-weight: 800;
+  font-size: 14px;
+  color: #9ca3af;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(139, 92, 246, 0.1);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.step.active {
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.3);
+}
+
+.step[data-step="1"].active { background: linear-gradient(135deg, #dc2626, #f97316); box-shadow: 0 6px 20px rgba(249, 115, 22, 0.3); }
+.step[data-step="2"].active { background: linear-gradient(135deg, #7c3aed, #a855f7); box-shadow: 0 6px 20px rgba(168, 85, 247, 0.3); }
+.step[data-step="3"].active { background: linear-gradient(135deg, #059669, #22c55e); box-shadow: 0 6px 20px rgba(34, 197, 94, 0.3); }
+.step[data-step="4"].active { background: linear-gradient(135deg, #2563eb, #3b82f6); box-shadow: 0 6px 20px rgba(59, 130, 246, 0.3); }
+
+/* GRID */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 24px;
+}
+
+/* LEFT */
+.left {
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow);
+  position: sticky;
+  top: calc(var(--topbar-h) + 20px);
+  height: fit-content;
+}
+
+.character-wrap {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin: 10px 0 20px;
+  flex-wrap: wrap;
+}
+
+.mini-character {
+  width: 70px;
+  height: 70px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  animation: float 3s ease-in-out infinite;
+  transition: all 0.3s;
+}
+
+.mini-character:hover {
+  transform: scale(1.1);
+}
+
+.mini-character.red { background: linear-gradient(135deg, #dc2626, #f97316); animation-delay: 0s; }
+.mini-character.purple { background: linear-gradient(135deg, #7c3aed, #a855f7); animation-delay: 0.3s; }
+.mini-character.green { background: linear-gradient(135deg, #059669, #22c55e); animation-delay: 0.6s; }
+.mini-character.blue { background: linear-gradient(135deg, #2563eb, #3b82f6); animation-delay: 0.9s; }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.bubble {
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.bubble h3 {
+  margin: 0 0 10px;
+  font-size: 20px;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--red), var(--purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.bubble p { margin: 0; color: var(--muted); line-height: 1.6; font-size: 15px; }
+
+.hint {
+  margin-top: 12px;
+  font-size: 12px;
+  color: rgba(107, 114, 128, 0.8);
+  padding: 8px 12px;
+  background: rgba(139, 92, 246, 0.08);
+  border-radius: 10px;
+}
+
+/* CARD */
+.card {
+  padding: 32px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--card);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow);
+}
+
+.card h2 {
+  margin: 0 0 8px;
+  font-size: 30px;
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--text), #4c1d95);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.sub { margin: 0 0 24px; color: var(--muted); font-size: 15px; }
+
+/* PANEL */
+.panel { display: none; }
+.panel.active { 
+  display: block; 
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* FORM */
+.field { margin-bottom: 18px; }
+
+.label {
+  font-size: 14px;
+  margin-bottom: 8px;
+  color: #4c1d95;
+  font-weight: 800;
+}
+
+input, select {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 2px solid var(--line);
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--text);
+  font-size: 15px;
+  outline: none;
+  transition: all 0.3s;
+}
+
+input:focus, select:focus {
+  border-color: rgba(139, 92, 246, 0.6);
+  box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.12);
+}
+
+input::placeholder { color: #9ca3af; }
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.with-btn {
+  display: grid;
+  grid-template-columns: 1fr 100px;
+  gap: 10px;
+}
+
+/* CHIPS */
+.chip-group { margin: 8px 0 20px; }
+
+.chip-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 800;
+  font-size: 15px;
+  margin: 14px 0 10px;
+  color: #4c1d95;
+}
+
+.chips { display: flex; flex-wrap: wrap; gap: 10px; }
+
+.chip {
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 2px solid rgba(139, 92, 246, 0.2);
+  background: rgba(255, 255, 255, 0.9);
+  font-weight: 700;
+  font-size: 13px;
+  color: #4b5563;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+
+.chip:hover {
+  transform: translateY(-2px);
+  border-color: rgba(139, 92, 246, 0.4);
+}
+
+.chip.selected {
+  border-color: transparent;
+  color: #fff;
+  background: var(--primary);
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.25);
+}
+
+/* 카테고리별 칩 색상 */
+.chips[data-target="food"] .chip.selected { background: linear-gradient(135deg, #dc2626, #f97316); }
+.chips[data-target="drink"] .chip.selected { background: linear-gradient(135deg, #0891b2, #06b6d4); }
+.chips[data-target="music"] .chip.selected { background: linear-gradient(135deg, #7c3aed, #a855f7); }
+.chips[data-target="book"] .chip.selected { background: linear-gradient(135deg, #059669, #22c55e); }
+.chips[data-target="movie"] .chip.selected { background: linear-gradient(135deg, #2563eb, #3b82f6); }
+.chips[data-target="allergy"] .chip.selected { background: linear-gradient(135deg, #dc2626, #ef4444); }
+.chips-single .chip.selected { background: linear-gradient(135deg, #f59e0b, #fbbf24); color: #1e1b4b; }
+
+/* PHONE */
+.phone-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.phone-row input { width: 80px; flex: 0 0 auto; }
+.phone-row .dash { color: #9ca3af; font-weight: 900; }
+
+/* BUTTONS */
+.actions { display: flex; gap: 14px; margin-top: 24px; }
+
+.btn {
+  flex: 1;
+  padding: 14px 18px;
+  border-radius: 14px;
+  border: 2px solid var(--line);
+  background: #fff;
+  color: var(--text);
+  cursor: pointer;
+  text-align: center;
+  font-weight: 800;
+  font-size: 15px;
+  transition: all 0.3s;
+}
+
+.btn:hover { transform: translateY(-2px); }
+
+.btn.primary {
+  color: #fff;
+  border: none;
+  background: var(--primary);
+  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.3);
+}
+
+.btn.outline { background: rgba(255, 255, 255, 0.9); }
+.btn.gray { background: #f3f4f6; color: #4b5563; border: 1px solid #e5e7eb; }
+
+@media (max-width: 900px) {
+  .grid { grid-template-columns: 1fr; }
+  .row { grid-template-columns: 1fr; }
+  .left { position: static; }
+  .stepbar { flex-wrap: wrap; }
+  .step { padding: 10px 14px; font-size: 12px; }
+}
+  </style>
+</head>
+
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="logo">⚡</div>
+        <div>결정러</div>
+      </div>
+      <div class="top-actions">
+        <a class="pill" href="login_powerranger.html">로그인</a>
+        <a class="pill active" href="#">회원가입</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="stepbar">
+    <div class="step active" data-step="1">기본 정보</div>
+    <div class="step" data-step="2">연락처/주소</div>
+    <div class="step" data-step="3">성향</div>
+    <div class="step" data-step="4">취향</div>
+  </div>
+
+  <div class="grid">
+    <!-- LEFT -->
+    <div class="left">
+      <div class="character-wrap">
+        <div class="mini-character red">🍜</div>
+        <div class="mini-character purple">🎬</div>
+        <div class="mini-character green">📚</div>
+        <div class="mini-character blue">🎵</div>
+      </div>
+      <div class="bubble">
+        <h3 id="bubbleTitle">처음 만나서 반가워! 😊</h3>
+        <p id="bubbleText">기본 정보부터 알려줘!</p>
+        <div class="hint">※ 결정러 전대에 합류해서 선택장애를 물리치자!</div>
+      </div>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="card">
+      <h2>회원가입</h2>
+      <p class="sub">결정러 전대원이 되어주세요!</p>
+
+      <form id="joinForm" method="post" action="#">
+        <!-- STEP 1 -->
+        <div class="panel active" data-step="1">
+          <div class="field">
+            <div class="label">아이디</div>
+            <div class="with-btn">
+              <input type="text" name="login_id" id="login_id" placeholder="아이디 입력">
+              <button type="button" class="btn gray">중복확인</button>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <div class="label">비밀번호</div>
+              <input type="password" name="pw" id="pw" placeholder="8자 이상">
+            </div>
+            <div class="field">
+              <div class="label">비밀번호 확인</div>
+              <input type="password" name="pw2" id="pw2" placeholder="다시 입력">
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="label">닉네임</div>
+            <input type="text" name="nickname" id="nickname" placeholder="뭐라고 부를까?">
+          </div>
+
+          <div class="field">
+            <div class="label">나이</div>
+            <input type="number" name="age" id="age" placeholder="예) 25" min="0" max="120">
+          </div>
+
+          <div class="field">
+            <div class="label">이메일</div>
+            <div class="row">
+              <input type="text" name="email_1" id="email_1" placeholder="example">
+              <select name="email_2" id="email_2">
+                <option value="">선택</option>
+                <option value="gmail.com">gmail.com</option>
+                <option value="naver.com">naver.com</option>
+                <option value="kakao.com">kakao.com</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 2 -->
+        <div class="panel" data-step="2">
+          <div class="field">
+            <div class="label">지역</div>
+            <input type="text" name="area" id="area" placeholder="예) 서울">
+          </div>
+
+          <div class="field">
+            <div class="label">주소</div>
+            <input type="text" name="address" id="address" placeholder="상세 주소">
+          </div>
+
+          <div class="field">
+            <div class="label">전화번호</div>
+            <div class="phone-row">
+              <input type="text" name="mobile_1" id="mobile_1" maxlength="3" placeholder="010">
+              <span class="dash">-</span>
+              <input type="text" name="mobile_2" id="mobile_2" maxlength="4" placeholder="1234">
+              <span class="dash">-</span>
+              <input type="text" name="mobile_3" id="mobile_3" maxlength="4" placeholder="5678">
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="label">성별</div>
+            <select name="gender" id="gender">
+              <option value="">선택</option>
+              <option value="M">남성</option>
+              <option value="F">여성</option>
+              <option value="N">선택안함</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- STEP 3 -->
+        <div class="panel" data-step="3">
+          <div class="field">
+            <div class="label">MBTI</div>
+            <input type="text" name="mbti" id="mbti" maxlength="4" placeholder="예) INFP (선택)">
+          </div>
+
+          <div class="chip-group">
+            <div class="chip-title">🗣️ 말투 선택</div>
+            <div class="chips chips-single" data-single="true">
+              <div class="chip">존댓말</div>
+              <div class="chip">반말</div>
+              <div class="chip">상황에 따라</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 4 -->
+        <div class="panel" data-step="4">
+          <div class="chip-group">
+            <div class="chip-title">🍔 좋아하는 음식</div>
+            <div class="chips" data-target="food">
+              <div class="chip">한식</div><div class="chip">일식</div><div class="chip">중식</div>
+              <div class="chip">양식</div><div class="chip">분식</div><div class="chip">디저트</div>
+            </div>
+          </div>
+
+          <div class="chip-group">
+            <div class="chip-title">🎵 좋아하는 음악</div>
+            <div class="chips" data-target="music">
+              <div class="chip">K-POP</div><div class="chip">힙합</div><div class="chip">발라드</div>
+              <div class="chip">EDM</div><div class="chip">재즈</div><div class="chip">락</div>
+            </div>
+          </div>
+
+          <div class="chip-group">
+            <div class="chip-title">🎬 좋아하는 영화</div>
+            <div class="chips" data-target="movie">
+              <div class="chip">액션</div><div class="chip">로맨스</div><div class="chip">코미디</div>
+              <div class="chip">SF</div><div class="chip">공포</div><div class="chip">드라마</div>
+            </div>
+          </div>
+
+          <div class="chip-group">
+            <div class="chip-title">📚 좋아하는 책</div>
+            <div class="chips" data-target="book">
+              <div class="chip">소설</div><div class="chip">자기계발</div><div class="chip">경제</div>
+              <div class="chip">인문</div><div class="chip">만화</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button type="button" class="btn outline" id="prevBtn" style="display:none;">← 이전</button>
+          <button type="button" class="btn primary" id="nextBtn">다음 →</button>
+          <button type="submit" class="btn primary" id="submitBtn" style="display:none;">🎉 가입 완료!</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+let currentStep = 1;
+const MAX_STEP = 4;
+
+const bubble = {
+  1: { title: "처음 만나서 반가워! 😊", text: "기본 정보부터 알려줘!" },
+  2: { title: "연락처/주소 입력 🏠", text: "나중에 추천도 더 정확해져!" },
+  3: { title: "성향 확인 🧠", text: "MBTI나 말투를 골라줘!" },
+  4: { title: "취향 선택 🎯", text: "좋아하는 걸 골라주면 추천이 좋아져!" }
+};
+
+function setStep(step) {
+  currentStep = Math.min(Math.max(1, step), MAX_STEP);
+
+  document.querySelectorAll(".step[data-step]").forEach(s => {
+    s.classList.toggle("active", Number(s.dataset.step) === currentStep);
+  });
+
+  document.querySelectorAll(".panel[data-step]").forEach(p => {
+    p.classList.toggle("active", Number(p.dataset.step) === currentStep);
+  });
+
+  const b = bubble[currentStep];
+  document.getElementById("bubbleTitle").innerText = b.title;
+  document.getElementById("bubbleText").innerText = b.text;
+
+  document.getElementById("prevBtn").style.display = currentStep === 1 ? "none" : "flex";
+  document.getElementById("nextBtn").style.display = currentStep === MAX_STEP ? "none" : "flex";
+  document.getElementById("submitBtn").style.display = currentStep === MAX_STEP ? "flex" : "none";
+}
+
+document.getElementById("nextBtn").onclick = () => setStep(currentStep + 1);
+document.getElementById("prevBtn").onclick = () => setStep(currentStep - 1);
+
+// 스텝 클릭으로 이동
+document.querySelectorAll(".step[data-step]").forEach(s => {
+  s.onclick = () => setStep(Number(s.dataset.step));
+});
+
+// 칩 선택
+document.querySelectorAll(".chips").forEach(group => {
+  const isSingle = group.dataset.single === "true";
+  group.querySelectorAll(".chip").forEach(chip => {
+    chip.addEventListener("click", () => {
+      if(isSingle) {
+        group.querySelectorAll(".chip").forEach(c => c.classList.remove("selected"));
+      }
+      chip.classList.toggle("selected");
+    });
+  });
+});
+
+setStep(1);
+</script>
+</body>
+</html>
