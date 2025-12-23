@@ -45,6 +45,9 @@ Servers/
 # pom.xml
 # src/main/java
 # src/main/webapp
+<<<<<<< HEAD
 # /build/          # 이 줄 삭제 또는 # 붙이기
 # *.class          # 이 줄 삭제 또는 # 붙이기
 # /target/         # 이 줄 삭제 또는 # 붙이기
+=======
+>>>>>>> branch 'main' of https://github.com/adhk121-sudo/track24Project.git
