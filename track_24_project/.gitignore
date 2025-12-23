@@ -45,3 +45,6 @@ Servers/
 # pom.xml
 # src/main/java
 # src/main/webapp
+# /build/          # 이 줄 삭제 또는 # 붙이기
+# *.class          # 이 줄 삭제 또는 # 붙이기
+# /target/         # 이 줄 삭제 또는 # 붙이기
