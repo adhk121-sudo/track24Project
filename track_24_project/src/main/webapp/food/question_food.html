@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>맛레인저 추천 | 결정러</title>
+  <style>
+:root {
+  --bg: linear-gradient(180deg, #e0e7ff 0%, #c7d2fe 30%, #ddd6fe 60%, #ede9fe 100%);
+  --card: rgba(255, 255, 255, 0.9);
+  --text: #1e1b4b;
+  --muted: #6b7280;
+  --line: rgba(139, 92, 246, 0.2);
+  --red: #f97316;
+  --red-dark: #ea580c;
+  --shadow: 0 20px 45px rgba(249, 115, 22, 0.15);
+  --topbar-h: 70px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Segoe UI', Pretendard, -apple-system, sans-serif;
+  font-size: 16px;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: 
+    radial-gradient(ellipse at 30% 20%, rgba(249, 115, 22, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 80%, rgba(251, 146, 60, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* TOPBAR */
+.topbar {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: var(--topbar-h);
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.topbar-inner {
+  width: min(1100px, 92vw);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 900;
+  font-size: 22px;
+  color: var(--red-dark);
+  text-decoration: none;
+}
+
+.logo { font-size: 28px; }
+
+.back-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  color: #6b7280;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.8);
+  transition: all 0.3s;
+}
+
+.back-btn:hover {
+  background: rgba(249, 115, 22, 0.1);
+  border-color: var(--red);
+  color: var(--red-dark);
+}
+
+/* MAIN */
+.main-wrap {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: calc(var(--topbar-h) + 40px) 20px 40px;
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 진행 바 */
+.progress-bar {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 40px;
+}
+
+.progress-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(249, 115, 22, 0.2);
+  transition: all 0.3s;
+}
+
+.progress-dot.active {
+  background: linear-gradient(135deg, #dc2626, #f97316);
+  box-shadow: 0 0 12px rgba(249, 115, 22, 0.5);
+  transform: scale(1.2);
+}
+
+.progress-dot.done {
+  background: linear-gradient(135deg, #dc2626, #f97316);
+}
+
+/* 질문 카드 */
+.question-card {
+  background: var(--card);
+  border-radius: 32px;
+  padding: 40px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--line);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 캐릭터 + 질문 영역 */
+.question-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.character-area {
+  flex-shrink: 0;
+}
+
+.character-icon {
+  width: 100px;
+  height: 100px;
+  border-radius: 28px;
+  background: linear-gradient(135deg, #dc2626, #f97316);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 50px;
+  box-shadow: 0 12px 30px rgba(249, 115, 22, 0.3);
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.question-area {
+  flex: 1;
+}
+
+.question-label {
+  display: inline-block;
+  background: linear-gradient(135deg, #dc2626, #f97316);
+  color: white;
+  padding: 6px 16px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.question-text {
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--text);
+  line-height: 1.4;
+}
+
+.question-sub {
+  font-size: 15px;
+  color: var(--muted);
+  margin-top: 8px;
+}
+
+/* 선택지 영역 */
+.options-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.options-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.option-btn {
+  background: rgba(255, 255, 255, 0.8);
+  border: 2px solid rgba(249, 115, 22, 0.2);
+  border-radius: 20px;
+  padding: 24px 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.option-btn:hover {
+  transform: translateY(-4px);
+  border-color: var(--red);
+  background: rgba(249, 115, 22, 0.08);
+  box-shadow: 0 10px 30px rgba(249, 115, 22, 0.15);
+}
+
+.option-btn.selected {
+  border-color: var(--red);
+  background: linear-gradient(135deg, rgba(220, 38, 38, 0.1), rgba(249, 115, 22, 0.1));
+  box-shadow: 0 10px 30px rgba(249, 115, 22, 0.2);
+}
+
+.option-btn .emoji {
+  font-size: 36px;
+}
+
+.option-btn .text {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.option-btn .desc {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* 버튼 영역 */
+.action-area {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 32px;
+  gap: 16px;
+}
+
+.btn {
+  padding: 16px 32px;
+  border-radius: 16px;
+  font-size: 16px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.3s;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-prev {
+  background: rgba(255, 255, 255, 0.9);
+  color: #6b7280;
+  border: 2px solid var(--line);
+}
+
+.btn-prev:hover {
+  background: rgba(249, 115, 22, 0.1);
+  border-color: var(--red);
+  color: var(--red-dark);
+}
+
+.btn-next {
+  background: linear-gradient(135deg, #dc2626, #f97316);
+  color: white;
+  box-shadow: 0 8px 25px rgba(249, 115, 22, 0.3);
+  margin-left: auto;
+}
+
+.btn-next:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(249, 115, 22, 0.4);
+}
+
+.btn-next:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* 말풍선 팁 */
+.tip-bubble {
+  background: rgba(249, 115, 22, 0.1);
+  border: 1px solid rgba(249, 115, 22, 0.2);
+  border-radius: 16px;
+  padding: 14px 20px;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.tip-bubble .icon {
+  font-size: 24px;
+}
+
+.tip-bubble .text {
+  font-size: 14px;
+  color: var(--red-dark);
+  font-weight: 600;
+}
+
+/* 반응형 */
+@media (max-width: 600px) {
+  .question-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .question-text {
+    font-size: 22px;
+  }
+  .options-grid {
+    grid-template-columns: 1fr;
+  }
+  .character-icon {
+    width: 80px;
+    height: 80px;
+    font-size: 40px;
+  }
+}
+  </style>
+</head>
+
+<body>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="main_powerranger.html">
+        <div class="logo">🍜</div>
+        <div>맛레인저</div>
+      </a>
+      <a class="back-btn" href="main_powerranger.html">
+        ← 돌아가기
+      </a>
+    </div>
+  </div>
+
+  <div class="main-wrap">
+    <!-- 진행 바 -->
+    <div class="progress-bar">
+      <div class="progress-dot active" data-step="1"></div>
+      <div class="progress-dot" data-step="2"></div>
+      <div class="progress-dot" data-step="3"></div>
+      <div class="progress-dot" data-step="4"></div>
+    </div>
+
+    <!-- 질문 카드 -->
+    <div class="question-card">
+      <!-- 질문 1: 기분 -->
+      <div class="question-panel active" data-step="1">
+        <div class="question-header">
+          <div class="character-area">
+            <div class="character-icon">🍜</div>
+          </div>
+          <div class="question-area">
+            <div class="question-label">Q1. 기분</div>
+            <div class="question-text">오늘 기분이 어때? 😊</div>
+            <div class="question-sub">기분에 따라 어울리는 음식이 달라!</div>
+          </div>
+        </div>
+
+        <div class="options-area">
+          <div class="options-grid">
+            <div class="option-btn" data-value="happy">
+              <span class="emoji">😄</span>
+              <span class="text">기분 좋아!</span>
+              <span class="desc">신나는 날이야</span>
+            </div>
+            <div class="option-btn" data-value="tired">
+              <span class="emoji">😫</span>
+              <span class="text">피곤해...</span>
+              <span class="desc">에너지 충전 필요</span>
+            </div>
+            <div class="option-btn" data-value="stressed">
+              <span class="emoji">😤</span>
+              <span class="text">스트레스 받아</span>
+              <span class="desc">확 풀고 싶어</span>
+            </div>
+            <div class="option-btn" data-value="sad">
+              <span class="emoji">😢</span>
+              <span class="text">우울해...</span>
+              <span class="desc">위로가 필요해</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tip-bubble">
+          <span class="icon">💡</span>
+          <span class="text">맛레인저가 기분에 딱 맞는 음식을 추천해줄게!</span>
+        </div>
+      </div>
+
+      <!-- 질문 2: 식사 종류 -->
+      <div class="question-panel" data-step="2">
+        <div class="question-header">
+          <div class="character-area">
+            <div class="character-icon">🍜</div>
+          </div>
+          <div class="question-area">
+            <div class="question-label">Q2. 식사</div>
+            <div class="question-text">어떤 끼니를 찾고 있어? 🍽️</div>
+            <div class="question-sub">상황에 맞는 메뉴를 골라줄게!</div>
+          </div>
+        </div>
+
+        <div class="options-area">
+          <div class="options-grid">
+            <div class="option-btn" data-value="breakfast">
+              <span class="emoji">🌅</span>
+              <span class="text">아침</span>
+              <span class="desc">가볍게 시작</span>
+            </div>
+            <div class="option-btn" data-value="lunch">
+              <span class="emoji">☀️</span>
+              <span class="text">점심</span>
+              <span class="desc">든든하게</span>
+            </div>
+            <div class="option-btn" data-value="dinner">
+              <span class="emoji">🌙</span>
+              <span class="text">저녁</span>
+              <span class="desc">하루 마무리</span>
+            </div>
+            <div class="option-btn" data-value="snack">
+              <span class="emoji">🍿</span>
+              <span class="text">간식/야식</span>
+              <span class="desc">출출할 때</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tip-bubble">
+          <span class="icon">💡</span>
+          <span class="text">시간대에 따라 추천 메뉴가 달라져!</span>
+        </div>
+      </div>
+
+      <!-- 질문 3: 음식 스타일 -->
+      <div class="question-panel" data-step="3">
+        <div class="question-header">
+          <div class="character-area">
+            <div class="character-icon">🍜</div>
+          </div>
+          <div class="question-area">
+            <div class="question-label">Q3. 스타일</div>
+            <div class="question-text">어떤 느낌의 음식이 땡겨? 🤤</div>
+            <div class="question-sub">오늘 입맛에 맞는 스타일을 골라봐!</div>
+          </div>
+        </div>
+
+        <div class="options-area">
+          <div class="options-grid">
+            <div class="option-btn" data-value="hot">
+              <span class="emoji">🔥</span>
+              <span class="text">뜨끈뜨끈</span>
+              <span class="desc">국물/찌개/탕</span>
+            </div>
+            <div class="option-btn" data-value="spicy">
+              <span class="emoji">🌶️</span>
+              <span class="text">매콤하게</span>
+              <span class="desc">화끈하게!</span>
+            </div>
+            <div class="option-btn" data-value="light">
+              <span class="emoji">🥗</span>
+              <span class="text">가볍게</span>
+              <span class="desc">건강하게</span>
+            </div>
+            <div class="option-btn" data-value="heavy">
+              <span class="emoji">🍖</span>
+              <span class="text">든든하게</span>
+              <span class="desc">푸짐하게!</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tip-bubble">
+          <span class="icon">💡</span>
+          <span class="text">취향 저격 메뉴를 찾고 있어!</span>
+        </div>
+      </div>
+
+      <!-- 질문 4: 함께 먹을 사람 -->
+      <div class="question-panel" data-step="4">
+        <div class="question-header">
+          <div class="character-area">
+            <div class="character-icon">🍜</div>
+          </div>
+          <div class="question-area">
+            <div class="question-label">Q4. 상황</div>
+            <div class="question-text">누구랑 먹을 거야? 👥</div>
+            <div class="question-sub">상황에 맞는 메뉴를 추천해줄게!</div>
+          </div>
+        </div>
+
+        <div class="options-area">
+          <div class="options-grid">
+            <div class="option-btn" data-value="alone">
+              <span class="emoji">🧑</span>
+              <span class="text">혼밥</span>
+              <span class="desc">나만의 시간</span>
+            </div>
+            <div class="option-btn" data-value="friend">
+              <span class="emoji">👫</span>
+              <span class="text">친구랑</span>
+              <span class="desc">즐거운 식사</span>
+            </div>
+            <div class="option-btn" data-value="family">
+              <span class="emoji">👨‍👩‍👧</span>
+              <span class="text">가족이랑</span>
+              <span class="desc">온 가족 함께</span>
+            </div>
+            <div class="option-btn" data-value="date">
+              <span class="emoji">💑</span>
+              <span class="text">데이트</span>
+              <span class="desc">분위기 있게</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tip-bubble">
+          <span class="icon">🔥</span>
+          <span class="text">마지막 질문이야! 이제 추천해줄게!</span>
+        </div>
+      </div>
+
+      <!-- 버튼 영역 -->
+      <div class="action-area">
+        <button class="btn btn-prev" id="prevBtn" style="visibility: hidden;">
+          ← 이전
+        </button>
+        <button class="btn btn-next" id="nextBtn" disabled>
+          다음 →
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+let currentStep = 1;
+const MAX_STEP = 4;
+const answers = {};
+
+function updateUI() {
+  // 진행 바 업데이트
+  document.querySelectorAll('.progress-dot').forEach(dot => {
+    const step = Number(dot.dataset.step);
+    dot.classList.remove('active', 'done');
+    if (step === currentStep) dot.classList.add('active');
+    if (step < currentStep) dot.classList.add('done');
+  });
+
+  // 패널 전환
+  document.querySelectorAll('.question-panel').forEach(panel => {
+    panel.style.display = Number(panel.dataset.step) === currentStep ? 'block' : 'none';
+  });
+
+  // 버튼 상태
+  document.getElementById('prevBtn').style.visibility = currentStep === 1 ? 'hidden' : 'visible';
+  
+  const nextBtn = document.getElementById('nextBtn');
+  if (currentStep === MAX_STEP) {
+    nextBtn.textContent = '🔥 추천받기!';
+  } else {
+    nextBtn.textContent = '다음 →';
+  }
+
+  // 현재 스텝에 선택된 값이 있으면 버튼 활성화
+  const currentPanel = document.querySelector(`.question-panel[data-step="${currentStep}"]`);
+  const hasSelection = currentPanel.querySelector('.option-btn.selected');
+  nextBtn.disabled = !hasSelection;
+}
+
+function selectOption(btn, step) {
+  // 같은 패널의 다른 선택 해제
+  btn.closest('.options-grid').querySelectorAll('.option-btn').forEach(b => {
+    b.classList.remove('selected');
+  });
+  btn.classList.add('selected');
+  
+  // 답변 저장
+  answers[step] = btn.dataset.value;
+  
+  // 다음 버튼 활성화
+  document.getElementById('nextBtn').disabled = false;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  updateUI();
+
+  // 옵션 클릭
+  document.querySelectorAll('.option-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const panel = btn.closest('.question-panel');
+      const step = Number(panel.dataset.step);
+      selectOption(btn, step);
+    });
+  });
+
+  // 이전 버튼
+  document.getElementById('prevBtn').addEventListener('click', () => {
+    if (currentStep > 1) {
+      currentStep--;
+      updateUI();
+    }
+  });
+
+  // 다음 버튼
+  document.getElementById('nextBtn').addEventListener('click', () => {
+    if (currentStep < MAX_STEP) {
+      currentStep++;
+      updateUI();
+    } else {
+      // 마지막 단계 - 결과 페이지로 이동
+      console.log('선택한 답변:', answers);
+      alert('추천 결과 페이지로 이동합니다!\n\n선택: ' + JSON.stringify(answers, null, 2));
+      // location.href = 'result_food.html?' + new URLSearchParams(answers);
+    }
+  });
+});
+  </script>
+</body>
+</html>
