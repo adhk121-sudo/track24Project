@@ -35,7 +35,7 @@
   <main>
     <!-- 히어로 섹션 -->
     <section class="hero-section pose-animation">
-      <div class="hero-badge">🦸 선택장애 해결 전대</div>
+      <div class="hero-badge">🦸 선택장애 해결 전대123</div>
       <h1 class="hero-title">
         오늘도 <span class="highlight">선택장애</span>를 가진<br/>
         현대인들아, 우리가 알려주마!
