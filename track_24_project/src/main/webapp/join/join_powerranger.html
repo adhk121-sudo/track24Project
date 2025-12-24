@@ -170,32 +170,59 @@ body::before {
 .character-wrap {
   display: flex;
   justify-content: center;
-  gap: 16px;
   margin: 10px 0 20px;
+}
+
+.ranger-team {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
   flex-wrap: wrap;
 }
 
-.mini-character {
-  width: 70px;
-  height: 70px;
-  border-radius: 18px;
+.ranger {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 12px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.5);
+  transition: all 0.3s;
+  cursor: default;
+}
+
+.ranger:hover {
+  transform: translateY(-5px);
+}
+
+.ranger-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 32px;
+  font-size: 28px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
   animation: float 3s ease-in-out infinite;
-  transition: all 0.3s;
 }
 
-.mini-character:hover {
-  transform: scale(1.1);
+.ranger.red .ranger-icon { background: linear-gradient(135deg, #dc2626, #f97316); animation-delay: 0s; }
+.ranger.purple .ranger-icon { background: linear-gradient(135deg, #7c3aed, #a855f7); animation-delay: 0.2s; }
+.ranger.green .ranger-icon { background: linear-gradient(135deg, #059669, #22c55e); animation-delay: 0.4s; }
+.ranger.blue .ranger-icon { background: linear-gradient(135deg, #2563eb, #3b82f6); animation-delay: 0.6s; }
+
+.ranger-name {
+  font-size: 11px;
+  font-weight: 700;
+  color: #6b7280;
 }
 
-.mini-character.red { background: linear-gradient(135deg, #dc2626, #f97316); animation-delay: 0s; }
-.mini-character.purple { background: linear-gradient(135deg, #7c3aed, #a855f7); animation-delay: 0.3s; }
-.mini-character.green { background: linear-gradient(135deg, #059669, #22c55e); animation-delay: 0.6s; }
-.mini-character.blue { background: linear-gradient(135deg, #2563eb, #3b82f6); animation-delay: 0.9s; }
+.ranger.red .ranger-name { color: #ea580c; }
+.ranger.purple .ranger-name { color: #7c3aed; }
+.ranger.green .ranger-name { color: #059669; }
+.ranger.blue .ranger-name { color: #2563eb; }
 
 @keyframes float {
   0%, 100% { transform: translateY(0); }
@@ -350,7 +377,80 @@ input::placeholder { color: #9ca3af; }
 .chips[data-target="book"] .chip.selected { background: linear-gradient(135deg, #059669, #22c55e); }
 .chips[data-target="movie"] .chip.selected { background: linear-gradient(135deg, #2563eb, #3b82f6); }
 .chips[data-target="allergy"] .chip.selected { background: linear-gradient(135deg, #dc2626, #ef4444); }
-.chips-single .chip.selected { background: linear-gradient(135deg, #f59e0b, #fbbf24); color: #1e1b4b; }
+
+/* 라디오 버튼 스타일 */
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.radio-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  border-radius: 14px;
+  border: 2px solid rgba(139, 92, 246, 0.2);
+  background: rgba(255, 255, 255, 0.9);
+  cursor: pointer;
+  transition: all 0.25s;
+}
+
+.radio-option:hover {
+  border-color: rgba(139, 92, 246, 0.4);
+  background: rgba(139, 92, 246, 0.05);
+}
+
+.radio-option input[type="radio"] {
+  display: none;
+}
+
+.radio-box {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid rgba(139, 92, 246, 0.3);
+  background: #fff;
+  position: relative;
+  transition: all 0.25s;
+  flex-shrink: 0;
+}
+
+.radio-box::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #f59e0b, #fbbf24);
+  transition: transform 0.2s;
+}
+
+.radio-option input[type="radio"]:checked + .radio-box {
+  border-color: #f59e0b;
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.15);
+}
+
+.radio-option input[type="radio"]:checked + .radio-box::after {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.radio-option input[type="radio"]:checked ~ .radio-label {
+  color: #b45309;
+  font-weight: 800;
+}
+
+.radio-label {
+  font-size: 15px;
+  font-weight: 600;
+  color: #4b5563;
+  transition: all 0.25s;
+}
 
 /* PHONE */
 .phone-row {
@@ -427,10 +527,24 @@ input::placeholder { color: #9ca3af; }
     <!-- LEFT -->
     <div class="left">
       <div class="character-wrap">
-        <div class="mini-character red">🍜</div>
-        <div class="mini-character purple">🎬</div>
-        <div class="mini-character green">📚</div>
-        <div class="mini-character blue">🎵</div>
+        <div class="ranger-team">
+          <div class="ranger red">
+            <div class="ranger-icon">🍜</div>
+            <div class="ranger-name">맛레인저</div>
+          </div>
+          <div class="ranger purple">
+            <div class="ranger-icon">🎬</div>
+            <div class="ranger-name">무비레인저</div>
+          </div>
+          <div class="ranger green">
+            <div class="ranger-icon">📚</div>
+            <div class="ranger-name">북레인저</div>
+          </div>
+          <div class="ranger blue">
+            <div class="ranger-icon">🎵</div>
+            <div class="ranger-name">뮤직레인저</div>
+          </div>
+        </div>
       </div>
       <div class="bubble">
         <h3 id="bubbleTitle">처음 만나서 반가워! 😊</h3>
@@ -466,14 +580,15 @@ input::placeholder { color: #9ca3af; }
             </div>
           </div>
 
-          <div class="field">
-            <div class="label">닉네임</div>
-            <input type="text" name="nickname" id="nickname" placeholder="뭐라고 부를까?">
-          </div>
-
-          <div class="field">
-            <div class="label">나이</div>
-            <input type="number" name="age" id="age" placeholder="예) 25" min="0" max="120">
+          <div class="row">
+            <div class="field">
+              <div class="label">닉네임</div>
+              <input type="text" name="nickname" id="nickname" placeholder="뭐라고 부를까?">
+            </div>
+            <div class="field">
+              <div class="label">나이</div>
+              <input type="number" name="age" id="age" placeholder="예) 25" min="0" max="120">
+            </div>
           </div>
 
           <div class="field">
@@ -492,14 +607,39 @@ input::placeholder { color: #9ca3af; }
 
         <!-- STEP 2 -->
         <div class="panel" data-step="2">
-          <div class="field">
-            <div class="label">지역</div>
-            <input type="text" name="area" id="area" placeholder="예) 서울">
-          </div>
-
-          <div class="field">
-            <div class="label">주소</div>
-            <input type="text" name="address" id="address" placeholder="상세 주소">
+          <div class="row">
+            <div class="field">
+              <div class="label">지역</div>
+              <select name="area" id="area">
+                <option value="">선택</option>
+                <option value="서울">서울</option>
+                <option value="경기">경기</option>
+                <option value="인천">인천</option>
+                <option value="부산">부산</option>
+                <option value="대구">대구</option>
+                <option value="광주">광주</option>
+                <option value="대전">대전</option>
+                <option value="울산">울산</option>
+                <option value="세종">세종</option>
+                <option value="강원">강원</option>
+                <option value="충북">충북</option>
+                <option value="충남">충남</option>
+                <option value="전북">전북</option>
+                <option value="전남">전남</option>
+                <option value="경북">경북</option>
+                <option value="경남">경남</option>
+                <option value="제주">제주</option>
+              </select>
+            </div>
+            <div class="field">
+              <div class="label">성별</div>
+              <select name="gender" id="gender">
+                <option value="">선택</option>
+                <option value="M">남</option>
+                <option value="F">여</option>
+                <option value="N">비공개</option>
+              </select>
+            </div>
           </div>
 
           <div class="field">
@@ -512,16 +652,6 @@ input::placeholder { color: #9ca3af; }
               <input type="text" name="mobile_3" id="mobile_3" maxlength="4" placeholder="5678">
             </div>
           </div>
-
-          <div class="field">
-            <div class="label">성별</div>
-            <select name="gender" id="gender">
-              <option value="">선택</option>
-              <option value="M">남성</option>
-              <option value="F">여성</option>
-              <option value="N">선택안함</option>
-            </select>
-          </div>
         </div>
 
         <!-- STEP 3 -->
@@ -533,10 +663,22 @@ input::placeholder { color: #9ca3af; }
 
           <div class="chip-group">
             <div class="chip-title">🗣️ 말투 선택</div>
-            <div class="chips chips-single" data-single="true">
-              <div class="chip">존댓말</div>
-              <div class="chip">반말</div>
-              <div class="chip">상황에 따라</div>
+            <div class="radio-group">
+              <label class="radio-option">
+                <input type="radio" name="speech_style" value="formal">
+                <span class="radio-box"></span>
+                <span class="radio-label">존댓말</span>
+              </label>
+              <label class="radio-option">
+                <input type="radio" name="speech_style" value="casual">
+                <span class="radio-box"></span>
+                <span class="radio-label">반말</span>
+              </label>
+              <label class="radio-option">
+                <input type="radio" name="speech_style" value="mixed">
+                <span class="radio-box"></span>
+                <span class="radio-label">상황에 따라</span>
+              </label>
             </div>
           </div>
         </div>
@@ -572,6 +714,14 @@ input::placeholder { color: #9ca3af; }
             <div class="chips" data-target="book">
               <div class="chip">소설</div><div class="chip">자기계발</div><div class="chip">경제</div>
               <div class="chip">인문</div><div class="chip">만화</div>
+            </div>
+          </div>
+
+          <div class="chip-group">
+            <div class="chip-title">⚠️ 알레르기</div>
+            <div class="chips" data-target="allergy">
+              <div class="chip">견과류</div><div class="chip">우유</div><div class="chip">계란</div>
+              <div class="chip">밀</div><div class="chip">갑각류</div><div class="chip">대두</div><div class="chip">없음</div>
             </div>
           </div>
         </div>
