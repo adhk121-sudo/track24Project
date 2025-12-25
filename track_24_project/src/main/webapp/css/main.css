@@ -1,5 +1,4 @@
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
+ * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: 'Segoe UI', Pretendard, -apple-system, BlinkMacSystemFont, sans-serif;
@@ -46,78 +45,119 @@
       100% { transform: translateX(100vw); }
     }
 
-    /* NAV */
-    .navbar {
-      position: sticky;
+    /* NAV - 공통 헤더 */
+    .header {
+      position: fixed;
       top: 0;
-      z-index: 100;
+      left: 0;
+      width: 100%;
+      height: 70px;
       background: rgba(255, 255, 255, 0.85);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+      z-index: 1000;
     }
 
-    .nav-inner {
+    .header-inner {
       max-width: 1200px;
+      height: 100%;
       margin: 0 auto;
-      padding: 18px 24px;
+      padding: 0 24px;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
-    .logo {
-      font-size: 24px;
+    .header-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
       font-weight: 900;
+      font-size: 22px;
       background: linear-gradient(135deg, #f97316, #eab308, #22c55e, #3b82f6, #a855f7);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
 
-    .nav-actions {
+    .header-logo .icon {
+      font-size: 28px;
+      -webkit-text-fill-color: initial;
+    }
+
+    .header-nav {
       display: flex;
-      gap: 16px;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-link {
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      color: #6b7280;
+      border: 1px solid transparent;
+      transition: all 0.3s;
+    }
+
+    .nav-link:hover {
+      color: #1e1b4b;
+      background: rgba(139, 92, 246, 0.08);
+    }
+
+    .nav-link.active {
+      color: #5b21b6;
+      background: rgba(139, 92, 246, 0.1);
+      border-color: rgba(139, 92, 246, 0.2);
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 12px;
       align-items: center;
     }
 
-    .nav-login {
-      background: rgba(139, 92, 246, 0.1);
-      border: 1px solid rgba(139, 92, 246, 0.3);
+    .btn-outline {
       padding: 10px 20px;
       border-radius: 999px;
       font-size: 14px;
       font-weight: 700;
-      cursor: pointer;
+      text-decoration: none;
       color: #5b21b6;
+      border: 1px solid rgba(139, 92, 246, 0.3);
+      background: rgba(255, 255, 255, 0.8);
       transition: all 0.3s;
     }
 
-    .nav-login:hover {
-      background: rgba(139, 92, 246, 0.2);
+    .btn-outline:hover {
+      background: rgba(139, 92, 246, 0.1);
     }
 
-    .nav-signup {
-      background: linear-gradient(135deg, #7c3aed, #a855f7);
-      color: #fff;
-      border: none;
+    .btn-primary {
       padding: 10px 22px;
       border-radius: 999px;
+      font-size: 14px;
       font-weight: 700;
-      cursor: pointer;
-      box-shadow: 0 6px 18px rgba(124,58,237,0.3);
+      text-decoration: none;
+      color: #fff;
+      background: linear-gradient(135deg, #7c3aed, #a855f7);
+      box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
       transition: all 0.3s;
     }
 
-    .nav-signup:hover {
+    .btn-primary:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(124,58,237,0.4);
+      box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
     }
 
     /* MAIN */
     main {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 40px 24px;
+      padding: 110px 24px 40px;
       position: relative;
       z-index: 1;
       min-height: calc(100vh - 70px);

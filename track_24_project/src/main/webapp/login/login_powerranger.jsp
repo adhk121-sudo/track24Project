@@ -1,8 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>  
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
+<link href="../css/login.css" rel="stylesheet">
+<link rel="stylesheet" href="../css/header.css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+<script type="text/javascript" src="js/jquery-1.8.1.min.js"></script>    
 <!DOCTYPE html>
 <html lang="ko">
-<link href="css/css.css" rel="stylesheet">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -10,19 +16,10 @@
 </head>
 
 <body>
-<div class="wrap">
-  <div class="topbar">
-    <div class="topbar-inner">
-      <div class="brand">
-        <div class="logo">⚡</div>
-        <div>결정러</div>
-      </div>
-      <div class="top-actions">
-        <a class="pill active" href="login_powerranger.html">로그인</a>
-        <a class="pill" href="join_powerranger.html">회원가입</a>
-      </div>
-    </div>
-  </div>
+<!-- 공통 헤더 -->
+  <header class="header">
+    <%@ include file="../common/common_header.jsp" %> 
+  </header>
 
   <div class="grid">
     <div class="left">
@@ -88,4 +85,8 @@ document.getElementById("loginForm").addEventListener("submit", (e) => {
 });
 </script>
 </body>
+<!-- footer.jsp -->
+<footer class="footer">
+  <%@ include file="../common/common_footer.jsp" %>
+</footer>
 </html>
