@@ -3,16 +3,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>  
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
-<html>
-<head>
 <link href="css/main.css" rel="stylesheet">
+<link rel="stylesheet" href="../css/header.css">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 <script type="text/javascript" src="js/jquery-1.8.1.min.js"></script>    
+
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>결정러 - 선택장애 해결사</title>
 </head>
 <body>
   <!-- 배경 효과 -->
@@ -22,15 +23,10 @@
     <div class="energy-line" style="top: 80%; animation-delay: 2s;"></div>
   </div>
 
-  <nav class="navbar">
-    <div class="nav-inner">
-      <div class="logo">⚡ 결정러</div>
-      <div class="nav-actions">
-        <button class="nav-login" onclick="location.href='login.html'">로그인</button>
-        <button class="nav-signup" onclick="location.href='signup_step1.html'">회원가입</button>
-      </div>
-    </div>
-  </nav>
+  <!-- 공통 헤더 -->
+  <header class="header">
+    <%@ include file="../common/common_header.jsp" %> 
+  </header>
 
   <main>
     <!-- 히어로 섹션 -->
@@ -89,4 +85,8 @@
     </div>
   </main>
 </body>
+<!-- footer.jsp -->
+<footer class="footer">
+  <%@ include file="../common/common_footer.jsp" %>
+</footer>
 </html>
