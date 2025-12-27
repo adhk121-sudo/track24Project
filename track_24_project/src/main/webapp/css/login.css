@@ -110,14 +110,19 @@ body::before {
   box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
 }
 
-/* GRID */
+/* GRID - 중앙 정렬 */
 .grid {
   display: grid;
   grid-template-columns: 1fr 1.15fr;
   gap: 24px;
-  margin-top: 100px;  /* 헤더 높이(70px) + 여백(30px) */
+  margin-top: 100px;
   padding: 0 20px;
-  flex: 1; 
+  flex: 1;
+  
+  /* 이 부분 추가! */
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 
@@ -136,7 +141,18 @@ body::before {
   justify-content: center;
   margin: 10px 0 20px;
 }
+.ranger-image {
+  width: 100%;
+  max-width: 1000px;
+  height: auto;
+  animation: float 3s ease-in-out infinite;
+  filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.15));
+}
 
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
 .ranger-team {
   display: flex;
   gap: 12px;

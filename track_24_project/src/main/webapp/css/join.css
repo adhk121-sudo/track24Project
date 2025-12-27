@@ -102,12 +102,21 @@ body::before {
   max-width: 350px;
 }
 
-/* 레인저 팀 */
-.ranger-team {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
+
+/* 레인저 이미지 */
+.ranger-image {
+  width: 100%;
+  max-width: 550px;
+  height: auto;
+  animation: float 3s ease-in-out infinite;
+  filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.15));
 }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
 
 .ranger {
   display: flex;
@@ -657,7 +666,9 @@ input::placeholder {
   }
   
   .character-wrap {
-    max-width: 300px;
+   	display: flex;
+  	justify-content: center;
+  	margin: 20px 0 30px;  /* 여백 늘림 */
   }
   
   .ranger-team {

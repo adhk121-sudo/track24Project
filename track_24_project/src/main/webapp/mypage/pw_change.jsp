@@ -103,7 +103,9 @@
   </div>
 
   <!-- 푸터 -->
+  <footer class="footer">
   <%@ include file="../common/common_footer.jsp" %>
+</footer>
 
   <!-- 스크립트 -->
   <script>

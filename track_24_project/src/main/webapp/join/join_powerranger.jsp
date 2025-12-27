@@ -29,33 +29,17 @@
   <!-- 메인 컨텐츠 -->
   <div class="grid">
     <!-- LEFT -->
-    <div class="left">
-      <div class="character-wrap">
-        <div class="ranger-team">
-          <div class="ranger red">
-            <div class="ranger-icon">🍜</div>
-            <div class="ranger-name">맛레인저</div>
-          </div>
-          <div class="ranger purple">
-            <div class="ranger-icon">🎬</div>
-            <div class="ranger-name">무비레인저</div>
-          </div>
-          <div class="ranger green">
-            <div class="ranger-icon">📚</div>
-            <div class="ranger-name">북레인저</div>
-          </div>
-          <div class="ranger blue">
-            <div class="ranger-icon">🎵</div>
-            <div class="ranger-name">뮤직레인저</div>
-          </div>
-        </div>
-      </div>
-      <div class="bubble">
-        <h3 id="bubbleTitle">처음 만나서 반가워! 😊</h3>
-        <p id="bubbleText">기본 정보부터 알려줘!</p>
-        <div class="hint">※ 결정러 전대에 합류해서 선택장애를 물리치자!</div>
-      </div>
-    </div>
+<div class="left">
+  <div class="character-wrap">
+    <img src="../images/레인저.png" alt="결정러 전대" class="ranger-image">
+  </div>
+  <div class="bubble">
+    <h3 id="bubbleTitle">처음 만나서 반갑다! 제군들!</h3>
+    <p id="bubbleText">기본 정보부터 알려줘!</p>
+    <div class="hint">※ 결정러 전대에 합류해서 선택장애를 물리치자!</div>
+  </div>
+</div>
+     
 
     <!-- RIGHT -->
     <div class="card">
@@ -452,7 +436,7 @@
     const MAX_STEP = 4;
 
     const bubble = {
-      1: { title: "처음 만나서 반가워! 😊", text: "기본 정보부터 알려줘!" },
+      1: { title: "처음 만나서 반갑다! 제군들!", text: "같이 기본 정보의 힘을 모으자!" },
       2: { title: "연락처/주소 입력 🏠", text: "나중에 추천도 더 정확해져!" },
       3: { title: "성향 확인 🧠", text: "MBTI나 말투를 골라줘!" },
       4: { title: "취향 선택 🎯", text: "좋아하는 걸 골라주면 추천이 좋아져!" }

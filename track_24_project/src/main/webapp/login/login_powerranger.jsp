@@ -16,40 +16,24 @@
 </head>
 
 <body>
+	
 <!-- 공통 헤더 -->
   <header class="header">
     <%@ include file="../common/common_header.jsp" %> 
   </header>
 
   <div class="grid">
-    <div class="left">
-      <div class="character-wrap">
-        <div class="ranger-team">
-          <div class="ranger red">
-            <div class="ranger-icon">🍜</div>
-            <div class="ranger-name">맛레인저</div>
-          </div>
-          <div class="ranger purple">
-            <div class="ranger-icon">🎬</div>
-            <div class="ranger-name">무비레인저</div>
-          </div>
-          <div class="ranger green">
-            <div class="ranger-icon">📚</div>
-            <div class="ranger-name">북레인저</div>
-          </div>
-          <div class="ranger blue">
-            <div class="ranger-icon">🎵</div>
-            <div class="ranger-name">뮤직레인저</div>
-          </div>
-        </div>
-      </div>
+    <!-- LEFT -->
+<div class="left">
+  <div class="character-wrap">
+    <img src="../images/레인저.png" alt="결정러 전대" class="ranger-image">
+  </div>
       <div class="bubble">
         <h3>다시 만나서 반가워! 😊</h3>
         <p>아이디/비밀번호로 로그인해줘!</p>
         <div class="hint">※ 로그인하면 전대원들이 추천해줄게!</div>
       </div>
     </div>
-
     <div class="card">
       <h2>로그인</h2>
       <p class="sub">결정러 전대에 합류하세요!</p>
