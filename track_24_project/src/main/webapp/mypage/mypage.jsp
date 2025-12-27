@@ -333,7 +333,7 @@
             </div>
 
             <div class="mp-actions">
-              <button type="submit" class="btn primary">💾 저장하기</button>
+              <button type="submit" class="btn primary">💾 수정하기</button>
             </div>
           </form>
         </div>
@@ -343,7 +343,9 @@
   </div>
 
   <!-- 푸터 -->
+  <footer class="footer">
   <%@ include file="../common/common_footer.jsp" %>
+</footer>
 
   <!-- 스크립트 -->
   <script>

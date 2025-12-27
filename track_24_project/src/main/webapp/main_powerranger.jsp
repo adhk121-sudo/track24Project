@@ -37,30 +37,55 @@
         현대인들아, 우리가 알려주마!
       </h1>
       <p class="hero-subtitle">
-        음식, 영화, 책, 음악... 뭘 골라야 할지 모르겠다고?<br/>
-        걱정 마! 우리 4인방이 딱 정해줄게! 💪
+        음식, 음료, 영화, 책, 음악... 뭘 골라야 할지 모르겠다고?<br/>
+        걱정 마! 우리 5인방이 딱 정해줄게! 💪
       </p>
     </section>
 
     <!-- 캐릭터들 -->
+    <!-- 캐릭터들 - 5인방 -->
     <section class="characters-section">
-      <div class="character-card" onclick="location.href='recommend_question.html?category=food'">
-        <div class="character-avatar">🍜</div>
+      <!-- 맛레인저 (빨강) -->
+      <div class="character-card" data-color="red" onclick="location.href='food/question_food.jsp'">
+        <div class="character-avatar">
+          <img src="images/food_ranger.png" alt="맛레인저">
+        </div>
         <div class="character-name">맛레인저</div>
         <div class="character-role">음식 담당</div>
       </div>
-      <div class="character-card" onclick="location.href='recommend_question.html?category=movie'">
-        <div class="character-avatar">🎬</div>
+
+      <!-- 드링크레인저 (노랑) -->
+      <div class="character-card" data-color="yellow" onclick="location.href='drink/question_drink.jsp'">
+        <div class="character-avatar">
+          <img src="images/drink_ranger.png" alt="드링크레인저">
+        </div>
+        <div class="character-name">드링크레인저</div>
+        <div class="character-role">음료 담당</div>
+      </div>
+
+      <!-- 무비레인저 (보라) -->
+      <div class="character-card" data-color="purple" onclick="location.href='movie/question_movie.jsp'">
+        <div class="character-avatar">
+          <img src="images/movie_ranger.png" alt="무비레인저">
+        </div>
         <div class="character-name">무비레인저</div>
         <div class="character-role">영화 담당</div>
       </div>
-      <div class="character-card" onclick="location.href='recommend_question.html?category=book'">
-        <div class="character-avatar">📚</div>
+
+      <!-- 북레인저 (초록) -->
+      <div class="character-card" data-color="green" onclick="location.href='book/question_book.jsp'">
+        <div class="character-avatar">
+          <img src="images/book_ranger.png" alt="북레인저">
+        </div>
         <div class="character-name">북레인저</div>
         <div class="character-role">책 담당</div>
       </div>
-      <div class="character-card" onclick="location.href='recommend_question.html?category=music'">
-        <div class="character-avatar">🎵</div>
+
+      <!-- 뮤직레인저 (파랑) -->
+      <div class="character-card" data-color="blue" onclick="location.href='music/question_music.jsp'">
+        <div class="character-avatar">
+          <img src="images/music_ranger.png" alt="뮤직레인저">
+        </div>
         <div class="character-name">뮤직레인저</div>
         <div class="character-role">음악 담당</div>
       </div>
@@ -81,7 +106,7 @@
         <span class="icon">🎯</span>
         <p>로그인하면 <span>취향 맞춤 추천</span>!</p>
       </div>
-      <button class="mission-btn" onclick="location.href='login.html'">출동!</button>
+      <button class="mission-btn" onclick="location.href='login/login_powerranger.jsp'">출동!</button>
     </div>
   </main>
 </body>

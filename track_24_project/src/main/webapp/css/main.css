@@ -1,4 +1,4 @@
- * { margin: 0; padding: 0; box-sizing: border-box; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: 'Segoe UI', Pretendard, -apple-system, BlinkMacSystemFont, sans-serif;
@@ -17,7 +17,8 @@
         radial-gradient(ellipse at 20% 20%, rgba(249, 115, 22, 0.12) 0%, transparent 50%),
         radial-gradient(ellipse at 80% 30%, rgba(168, 85, 247, 0.12) 0%, transparent 50%),
         radial-gradient(ellipse at 40% 80%, rgba(34, 197, 94, 0.08) 0%, transparent 50%),
-        radial-gradient(ellipse at 70% 70%, rgba(59, 130, 246, 0.08) 0%, transparent 50%);
+        radial-gradient(ellipse at 70% 70%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 50%, rgba(234, 179, 8, 0.08) 0%, transparent 50%);
       pointer-events: none;
       z-index: 0;
     }
@@ -203,22 +204,22 @@
     .hero-subtitle {
       font-size: 16px;
       color: #6b7280;
-      max-width: 450px;
+      max-width: 500px;
       margin: 0 auto;
       line-height: 1.6;
     }
 
-    /* 캐릭터 섹션 */
+    /* 캐릭터 섹션 - 5인방 */
     .characters-section {
       display: flex;
       justify-content: center;
-      gap: 24px;
+      gap: 20px;
       margin: 30px 0;
       flex-wrap: wrap;
     }
 
     .character-card {
-      width: 150px;
+      width: 140px;
       text-align: center;
       cursor: pointer;
       transition: all 0.3s;
@@ -233,10 +234,12 @@
       background: rgba(255, 255, 255, 0.9);
     }
 
-    .character-card:nth-child(1):hover { border-color: #f97316; box-shadow: 0 15px 40px rgba(249,115,22,0.25); }
-    .character-card:nth-child(2):hover { border-color: #a855f7; box-shadow: 0 15px 40px rgba(168,85,247,0.25); }
-    .character-card:nth-child(3):hover { border-color: #22c55e; box-shadow: 0 15px 40px rgba(34,197,94,0.25); }
-    .character-card:nth-child(4):hover { border-color: #3b82f6; box-shadow: 0 15px 40px rgba(59,130,246,0.25); }
+    /* 각 캐릭터 호버 색상 */
+    .character-card[data-color="red"]:hover { border-color: #f97316; box-shadow: 0 15px 40px rgba(249,115,22,0.25); }
+    .character-card[data-color="purple"]:hover { border-color: #a855f7; box-shadow: 0 15px 40px rgba(168,85,247,0.25); }
+    .character-card[data-color="green"]:hover { border-color: #22c55e; box-shadow: 0 15px 40px rgba(34,197,94,0.25); }
+    .character-card[data-color="blue"]:hover { border-color: #3b82f6; box-shadow: 0 15px 40px rgba(59,130,246,0.25); }
+    .character-card[data-color="yellow"]:hover { border-color: #d4d700; box-shadow: 0 15px 40px rgba(212, 215, 0, 0.25); }
 
     .character-avatar {
       width: 100px;
@@ -245,29 +248,41 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 48px;
       margin: 0 auto 12px;
       position: relative;
       overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
       animation: float 3s ease-in-out infinite;
     }
 
-    .character-card:nth-child(1) .character-avatar {
+    /* 각 캐릭터 배경 그라데이션 */
+    .character-card[data-color="red"] .character-avatar {
       background: linear-gradient(135deg, #dc2626, #f97316);
       animation-delay: 0s;
     }
-    .character-card:nth-child(2) .character-avatar {
+    .character-card[data-color="purple"] .character-avatar {
       background: linear-gradient(135deg, #7c3aed, #a855f7);
-      animation-delay: 0.3s;
+      animation-delay: 0.2s;
     }
-    .character-card:nth-child(3) .character-avatar {
+    .character-card[data-color="green"] .character-avatar {
       background: linear-gradient(135deg, #059669, #22c55e);
+      animation-delay: 0.4s;
+    }
+    .character-card[data-color="blue"] .character-avatar {
+      background: linear-gradient(135deg, #2563eb, #3b82f6);
       animation-delay: 0.6s;
     }
-    .character-card:nth-child(4) .character-avatar {
-      background: linear-gradient(135deg, #2563eb, #3b82f6);
-      animation-delay: 0.9s;
+    .character-card[data-color="yellow"] .character-avatar {
+      background: linear-gradient(135deg, #d4d700, #ecef4c);
+      animation-delay: 0.8s;
+    }
+
+    /* 아이콘 이미지 */
+    .character-avatar img {
+      width: 400px;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
     }
 
     @keyframes float {
@@ -293,15 +308,16 @@
     }
 
     .character-name {
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 700;
       margin-bottom: 4px;
     }
 
-    .character-card:nth-child(1) .character-name { color: #ea580c; }
-    .character-card:nth-child(2) .character-name { color: #7c3aed; }
-    .character-card:nth-child(3) .character-name { color: #059669; }
-    .character-card:nth-child(4) .character-name { color: #2563eb; }
+    .character-card[data-color="red"] .character-name { color: #ea580c; }
+    .character-card[data-color="purple"] .character-name { color: #7c3aed; }
+    .character-card[data-color="green"] .character-name { color: #059669; }
+    .character-card[data-color="blue"] .character-name { color: #2563eb; }
+    .character-card[data-color="yellow"] .character-name { color: #a3a600; }
 
     .character-role {
       font-size: 12px;
@@ -343,7 +359,7 @@
       font-size: 24px;
     }
 
-    /* 미션 배너 - 가운데 정렬, 고정 너비 */
+    /* 미션 배너 */
     .mission-banner {
       background: rgba(255, 255, 255, 0.8);
       border: 1px solid rgba(139, 92, 246, 0.2);
@@ -426,13 +442,15 @@
       .character-avatar {
         width: 70px;
         height: 70px;
-        font-size: 36px;
       }
       .character-name {
-        font-size: 13px;
+        font-size: 12px;
       }
       .mission-banner {
         width: 90%;
         max-width: 420px;
+      }
+      .header-nav {
+        display: none;
       }
     }

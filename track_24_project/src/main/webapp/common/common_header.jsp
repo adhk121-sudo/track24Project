@@ -224,9 +224,11 @@ body::before {
       <nav class="header-nav">
         <a href="../main_powerranger.jsp" class="nav-link active">홈</a>
         <a href="food/question_food.jsp" class="nav-link">음식</a>
+        <a href="question_drink.html" class="nav-link">음료</a>
         <a href="question_movie.html" class="nav-link">영화</a>
         <a href="question_book.html" class="nav-link">책</a>
         <a href="question_music.html" class="nav-link">음악</a>
+        
       </nav>
 
       <div class="header-actions">
