@@ -432,54 +432,153 @@
 
   <!-- 스크립트 -->
   <script>
-    let currentStep = 1;
-    const MAX_STEP = 4;
+  let currentStep = 1;
+  const MAX_STEP = 4;
 
-    const bubble = {
-      1: { title: "처음 만나서 반갑다! 제군들!", text: "같이 기본 정보의 힘을 모으자!" },
-      2: { title: "연락처/주소 입력 🏠", text: "나중에 추천도 더 정확해져!" },
-      3: { title: "성향 확인 🧠", text: "MBTI나 말투를 골라줘!" },
-      4: { title: "취향 선택 🎯", text: "좋아하는 걸 골라주면 추천이 좋아져!" }
-    };
+  const bubble = {
+    1: { title: "처음 만나서 반갑다! 제군들!", text: "같이 기본 정보의 힘을 모으자!" },
+    2: { title: "연락처/주소 입력 🏠", text: "나중에 추천도 더 정확해져!" },
+    3: { title: "성향 확인 🧠", text: "MBTI나 말투를 골라줘!" },
+    4: { title: "취향 선택 🎯", text: "좋아하는 걸 골라주면 추천이 좋아져!" }
+  };
 
-    function setStep(step) {
-      currentStep = Math.min(Math.max(1, step), MAX_STEP);
-
-      // 스텝 표시 업데이트
-      document.querySelectorAll(".step[data-step]").forEach(s => {
-        const stepNum = Number(s.dataset.step);
-        s.classList.remove("active", "done");
-        if (stepNum === currentStep) s.classList.add("active");
-        if (stepNum < currentStep) s.classList.add("done");
-      });
-
-      // 패널 표시
-      document.querySelectorAll(".panel[data-step]").forEach(p => {
-        p.classList.toggle("active", Number(p.dataset.step) === currentStep);
-      });
-
-      // 말풍선 업데이트
-      const b = bubble[currentStep];
-      document.getElementById("bubbleTitle").innerText = b.title;
-      document.getElementById("bubbleText").innerText = b.text;
-
-      // 버튼 표시
-      document.getElementById("prevBtn").style.display = currentStep === 1 ? "none" : "flex";
-      document.getElementById("nextBtn").style.display = currentStep === MAX_STEP ? "none" : "flex";
-      document.getElementById("submitBtn").style.display = currentStep === MAX_STEP ? "flex" : "none";
+  // ===== 검증 함수들 =====
+  function checkEmpty(element, message) {
+    if (!element.value || element.value.trim() === "") {
+      alert(message);
+      element.focus();
+      return true;
     }
+    return false;
+  }
 
-    // 버튼 이벤트
-    document.getElementById("nextBtn").onclick = () => setStep(currentStep + 1);
-    document.getElementById("prevBtn").onclick = () => setStep(currentStep - 1);
+  function checkSelect(element, message) {
+    if (!element.value || element.value === "") {
+      alert(message);
+      element.focus();
+      return true;
+    }
+    return false;
+  }
 
-    // 스텝 클릭 이동
+  function checkMatch(pw1, pw2, message) {
+    if (pw1.value !== pw2.value) {
+      alert(message);
+      pw2.focus();
+      return true;
+    }
+    return false;
+  }
+
+  function checkLength(element, minLength, message) {
+    if (element.value.length < minLength) {
+      alert(message);
+      element.focus();
+      return true;
+    }
+    return false;
+  }
+
+  function checkRadio(name, message) {
+    const checked = document.querySelector('input[name="' + name + '"]:checked');
+    if (!checked) {
+      alert(message);
+      return true;
+    }
+    return false;
+  }
+
+  // ===== 스텝별 검증 =====
+  function validateStep(step) {
+    const f = document.joinForm;
+    
+    if (step === 1) {
+      if (checkEmpty(f.login_id, "아이디를 입력해주세요!")) return false;
+      if (checkLength(f.pw, 8, "비밀번호는 8자 이상 입력해주세요!")) return false;
+      if (checkEmpty(f.pw2, "비밀번호 확인을 입력해주세요!")) return false;
+      if (checkMatch(f.pw, f.pw2, "비밀번호가 일치하지 않아요!")) return false;
+      if (checkEmpty(f.nickname, "닉네임을 입력해주세요!")) return false;
+      if (checkEmpty(f.age, "나이를 입력해주세요!")) return false;
+      if (checkEmpty(f.email_1, "이메일을 입력해주세요!")) return false;
+      if (checkSelect(f.email_2, "이메일 도메인을 선택해주세요!")) return false;
+    }
+    
+    if (step === 2) {
+      if (checkSelect(f.area, "지역을 선택해주세요!")) return false;
+      if (checkSelect(f.gender, "성별을 선택해주세요!")) return false;
+      if (checkEmpty(f.mobile_1, "전화번호를 입력해주세요!")) return false;
+      if (checkEmpty(f.mobile_2, "전화번호를 입력해주세요!")) return false;
+      if (checkEmpty(f.mobile_3, "전화번호를 입력해주세요!")) return false;
+    }
+    
+    if (step === 3) {
+      if (checkRadio("speech_style", "말투를 선택해주세요!")) return false;
+    }
+    
+    return true;
+  }
+
+  // ===== 스텝 이동 =====
+  function setStep(step) {
+    currentStep = Math.min(Math.max(1, step), MAX_STEP);
+
     document.querySelectorAll(".step[data-step]").forEach(s => {
-      s.onclick = () => setStep(Number(s.dataset.step));
+      const stepNum = Number(s.dataset.step);
+      s.classList.remove("active", "done");
+      if (stepNum === currentStep) s.classList.add("active");
+      if (stepNum < currentStep) s.classList.add("done");
     });
 
-    // 초기화
-    setStep(1);
-  </script>
+    document.querySelectorAll(".panel[data-step]").forEach(p => {
+      p.classList.toggle("active", Number(p.dataset.step) === currentStep);
+    });
+
+    const b = bubble[currentStep];
+    document.getElementById("bubbleTitle").innerText = b.title;
+    document.getElementById("bubbleText").innerText = b.text;
+
+    document.getElementById("prevBtn").style.display = currentStep === 1 ? "none" : "flex";
+    document.getElementById("nextBtn").style.display = currentStep === MAX_STEP ? "none" : "flex";
+    document.getElementById("submitBtn").style.display = currentStep === MAX_STEP ? "flex" : "none";
+  }
+
+  // ===== 버튼 이벤트 =====
+  document.getElementById("nextBtn").onclick = () => {
+    if (validateStep(currentStep)) {
+      setStep(currentStep + 1);
+    }
+  };
+
+  document.getElementById("prevBtn").onclick = () => {
+    setStep(currentStep - 1);
+  };
+
+  document.getElementById("submitBtn").onclick = (e) => {
+    if (!validateStep(currentStep)) {
+      e.preventDefault();
+      return;
+    }
+    document.joinForm.action = "Power";
+    document.joinForm.submit();
+  };
+
+  // 스텝바 클릭 (이전 단계로만 이동 가능)
+  document.querySelectorAll(".step[data-step]").forEach(s => {
+    s.onclick = () => {
+      const targetStep = Number(s.dataset.step);
+      if (targetStep < currentStep) {
+        setStep(targetStep);
+      } else if (targetStep > currentStep) {
+        // 다음 단계로 가려면 현재 단계 검증
+        if (validateStep(currentStep)) {
+          setStep(currentStep + 1);
+        }
+      }
+    };
+  });
+
+  // 초기화
+  setStep(1);
+</script>
 </body>
 </html>
