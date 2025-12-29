@@ -25,7 +25,7 @@
     </div>
 
     <!-- 질문 카드 (폼으로 감싸기) -->
-    <form id="questionForm" method="post" action="result_food.jsp">
+    <form name="foodForm" id="questionForm">
       <div class="question-card">
         
         <!-- 질문 1: 기분 -->

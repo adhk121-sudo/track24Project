@@ -14,7 +14,8 @@
   <header class="header">
     <%@ include file="../common/common_header.jsp" %> 
   </header>
-
+	<!-- 질문 카드 (폼으로 감싸기) -->
+    <form name="drinkForm" id="questionForm">
   <div class="main-wrap">
     <!-- 진행 바 -->
     <div class="progress-bar">
@@ -77,7 +78,7 @@
         <div class="question-header">
           <div class="character-area">
             <div class="character-icon">
-              <img src="../images/icons/drink_ranger.png" alt="드링크레인저">
+              <img src="../images/drink_ranger.png" alt="드링크레인저">
             </div>
           </div>
           <div class="question-area">
@@ -123,7 +124,7 @@
         <div class="question-header">
           <div class="character-area">
             <div class="character-icon">
-              <img src="../images/icons/drink_ranger.png" alt="드링크레인저">
+              <img src="../images/drink_ranger.png" alt="드링크레인저">
             </div>
           </div>
           <div class="question-area">
@@ -169,7 +170,7 @@
         <div class="question-header">
           <div class="character-area">
             <div class="character-icon">
-              <img src="../images/icons/drink_ranger.png" alt="드링크레인저">
+              <img src="../images/drink_ranger.png" alt="드링크레인저">
             </div>
           </div>
           <div class="question-area">

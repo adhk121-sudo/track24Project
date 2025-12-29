@@ -176,7 +176,7 @@
             <p>좋아하는 것들을 선택해주세요! 추천이 더 정확해져요</p>
           </div>
 
-          <form method="post" action="#" id="tasteForm">
+          <form name="tasteForm" method="post" action="#" id="tasteForm">
             <!-- 음식 -->
             <div class="chip-group">
               <div class="chip-title">🍔 좋아하는 음식</div>

@@ -46,7 +46,7 @@
       <h2>회원가입</h2>
       <p class="sub">결정러 전대원이 되어주세요!</p>
 
-      <form id="joinForm" method="post" action="#">
+      <form name = 'joinForm' id="joinForm" method="post" action="#">
         <!-- STEP 1 -->
         <div class="panel active" data-step="1">
           <div class="field">

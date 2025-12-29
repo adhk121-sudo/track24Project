@@ -23,7 +23,9 @@
       <div class="progress-dot" data-step="3"></div>
       <div class="progress-dot" data-step="4"></div>
     </div>
-
+    
+    <!-- 질문 카드 (폼으로 감싸기) -->
+	<form name="movieForm" id="questionForm">
     <!-- 질문 카드 -->
     <div class="question-card">
       <!-- 질문 1: 기분 -->
@@ -123,7 +125,7 @@
         <div class="question-header">
           <div class="character-area">
             <div class="character-icon">
-              <img src="../images/icons/movie_ranger.png" alt="무비레인저">
+              <img src="../images/movie_ranger.png" alt="무비레인저">
             </div>
           </div>
           <div class="question-area">
@@ -169,7 +171,7 @@
         <div class="question-header">
           <div class="character-area">
             <div class="character-icon">
-              <img src="../images/icons/movie_ranger.png" alt="무비레인저">
+              <img src="../images/movie_ranger.png" alt="무비레인저">
             </div>
           </div>
           <div class="question-area">
@@ -216,6 +218,7 @@
         <button class="btn btn-next" id="nextBtn" disabled>다음 →</button>
       </div>
     </div>
+    </form>
   </div>
 
   <!-- 푸터 -->
