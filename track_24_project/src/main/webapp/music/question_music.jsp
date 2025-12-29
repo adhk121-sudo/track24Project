@@ -14,7 +14,8 @@
   <header class="header">
     <%@ include file="../common/common_header.jsp" %> 
   </header>
-
+	<!-- 질문 카드 (폼으로 감싸기) -->
+    <form name="musicForm" id="questionForm">
   <div class="main-wrap">
     <!-- 진행 바 -->
     <div class="progress-bar">
