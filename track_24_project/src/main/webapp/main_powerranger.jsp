@@ -15,6 +15,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>결정러 - 선택장애 해결사</title>
 </head>
+
 <body>
   <!-- 배경 효과 -->
   <div class="bg-effects">
@@ -46,7 +47,7 @@
     <!-- 캐릭터들 - 5인방 -->
     <section class="characters-section">
       <!-- 맛레인저 (빨강) -->
-      <div class="character-card" data-color="red" onclick="location.href='food/question_food.jsp'">
+      <div class="character-card" data-color="red" onclick="goPage('food')">
         <div class="character-avatar">
           <img src="images/food_ranger.png" alt="맛레인저">
         </div>
@@ -55,7 +56,7 @@
       </div>
 
       <!-- 드링크레인저 (노랑) -->
-      <div class="character-card" data-color="yellow" onclick="location.href='drink/question_drink.jsp'">
+      <div class="character-card" data-color="yellow" onclick="goPage('drink')">
         <div class="character-avatar">
           <img src="images/drink_ranger.png" alt="드링크레인저">
         </div>
@@ -64,7 +65,7 @@
       </div>
 
       <!-- 무비레인저 (보라) -->
-      <div class="character-card" data-color="purple" onclick="location.href='movie/question_movie.jsp'">
+      <div class="character-card" data-color="purple" onclick="goPage('movie')">
         <div class="character-avatar">
           <img src="images/movie_ranger.png" alt="무비레인저">
         </div>
@@ -73,7 +74,7 @@
       </div>
 
       <!-- 북레인저 (초록) -->
-      <div class="character-card" data-color="green" onclick="location.href='book/question_book.jsp'">
+      <div class="character-card" data-color="green" onclick="goPage('book')">
         <div class="character-avatar">
           <img src="images/book_ranger.png" alt="북레인저">
         </div>
@@ -82,7 +83,7 @@
       </div>
 
       <!-- 뮤직레인저 (파랑) -->
-      <div class="character-card" data-color="blue" onclick="location.href='music/question_music.jsp'">
+      <div class="character-card" data-color="blue" onclick="goPage('music')">
         <div class="character-avatar">
           <img src="images/music_ranger.png" alt="뮤직레인저">
         </div>
@@ -106,7 +107,7 @@
         <span class="icon">🎯</span>
         <p>로그인하면 <span>취향 맞춤 추천</span>!</p>
       </div>
-      <button class="mission-btn" onclick="location.href='login/login_powerranger.jsp'">출동!</button>
+      <button class="mission-btn" onclick="goPage('login')">출동!</button>
     </div>
   </main>
 </body>
