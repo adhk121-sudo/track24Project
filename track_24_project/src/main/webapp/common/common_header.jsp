@@ -213,27 +213,39 @@ body::before {
   }
 }
 </style>
+
+<script type="text/javascript">
+	function goPage(gubun){
+		work.t_gubun.value= gubun;
+		work.method="post";
+		work.action="Power";
+		work.submit();
+	}
+</script> 
 <!-- 공통 헤더 -->
+<form name ="work">
+	<input type="hidden" name="t_gubun">
+</form>
   
     <div class="header-inner">
-      <a href="main_powerranger.jsp" class="header-logo">
+      <a href="Power" class="header-logo">
         <span class="icon">⚡</span>
         <span>결정러</span>
       </a>
 
       <nav class="header-nav">
-        <a href="../main_powerranger.jsp" class="nav-link active">홈</a>
-        <a href="food/question_food.jsp" class="nav-link">음식</a>
-        <a href="question_drink.html" class="nav-link">음료</a>
-        <a href="question_movie.html" class="nav-link">영화</a>
-        <a href="question_book.html" class="nav-link">책</a>
-        <a href="question_music.html" class="nav-link">음악</a>
+        <a href="Power" class="nav-link active">홈</a>
+        <a href="javascript:goPage('food')" class="nav-link">음식</a>
+        <a href="javascript:goPage('drink')" class="nav-link">음료</a>
+        <a href="javascript:goPage('movie')" class="nav-link">영화</a>
+        <a href="javascript:goPage('book')" class="nav-link">책</a>
+        <a href="javascript:goPage('music')" class="nav-link">음악</a>
         
       </nav>
 
       <div class="header-actions">
-        <a href="login/login_powerranger.jsp" class="btn-outline">로그인</a>
-        <a href="join/join_powerranger.jsp" class="btn-primary">회원가입</a>
+        <a href="javascript:goPage('login')" class="btn-outline">로그인</a>
+        <a href="javascript:goPage('join')" class="btn-primary">회원가입</a>
       </div>
     </div>
   </header>

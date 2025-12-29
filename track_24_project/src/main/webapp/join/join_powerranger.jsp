@@ -31,7 +31,7 @@
     <!-- LEFT -->
 <div class="left">
   <div class="character-wrap">
-    <img src="../images/레인저.png" alt="결정러 전대" class="ranger-image">
+    <img src="images/레인저.png" alt="결정러 전대" class="ranger-image">
   </div>
   <div class="bubble">
     <h3 id="bubbleTitle">처음 만나서 반갑다! 제군들!</h3>

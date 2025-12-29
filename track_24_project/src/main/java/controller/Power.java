@@ -29,18 +29,28 @@ public class Power extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		String viewPage = "";
+		
 		String gubun = request.getParameter("t_gubun");
-		if(gubun==null) {
-			gubun = "main";
-		}
+		if(gubun==null) gubun = "main";
+		String viewPage = "";
 		if(gubun.equals("main")) {
-			viewPage = "main.jsp";
-		}else if(gubun.equals("loginPage")) {
-			viewPage = "member/project_login.jsp";
-		}else if(gubun.equals("joinPage")) {
-			viewPage = "member/project_join.jsp";
+			viewPage = "main_powerranger.jsp";
+		}else if(gubun.equals("login")) {
+			viewPage = "login/login_powerranger.jsp";
+		}else if(gubun.equals("join")) {
+			viewPage = "join/join_powerranger.jsp";
+		}else if(gubun.equals("food")) {
+			viewPage = "food/question_food.jsp";
+		}else if(gubun.equals("drink")) {
+			viewPage = "drink/question_drink.jsp";
+		}else if(gubun.equals("movie")) {
+			viewPage = "movie/question_movie.jsp";
+		}else if(gubun.equals("book")) {
+			viewPage = "book/question_book.jsp";
+		}else if(gubun.equals("music")) {
+			viewPage = "music/question_music.jsp";
 		}
+	
 		RequestDispatcher rd = request.getRequestDispatcher(viewPage);
 		rd.forward(request, response);
 	}
