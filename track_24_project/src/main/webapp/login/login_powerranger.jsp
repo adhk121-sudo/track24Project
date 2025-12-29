@@ -3,8 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>  
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
-<link href="../css/login.css" rel="stylesheet">
-<link rel="stylesheet" href="../css/header.css">
+<link rel="stylesheet" href="css/login.css">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 <script type="text/javascript" src="js/jquery-1.8.1.min.js"></script>    
 <!DOCTYPE html>
@@ -51,7 +50,7 @@
 
         <div class="actions">
           <button type="submit" class="btn primary">🔥 출동하기!</button>
-          <a class="btn outline" href="join_powerranger.html">회원가입</a>
+          <a class="btn outline" href="javascript:goPage('join')">회원가입</a>
         </div>
       </form>
     </div>
