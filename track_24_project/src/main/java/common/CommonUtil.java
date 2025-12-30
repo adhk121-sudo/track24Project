@@ -34,7 +34,7 @@ public class CommonUtil {
 	}	
 	
 	// 비밀번호 암호화
-   public String encryptSHA256(String value) 
+   public static String encryptSHA256(String value) 
 		   				throws NoSuchAlgorithmException{
         String encryptData ="";
         
@@ -130,6 +130,8 @@ public class CommonUtil {
 	   String id = (String)session.getAttribute("sessionId");
 	   return id;
    }
+   
+   
 }
 
 

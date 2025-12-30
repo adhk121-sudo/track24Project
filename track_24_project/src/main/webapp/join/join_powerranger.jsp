@@ -150,6 +150,7 @@
 					</div>
 				</div>
 
+<<<<<<< HEAD
 				<!-- STEP 3 -->
 				<div class="panel" data-step="3">
 					<div class="field">
@@ -157,7 +158,31 @@
 						<input type="text" name="mbti" id="mbti" maxlength="4"
 							placeholder="예) INFP (선택)">
 					</div>
+=======
+          <div class="chip-group">
+            <div class="chip-title">🗣️ 말투 선택</div>
+            <div class="radio-group">
+              <label class="radio-option">
+                <input type="radio" name="speech_style" value="존댓말">
+                <span class="radio-box"></span>
+                <span class="radio-label">존댓말</span>
+              </label>
+              <label class="radio-option">
+                <input type="radio" name="speech_style" value="반말">
+                <span class="radio-box"></span>
+                <span class="radio-label">반말</span>
+              </label>
+              <label class="radio-option">
+                <input type="radio" name="speech_style" value="상황에 따라">
+                <span class="radio-box"></span>
+                <span class="radio-label">상황에 따라</span>
+              </label>
+            </div>
+          </div>
+        </div>
+>>>>>>> refs/remotes/origin/안준휘
 
+<<<<<<< HEAD
 					<div class="chip-group">
 						<div class="chip-title">🗣️ 말투 선택</div>
 						<div class="radio-group">
@@ -175,7 +200,59 @@
 						</div>
 					</div>
 				</div>
+=======
+        <!-- STEP 4 -->
+        <div class="panel" data-step="4">
+          <div class="chip-group">
+            <div class="chip-title">🍔 좋아하는 음식</div>
+            <div class="checkbox-group" data-category="food">
+              <div class="checkbox-item">
+                <input type="checkbox" id="food_korean" name="k_food" value="한식">
+                <label class="checkbox-label" for="food_korean">
+                  <span class="checkbox-box"></span>
+                  <span>한식</span>
+                </label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="food_japanese" name="j_food" value="일식">
+                <label class="checkbox-label" for="food_japanese">
+                  <span class="checkbox-box"></span>
+                  <span>일식</span>
+                </label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="food_chinese" name="c_food" value="중식">
+                <label class="checkbox-label" for="food_chinese">
+                  <span class="checkbox-box"></span>
+                  <span>중식</span>
+                </label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="food_western" name="a_food" value="양식">
+                <label class="checkbox-label" for="food_western">
+                  <span class="checkbox-box"></span>
+                  <span>양식</span>
+                </label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="food_snack" name="s_food" value="분식">
+                <label class="checkbox-label" for="food_snack">
+                  <span class="checkbox-box"></span>
+                  <span>분식</span>
+                </label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="food_dessert" name="d_food" value="디저트">
+                <label class="checkbox-label" for="food_dessert">
+                  <span class="checkbox-box"></span>
+                  <span>디저트</span>
+                </label>
+              </div>
+            </div>
+          </div>
+>>>>>>> refs/remotes/origin/안준휘
 
+<<<<<<< HEAD
 				<!-- STEP 4 -->
 				<div class="panel" data-step="4">
 					<div class="chip-group">
@@ -219,7 +296,57 @@
 							</div>
 						</div>
 					</div>
+=======
+          <div class="chip-group">
+            <div class="chip-title">🎵 좋아하는 음악</div>
+            <div class="checkbox-group" data-category="music">
+              <div class="checkbox-item">
+                <input type="checkbox" id="music_kpop" name="k_pop" value="K-POP">
+                <label class="checkbox-label" for="music_kpop">
+                  <span class="checkbox-box"></span>
+                  <span>K-POP</span>
+                </label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="music_hiphop" name="hip_hop" value="힙합">
+                <label class="checkbox-label" for="music_hiphop">
+                  <span class="checkbox-box"></span>
+                  <span>힙합</span>
+                </label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="music_ballad" name="ballad" value="발라드">
+                <label class="checkbox-label" for="music_ballad">
+                  <span class="checkbox-box"></span>
+                  <span>발라드</span>
+                </label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="music_edm" name="edm" value="EDM">
+                <label class="checkbox-label" for="music_edm">
+                  <span class="checkbox-box"></span>
+                  <span>EDM</span>
+                </label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="music_jazz" name="jazz" value="재즈">
+                <label class="checkbox-label" for="music_jazz">
+                  <span class="checkbox-box"></span>
+                  <span>재즈</span>
+                </label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="music_rock" name="rock" value="락">
+                <label class="checkbox-label" for="music_rock">
+                  <span class="checkbox-box"></span>
+                  <span>락</span>
+                </label>
+              </div>
+            </div>
+          </div>
+>>>>>>> refs/remotes/origin/안준휘
 
+<<<<<<< HEAD
 					<div class="chip-group">
 						<div class="chip-title">🥤 좋아하는 음료</div>
 						<div class="checkbox-group" data-category="drink">
@@ -262,7 +389,57 @@
 							</div>
 						</div>
 					</div>
+=======
+          <div class="chip-group">
+            <div class="chip-title">🎬 좋아하는 영화</div>
+            <div class="checkbox-group" data-category="movie">
+              <div class="checkbox-item">
+                <input type="checkbox" id="movie_action" name="a_movie" value="액션">
+                <label class="checkbox-label" for="movie_action">
+                  <span class="checkbox-box"></span>
+                  <span>액션</span>
+                </label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="movie_romance" name="r_movie" value="로맨스">
+                <label class="checkbox-label" for="movie_romance">
+                  <span class="checkbox-box"></span>
+                  <span>로맨스</span>
+                </label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="movie_comedy" name="c_movie" value="코미디">
+                <label class="checkbox-label" for="movie_comedy">
+                  <span class="checkbox-box"></span>
+                  <span>코미디</span>
+                </label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="movie_sf" name="s_movie" value="SF">
+                <label class="checkbox-label" for="movie_sf">
+                  <span class="checkbox-box"></span>
+                  <span>SF</span>
+                </label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="movie_horror" name="h_movie" value="공포">
+                <label class="checkbox-label" for="movie_horror">
+                  <span class="checkbox-box"></span>
+                  <span>공포</span>
+                </label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="movie_drama" name="d_movie" value="드라마">
+                <label class="checkbox-label" for="movie_drama">
+                  <span class="checkbox-box"></span>
+                  <span>드라마</span>
+                </label>
+              </div>
+            </div>
+          </div>
+>>>>>>> refs/remotes/origin/안준휘
 
+<<<<<<< HEAD
 					<div class="chip-group">
 						<div class="chip-title">🎵 좋아하는 음악</div>
 						<div class="checkbox-group" data-category="music">
@@ -305,7 +482,50 @@
 							</div>
 						</div>
 					</div>
+=======
+          <div class="chip-group">
+            <div class="chip-title">📚 좋아하는 책</div>
+            <div class="checkbox-group" data-category="book">
+              <div class="checkbox-item">
+                <input type="checkbox" id="book_novel" name="n_book" value="소설">
+                <label class="checkbox-label" for="book_novel">
+                  <span class="checkbox-box"></span>
+                  <span>소설</span>
+                </label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="book_self" name="s_book" value="자기계발">
+                <label class="checkbox-label" for="book_self">
+                  <span class="checkbox-box"></span>
+                  <span>자기계발</span>
+                </label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="book_economy" name="e_book" value="경제">
+                <label class="checkbox-label" for="book_economy">
+                  <span class="checkbox-box"></span>
+                  <span>경제</span>
+                </label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="book_human" name="h_book" value="인문">
+                <label class="checkbox-label" for="book_human">
+                  <span class="checkbox-box"></span>
+                  <span>인문</span>
+                </label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="book_comic" name="c_book" value="만화">
+                <label class="checkbox-label" for="book_comic">
+                  <span class="checkbox-box"></span>
+                  <span>만화</span>
+                </label>
+              </div>
+            </div>
+          </div>
+>>>>>>> refs/remotes/origin/안준휘
 
+<<<<<<< HEAD
 					<div class="chip-group">
 						<div class="chip-title">🎬 좋아하는 영화</div>
 						<div class="checkbox-group" data-category="movie">
@@ -349,6 +569,63 @@
 							</div>
 						</div>
 					</div>
+=======
+          <div class="chip-group">
+            <div class="chip-title">⚠️ 알레르기</div>
+            <div class="checkbox-group" data-category="allergy">
+              <div class="checkbox-item">
+                <input type="checkbox" id="allergy_nut" name="n_allergy" value="견과류">
+                <label class="checkbox-label" for="allergy_nut">
+                  <span class="checkbox-box"></span>
+                  <span>견과류</span>
+                </label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="allergy_milk" name="m_allergy" value="우유">
+                <label class="checkbox-label" for="allergy_milk">
+                  <span class="checkbox-box"></span>
+                  <span>우유</span>
+                </label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="allergy_egg" name="e_allergy" value="계란">
+                <label class="checkbox-label" for="allergy_egg">
+                  <span class="checkbox-box"></span>
+                  <span>계란</span>
+                </label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="allergy_wheat" name="w_allergy" value="밀">
+                <label class="checkbox-label" for="allergy_wheat">
+                  <span class="checkbox-box"></span>
+                  <span>밀</span>
+                </label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="allergy_seafood" name="s_allergy" value="갑각류">
+                <label class="checkbox-label" for="allergy_seafood">
+                  <span class="checkbox-box"></span>
+                  <span>갑각류</span>
+                </label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="allergy_soy" name="b_allergy" value="대두">
+                <label class="checkbox-label" for="allergy_soy">
+                  <span class="checkbox-box"></span>
+                  <span>대두</span>
+                </label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="allergy_none" name="non_allergy" value="없음">
+                <label class="checkbox-label" for="allergy_none">
+                  <span class="checkbox-box"></span>
+                  <span>없음</span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+>>>>>>> refs/remotes/origin/안준휘
 
 					<div class="chip-group">
 						<div class="chip-title">📚 좋아하는 책</div>
