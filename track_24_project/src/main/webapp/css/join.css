@@ -719,4 +719,16 @@ input::placeholder {
   .ranger-name {
     font-size: 12px;
   }
+  /* 음료 - 레몬색 */
+.checkbox-group[data-category="drink"] .checkbox-box {
+  border-color: #d4d700;
+}
+
+.checkbox-group[data-category="drink"] input:checked + .checkbox-label .checkbox-box {
+  background: linear-gradient(135deg, #d4d700, #ecef4c);
+  border-color: #d4d700;
+}
+  
+  
+  
 }
