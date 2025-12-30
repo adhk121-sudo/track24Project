@@ -24,8 +24,15 @@
       <div class="progress-dot" data-step="4"></div>
     </div>
 
-    <!-- 질문 카드 (폼으로 감싸기) -->
-    <form name="foodForm" id="questionForm">
+    <!-- 폼 시작 -->
+    <form name="foodForm" id="questionForm" method="post" action="FoodAI">
+      
+      <!-- hidden input으로 답변 저장 -->
+      <input type="hidden" name="mood" id="mood_input">
+      <input type="hidden" name="meal" id="meal_input">
+      <input type="hidden" name="style" id="style_input">
+      <input type="hidden" name="situation" id="situation_input">
+
       <div class="question-card">
         
         <!-- 질문 1: 기분 -->
@@ -45,30 +52,26 @@
 
           <div class="options-area">
             <div class="options-grid">
-              <label class="option-btn">
-                <input type="radio" name="mood" value="happy" required>
+              <div class="option-btn" data-value="happy">
                 <span class="emoji">😄</span>
                 <span class="text">기분 좋아!</span>
                 <span class="desc">신나는 날이야</span>
-              </label>
-              <label class="option-btn">
-                <input type="radio" name="mood" value="tired">
+              </div>
+              <div class="option-btn" data-value="tired">
                 <span class="emoji">😫</span>
                 <span class="text">피곤해...</span>
                 <span class="desc">에너지 충전 필요</span>
-              </label>
-              <label class="option-btn">
-                <input type="radio" name="mood" value="stressed">
+              </div>
+              <div class="option-btn" data-value="stressed">
                 <span class="emoji">😤</span>
                 <span class="text">스트레스 받아</span>
                 <span class="desc">확 풀고 싶어</span>
-              </label>
-              <label class="option-btn">
-                <input type="radio" name="mood" value="sad">
+              </div>
+              <div class="option-btn" data-value="sad">
                 <span class="emoji">😢</span>
                 <span class="text">우울해...</span>
                 <span class="desc">위로가 필요해</span>
-              </label>
+              </div>
             </div>
           </div>
 
@@ -95,30 +98,26 @@
 
           <div class="options-area">
             <div class="options-grid">
-              <label class="option-btn">
-                <input type="radio" name="meal" value="breakfast" required>
+              <div class="option-btn" data-value="breakfast">
                 <span class="emoji">🌅</span>
                 <span class="text">아침</span>
                 <span class="desc">가볍게 시작</span>
-              </label>
-              <label class="option-btn">
-                <input type="radio" name="meal" value="lunch">
+              </div>
+              <div class="option-btn" data-value="lunch">
                 <span class="emoji">☀️</span>
                 <span class="text">점심</span>
                 <span class="desc">든든하게</span>
-              </label>
-              <label class="option-btn">
-                <input type="radio" name="meal" value="dinner">
+              </div>
+              <div class="option-btn" data-value="dinner">
                 <span class="emoji">🌙</span>
                 <span class="text">저녁</span>
                 <span class="desc">하루 마무리</span>
-              </label>
-              <label class="option-btn">
-                <input type="radio" name="meal" value="snack">
+              </div>
+              <div class="option-btn" data-value="snack">
                 <span class="emoji">🍿</span>
                 <span class="text">간식/야식</span>
                 <span class="desc">출출할 때</span>
-              </label>
+              </div>
             </div>
           </div>
 
@@ -145,30 +144,26 @@
 
           <div class="options-area">
             <div class="options-grid">
-              <label class="option-btn">
-                <input type="radio" name="style" value="hot" required>
+              <div class="option-btn" data-value="hot">
                 <span class="emoji">🔥</span>
                 <span class="text">뜨끈뜨끈</span>
                 <span class="desc">국물/찌개/탕</span>
-              </label>
-              <label class="option-btn">
-                <input type="radio" name="style" value="spicy">
+              </div>
+              <div class="option-btn" data-value="spicy">
                 <span class="emoji">🌶️</span>
                 <span class="text">매콤하게</span>
                 <span class="desc">화끈하게!</span>
-              </label>
-              <label class="option-btn">
-                <input type="radio" name="style" value="light">
+              </div>
+              <div class="option-btn" data-value="light">
                 <span class="emoji">🥗</span>
                 <span class="text">가볍게</span>
                 <span class="desc">건강하게</span>
-              </label>
-              <label class="option-btn">
-                <input type="radio" name="style" value="heavy">
+              </div>
+              <div class="option-btn" data-value="heavy">
                 <span class="emoji">🍖</span>
                 <span class="text">든든하게</span>
                 <span class="desc">푸짐하게!</span>
-              </label>
+              </div>
             </div>
           </div>
 
@@ -195,30 +190,26 @@
 
           <div class="options-area">
             <div class="options-grid">
-              <label class="option-btn">
-                <input type="radio" name="situation" value="alone" required>
+              <div class="option-btn" data-value="alone">
                 <span class="emoji">🧑</span>
                 <span class="text">혼밥</span>
                 <span class="desc">나만의 시간</span>
-              </label>
-              <label class="option-btn">
-                <input type="radio" name="situation" value="friend">
+              </div>
+              <div class="option-btn" data-value="friend">
                 <span class="emoji">👫</span>
                 <span class="text">친구랑</span>
                 <span class="desc">즐거운 식사</span>
-              </label>
-              <label class="option-btn">
-                <input type="radio" name="situation" value="family">
+              </div>
+              <div class="option-btn" data-value="family">
                 <span class="emoji">👨‍👩‍👧</span>
                 <span class="text">가족이랑</span>
                 <span class="desc">온 가족 함께</span>
-              </label>
-              <label class="option-btn">
-                <input type="radio" name="situation" value="date">
+              </div>
+              <div class="option-btn" data-value="date">
                 <span class="emoji">💑</span>
                 <span class="text">데이트</span>
                 <span class="desc">분위기 있게</span>
-              </label>
+              </div>
             </div>
           </div>
 
@@ -232,20 +223,27 @@
         <div class="action-area">
           <button type="button" class="btn btn-prev" id="prevBtn">← 이전</button>
           <button type="button" class="btn btn-next" id="nextBtn" disabled>다음 →</button>
-          <button type="submit" class="btn btn-next" id="submitBtn" style="display:none;">🔥 추천받기!</button>
+          <button type="submit" class="btn btn-next" id="submitBtn">🔥 추천받기!</button>
         </div>
+        
       </div>
     </form>
+    <!-- 폼 끝 -->
+    
   </div>
 
   <!-- 푸터 -->
   <footer class="footer">
-  <%@ include file="../common/common_footer.jsp" %>
+    <%@ include file="../common/common_footer.jsp" %>
   </footer>
 
   <script>
     let currentStep = 1;
     const MAX_STEP = 4;
+    const answers = {};
+    
+    // 각 스텝별 hidden input id
+    const inputIds = ['', 'mood_input', 'meal_input', 'style_input', 'situation_input'];
 
     function updateUI() {
       // 진행 바 업데이트
@@ -272,7 +270,7 @@
 
     function checkSelection() {
       const currentPanel = document.querySelector('.question-panel[data-step="' + currentStep + '"]');
-      const hasSelection = currentPanel.querySelector('input[type="radio"]:checked');
+      const hasSelection = currentPanel.querySelector('.option-btn.selected');
       
       if (currentStep === MAX_STEP) {
         document.getElementById('submitBtn').disabled = !hasSelection;
@@ -281,13 +279,30 @@
       }
     }
 
+    function selectOption(btn, step) {
+      // 같은 패널의 다른 선택 해제
+      btn.closest('.options-grid').querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      
+      // 답변 저장
+      answers[step] = btn.dataset.value;
+      
+      // hidden input에 값 저장
+      document.getElementById(inputIds[step]).value = btn.dataset.value;
+      
+      // 버튼 활성화
+      checkSelection();
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
       updateUI();
 
-      // 라디오 버튼 변경 시
-      document.querySelectorAll('input[type="radio"]').forEach(radio => {
-        radio.addEventListener('change', () => {
-          checkSelection();
+      // 옵션 클릭
+      document.querySelectorAll('.option-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const panel = btn.closest('.question-panel');
+          const step = Number(panel.dataset.step);
+          selectOption(btn, step);
         });
       });
 
@@ -307,15 +322,27 @@
         }
       });
 
-      // 진행 바 클릭
+      // 진행 바 클릭 (이전 단계로만 이동 가능)
       document.querySelectorAll('.progress-dot').forEach(dot => {
         dot.addEventListener('click', () => {
           const step = Number(dot.dataset.step);
-          if (step <= currentStep) {  // 이전 단계로만 이동 가능
+          if (step < currentStep) {
             currentStep = step;
             updateUI();
           }
         });
+      });
+
+      // 폼 제출 전 검증
+      document.getElementById('questionForm').addEventListener('submit', (e) => {
+        // 모든 답변이 있는지 확인
+        for (let i = 1; i <= MAX_STEP; i++) {
+          if (!answers[i]) {
+            alert('모든 질문에 답해주세요!');
+            e.preventDefault();
+            return;
+          }
+        }
       });
     });
   </script>

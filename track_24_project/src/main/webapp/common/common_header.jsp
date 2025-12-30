@@ -1,4 +1,20 @@
 <%@ page pageEncoding="UTF-8"%>
+
+<%
+  // 현재 URI 가져오기
+  String uri = request.getRequestURI();
+  
+  // 각 메뉴 active 여부 확인
+  String activeHome = uri.contains("main") ? "active" : "";
+  String activeFood = uri.contains("food") ? "active" : "";
+  String activeDrink = uri.contains("drink") ? "active" : "";
+  String activeMovie = uri.contains("movie") ? "active" : "";
+  String activeBook = uri.contains("book") ? "active" : "";
+  String activeMusic = uri.contains("music") ? "active" : "";
+  String activeLogin = uri.contains("login") ? "active" : "";
+  String activeJoin = uri.contains("join") ? "active" : "";
+%>
+
 <style>
 :root {
   --header-h: 70px;
@@ -215,37 +231,36 @@ body::before {
 </style>
 
 <script type="text/javascript">
-	function goPage(gubun){
-		work.t_gubun.value= gubun;
-		work.method="post";
-		work.action="Power";
-		work.submit();
-	}
-</script> 
-<!-- 공통 헤더 -->
-<form name ="work">
-	<input type="hidden" name="t_gubun">
+  function goPage(gubun){
+    work.t_gubun.value = gubun;
+    work.method = "post";
+    work.action = "Power";
+    work.submit();
+  }
+</script>
+
+<form name="work">
+  <input type="hidden" name="t_gubun">
 </form>
+
+<div class="header-inner">
+  <a href="Power" class="header-logo">
+    <span class="icon">⚡</span>
+    <span>결정러</span>
+  </a>
+
+  <nav class="header-nav">
+    <a href="Power" class="nav-link <%=activeHome%>">홈</a>
+    <a href="javascript:goPage('food')" class="nav-link <%=activeFood%>">음식</a>
+    <a href="javascript:goPage('drink')" class="nav-link <%=activeDrink%>">음료</a>
+    <a href="javascript:goPage('movie')" class="nav-link <%=activeMovie%>">영화</a>
+    <a href="javascript:goPage('book')" class="nav-link <%=activeBook%>">책</a>
+    <a href="javascript:goPage('music')" class="nav-link <%=activeMusic%>">음악</a>
+  </nav>
+
+  <div class="header-actions">
+    <a href="javascript:goPage('login')" class="btn-outline <%=activeLogin%>">로그인</a>
+    <a href="javascript:goPage('join')" class="btn-primary <%=activeJoin%>">회원가입</a>
+  </div>
+</div>
   
-    <div class="header-inner">
-      <a href="Power" class="header-logo">
-        <span class="icon">⚡</span>
-        <span>결정러</span>
-      </a>
-
-      <nav class="header-nav">
-        <a href="Power" class="nav-link active">홈</a>
-        <a href="javascript:goPage('food')" class="nav-link">음식</a>
-        <a href="javascript:goPage('drink')" class="nav-link">음료</a>
-        <a href="javascript:goPage('movie')" class="nav-link">영화</a>
-        <a href="javascript:goPage('book')" class="nav-link">책</a>
-        <a href="javascript:goPage('music')" class="nav-link">음악</a>
-        
-      </nav>
-
-      <div class="header-actions">
-        <a href="javascript:goPage('login')" class="btn-outline">로그인</a>
-        <a href="javascript:goPage('join')" class="btn-primary">회원가입</a>
-      </div>
-    </div>
-  </header>
