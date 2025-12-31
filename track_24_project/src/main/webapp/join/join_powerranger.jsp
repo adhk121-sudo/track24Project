@@ -55,7 +55,7 @@
       <h2>회원가입</h2>
       <p class="sub">결정러 전대원이 되어주세요!</p>
 
-      <form name="joinForm" id="joinForm" method="post" action="#">
+      <form name="joinForm" id="joinForm">
         <input type = "hidden" name = "t_gubun">
         <!-- STEP 1: 기본 정보 -->
         <div class="panel active" data-step="1">
