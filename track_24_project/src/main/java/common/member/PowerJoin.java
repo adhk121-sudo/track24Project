@@ -58,7 +58,7 @@ public class PowerJoin implements CommonPower {
 		int memberResult = dao.memberJoin(dto);
 		String warning = memberResult==1? "회원등록 되었습니다.":"회원등록 실패했습니다. 관리자에게 문의바랍니다.";
 		request.setAttribute("t_msg", warning);
-		
+		request.setAttribute("t_url", "Power");
 	}
 
 }
