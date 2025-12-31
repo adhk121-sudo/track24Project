@@ -46,32 +46,36 @@ public class Login extends HttpServlet {
 			url = "Power?t_gubun=login";
 		} else {
 			ProjectDao dao = new ProjectDao();
+			String encryptedPw = null;
 			
 			// 비밀번호 암호화
 			try {
-				pw = CommonUtil.encryptSHA256(pw);
+				encryptedPw = CommonUtil.encryptSHA256(pw);
 			} catch (NoSuchAlgorithmException e) {
 				e.printStackTrace();
 				msg = "시스템 오류가 발생했습니다.";
 				url = "Power?t_gubun=login";
 			}
 			
-			// 로그인 확인
-			ProjectDto dto = dao.memberLogin(id, pw);
-			
-			if(dto != null) {
-				// 로그인 성공 - 세션에 사용자 정보 저장
-				HttpSession session = request.getSession();
-				session.setAttribute("sessionId", dto.getId());
-				session.setAttribute("sessionName", dto.getName());
-				session.setAttribute("sessionDto", dto);
+			// 암호화가 성공한 경우에만 로그인 확인
+			if(encryptedPw != null) {
+				// 로그인 확인
+				ProjectDto dto = dao.memberLogin(id, encryptedPw);
 				
-				msg = dto.getName() + "님 환영합니다!";
-				url = "Power?t_gubun=main";
-			} else {
-				// 로그인 실패
-				msg = "아이디 또는 비밀번호가 일치하지 않습니다.";
-				url = "Power?t_gubun=login";
+				if(dto != null) {
+					// 로그인 성공 - 세션에 사용자 정보 저장
+					HttpSession session = request.getSession();
+					session.setAttribute("sessionId", dto.getId());
+					session.setAttribute("sessionName", dto.getName());
+					session.setAttribute("sessionDto", dto);
+					
+					msg = dto.getName() + "님 환영합니다!";
+					url = "Power?t_gubun=main";
+				} else {
+					// 로그인 실패
+					msg = "아이디 또는 비밀번호가 일치하지 않습니다.";
+					url = "Power?t_gubun=login";
+				}
 			}
 		}
 		

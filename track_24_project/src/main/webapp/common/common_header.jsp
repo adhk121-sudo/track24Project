@@ -1,5 +1,4 @@
 <%@ page pageEncoding="UTF-8"%>
-<%@ page import="javax.servlet.http.HttpSession" %>
 
 <%
   // 현재 URI 가져오기
@@ -15,8 +14,7 @@
   String activeLogin = uri.contains("login") ? "active" : "";
   String activeJoin = uri.contains("join") ? "active" : "";
   
-  // 세션에서 로그인 정보 확인
-  HttpSession session = request.getSession();
+  // 세션에서 로그인 정보 확인 (JSP의 내장 session 객체 사용)
   String sessionId = (String)session.getAttribute("sessionId");
   String sessionName = (String)session.getAttribute("sessionName");
   boolean isLogin = (sessionId != null && !sessionId.equals(""));
@@ -266,20 +264,37 @@ body::before {
   </nav>
 
   <div class="header-actions">
-    <% if(isLogin) { %>
+    <%
+      if(isLogin) {
+    %>
       <!-- 로그인 상태 -->
       <div class="header-profile" onclick="location.href='Power?t_gubun=mypage'">
         <div class="profile-avatar">
-          <%=sessionName != null && sessionName.length() > 0 ? sessionName.substring(0, 1) : "U"%>
+          <%
+            String avatarText = "U";
+            if(sessionName != null && sessionName.length() > 0) {
+              avatarText = sessionName.substring(0, 1);
+            }
+            out.print(avatarText);
+          %>
         </div>
-        <span class="profile-name"><%=sessionName != null ? sessionName : sessionId%>님</span>
+        <span class="profile-name">
+          <%
+            String displayName = sessionName != null ? sessionName : (sessionId != null ? sessionId : "");
+            out.print(displayName + "님");
+          %>
+        </span>
       </div>
       <a href="Logout" class="btn-outline">로그아웃</a>
-    <% } else { %>
+    <%
+      } else {
+    %>
       <!-- 비로그인 상태 -->
       <a href="javascript:goPage('login')" class="btn-outline <%=activeLogin%>">로그인</a>
       <a href="javascript:goPage('join')" class="btn-primary <%=activeJoin%>">회원가입</a>
-    <% } %>
+    <%
+      }
+    %>
   </div>
 </div>
   
