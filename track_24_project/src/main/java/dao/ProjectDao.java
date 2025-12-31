@@ -28,4 +28,52 @@ public class ProjectDao {
 		return row;
 	}
 
+	// 로그인 - 아이디와 비밀번호로 사용자 확인
+	public ProjectDto memberLogin(String id, String pw) {
+		ProjectDto dto = null;
+		String query = "SELECT id, name, pw, age, area, mobile_1, mobile_2, mobile_3, " +
+					   "email_1, email_2, gender, mbti, style, food, drink, music, movie, book, allergy, reg_date " +
+					   "FROM track24_member WHERE id = ? AND pw = ?";
+		try {
+			conn = DBConnection.getConn();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, id);
+			pstmt.setString(2, pw);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				dto = new ProjectDto(
+					rs.getString("id"),
+					rs.getString("name"),
+					rs.getString("pw"),
+					"", // pw_length
+					rs.getString("age"),
+					rs.getString("area"),
+					rs.getString("mobile_1"),
+					rs.getString("mobile_2"),
+					rs.getString("mobile_3"),
+					rs.getString("email_1"),
+					rs.getString("email_2"),
+					rs.getString("gender"),
+					rs.getString("mbti"),
+					rs.getString("style"),
+					rs.getString("food"),
+					rs.getString("drink"),
+					rs.getString("music"),
+					rs.getString("movie"),
+					rs.getString("book"),
+					rs.getString("allergy"),
+					rs.getString("reg_date"),
+					"" // update_date
+				);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+			System.out.println("로그인 쿼리 오류: " + query);
+		}finally {
+			DBConnection.closeDB(conn, pstmt, rs);
+		}
+		return dto;
+	}
+
 }

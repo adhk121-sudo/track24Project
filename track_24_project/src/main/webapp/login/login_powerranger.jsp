@@ -37,7 +37,7 @@
       <h2>로그인</h2>
       <p class="sub">결정러 전대에 합류하세요!</p>
 
-      <form id="loginForm" method="post" action="#">
+      <form id="loginForm" method="post" action="Login">
         <div class="field">
           <div class="label">아이디</div>
           <input type="text" name="login_id" id="login_id" placeholder="아이디 입력">
