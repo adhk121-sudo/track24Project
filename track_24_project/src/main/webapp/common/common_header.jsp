@@ -16,7 +16,7 @@
   String activeJoin = uri.contains("join") ? "active" : "";
   
   // 세션에서 로그인 정보 확인
-  HttpSession session = request.getSession();
+  
   String sessionId = (String)session.getAttribute("sessionId");
   String sessionName = (String)session.getAttribute("sessionName");
   boolean isLogin = (sessionId != null && !sessionId.equals(""));
