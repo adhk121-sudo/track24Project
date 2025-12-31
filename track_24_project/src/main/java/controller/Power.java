@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import common.CommonPower;
+import common.member.PowerJoin;
+
 /**
  * Servlet implementation class Power
  */
@@ -39,6 +42,10 @@ public class Power extends HttpServlet {
 			viewPage = "login/login_powerranger.jsp";
 		}else if(gubun.equals("join")) {
 			viewPage = "join/join_powerranger.jsp";
+		}else if(gubun.equals("DBjoin")) {
+			CommonPower cp = new PowerJoin();
+			cp.Execute(request);
+			viewPage = "common_alert.jsp";
 		}else if(gubun.equals("food")) {
 			viewPage = "food/question_food.jsp";
 		}else if(gubun.equals("drink")) {
