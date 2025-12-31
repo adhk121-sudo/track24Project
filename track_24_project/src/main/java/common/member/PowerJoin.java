@@ -39,63 +39,26 @@ public class PowerJoin implements CommonPower {
 		String mbti = request.getParameter("mbti").toUpperCase();
 		String style = request.getParameter("speech_style");
 		
-		String k_food = request.getParameter("k_food");
-		String j_food = request.getParameter("j_food");
-		String c_food = request.getParameter("c_food");
-		String a_food = request.getParameter("a_food");
-		String s_food = request.getParameter("s_food");
-		String d_food = request.getParameter("d_food");
+		String food[] = request.getParameterValues("food");
+		String drink[] = request.getParameterValues("drink");
+		String music[] = request.getParameterValues("music");
+		String movie[] = request.getParameterValues("movie");
+		String book[] = request.getParameterValues("book");
+		String allergy[] = request.getParameterValues("allergy");
 		
-		List<String> list1 = Arrays.asList(k_food, j_food, c_food, a_food, s_food, d_food);
-		String result1 = list1.stream().filter(s -> s != null && !s.trim().isEmpty()).map(String::trim).collect(Collectors.joining(","));
-	
-		String k_pop = request.getParameter("k_pop");
-		String hip_hop = request.getParameter("hip_hop");
-		String ballad = request.getParameter("ballad");
-		String edm = request.getParameter("edm");
-		String jazz = request.getParameter("jazz");
-		String rock = request.getParameter("rock");
+		String foodStr = (food != null) ? String.join(",", food) : "";
+		String drinkStr = (drink != null) ? String.join(",", drink) : "";
+		String musicStr = (music != null) ? String.join(",", music) : "";
+		String movieStr = (movie != null) ? String.join(",", movie) : "";
+		String bookStr = (book != null) ? String.join(",", book) : "";
+		String allergyStr = (allergy != null) ? String.join(",", allergy) : "";
 		
-		List<String> list3 = Arrays.asList(k_pop, hip_hop, ballad, edm, jazz, rock);
-		String result3 = list1.stream().filter(s -> s != null && !s.trim().isEmpty()).map(String::trim).collect(Collectors.joining(","));
-	
-		
-		String a_movie = request.getParameter("a_movie");
-		String r_movie = request.getParameter("r_movie");
-		String c_movie = request.getParameter("c_movie");
-		String s_movie = request.getParameter("s_movie");
-		String h_movie = request.getParameter("h_movie");
-		String d_movie = request.getParameter("d_movie");
-		
-		List<String> list4 = Arrays.asList(a_movie, r_movie, c_movie, s_movie, h_movie, d_movie);
-		String result4 = list1.stream().filter(s -> s != null && !s.trim().isEmpty()).map(String::trim).collect(Collectors.joining(","));
-	
-		String n_book = request.getParameter("n_book");
-		String s_book = request.getParameter("s_book");
-		String e_book = request.getParameter("e_book");
-		String h_book = request.getParameter("h_book");
-		String c_book = request.getParameter("c_book");
-		
-		List<String> list5 = Arrays.asList(n_book, s_book, e_book, h_book, c_book);
-		String result5 = list1.stream().filter(s -> s != null && !s.trim().isEmpty()).map(String::trim).collect(Collectors.joining(","));
-	
-		String n_allergy = request.getParameter("n_allergy");
-		String m_allergy = request.getParameter("m_allergy");
-		String e_allergy = request.getParameter("e_allergy");
-		String w_allergy = request.getParameter("w_allergy");
-		String s_allergy = request.getParameter("s_allergy");
-		String b_allergy = request.getParameter("b_allergy");
-		String non_allergy = request.getParameter("non_allergy");
-		List<String> list6 = Arrays.asList(n_allergy, m_allergy, e_allergy, w_allergy, s_allergy, b_allergy);
-		String result6 = null;
-		if(!non_allergy.equals("")) {
-			result5 = non_allergy;
-		}else {
-			result5 = list1.stream().filter(s -> s != null && !s.trim().isEmpty()).map(String::trim).collect(Collectors.joining(","));
-		}
 		String reg_date = CommonUtil.getTodayTime();
-		ProjectDto dto = new ProjectDto(id, name, pw, pw_length, age, area, mobile_1, mobile_2, mobile_3, email_1, email_2, gender, mbti, style, result1, "drink", result3, result4, result5, result6, reg_date, "update_date" );
+		ProjectDto dto = new ProjectDto(id, name, pw, pw_length, age, area, mobile_1, mobile_2, mobile_3, email_1, email_2, gender, mbti, style, foodStr, drinkStr, musicStr, movieStr, bookStr, allergyStr, reg_date, "update_date");
 		int memberResult = dao.memberJoin(dto);
+		String warning = memberResult==1? "회원등록 되었습니다.":"회원등록 실패했습니다. 관리자에게 문의바랍니다.";
+		request.setAttribute("t_msg", warning);
+		
 	}
 
 }
