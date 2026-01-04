@@ -36,31 +36,34 @@ public class ProjectDao {
 
 	// 로그인 - 아이디와 비밀번호로 사용자 확인
 	public ProjectDto memberLogin(String id, String pw) {
-		ProjectDto dto = null;
-		String query = "SELECT id, name, style FROM team_random_member WHERE id = ? AND pw = ?";
-		try {
-			conn = DBConnection.getConn();
-			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, id);
-			pstmt.setString(2, pw);
-			rs = pstmt.executeQuery();
-			
-			if(rs.next()) {
-				
-				String name= rs.getString("name");
-				String style = rs.getString("style");
-				
-				dto=new ProjectDto(id, name, style);
-		            
-			}
-		}catch(Exception e) {
-			e.printStackTrace();
-			System.out.println("로그인 쿼리 오류: " + query);
-		}finally {
-			DBConnection.closeDB(conn, pstmt, rs);
-		}
-		return dto;
+	    ProjectDto dto = null;
+
+	    String query = "SELECT ID, NAME, STYLE "
+	                 + "FROM TEAM_RANDOM_MEMBER "
+	                 + "WHERE ID = ? AND PASSWORD = ?";
+
+	    try {
+	        conn = DBConnection.getConn();
+	        pstmt = conn.prepareStatement(query);
+	        pstmt.setString(1, id);
+	        pstmt.setString(2, pw);
+	        rs = pstmt.executeQuery();
+
+	        if (rs.next()) {
+	            String name = rs.getString("NAME");
+	            String style = rs.getString("STYLE");
+
+	            dto = new ProjectDto(id, name, style);
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        System.out.println("로그인 쿼리 오류: " + query);
+	    } finally {
+	        DBConnection.closeDB(conn, pstmt, rs);
+	    }
+	    return dto;
 	}
+
 	
 	//회원 전체 조회
 	public ProjectDto memberList(String id, String pw) {
