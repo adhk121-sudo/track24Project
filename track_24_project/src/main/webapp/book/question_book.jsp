@@ -6,7 +6,7 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>북레인저 추천 | 결정러</title>
-  <link href="css/question.css" rel="stylesheet">
+  <link href="<%=request.getContextPath()%>/css/question.css" rel="stylesheet">
 </head>
 <body class="theme-book">
 
@@ -40,7 +40,7 @@
           <div class="question-header">
             <div class="character-area">
               <div class="character-icon">
-                <img src="images/book_ranger.png" alt="북레인저">
+                <img src="<%=request.getContextPath()%>/images/book_ranger.png" alt="북레인저">
               </div>
             </div>
             <div class="question-area">
@@ -86,7 +86,7 @@
           <div class="question-header">
             <div class="character-area">
               <div class="character-icon">
-                <img src="images/book_ranger.png" alt="북레인저">
+                <img src="<%=request.getContextPath()%>/images/book_ranger.png" alt="북레인저">
               </div>
             </div>
             <div class="question-area">
@@ -132,7 +132,7 @@
           <div class="question-header">
             <div class="character-area">
               <div class="character-icon">
-                <img src="images/book_ranger.png" alt="북레인저">
+                <img src="<%=request.getContextPath()%>/images/book_ranger.png" alt="북레인저">
               </div>
             </div>
             <div class="question-area">
@@ -178,7 +178,7 @@
           <div class="question-header">
             <div class="character-area">
               <div class="character-icon">
-                <img src="images/book_ranger.png" alt="북레인저">
+                <img src="<%=request.getContextPath()%>/images/book_ranger.png" alt="북레인저">
               </div>
             </div>
             <div class="question-area">

@@ -5,6 +5,9 @@
 	
 	if(msg == null) msg = "";
 	if(url == null) url = "Power?t_gubun=main";
+	
+	// JavaScript에서 사용할 수 있도록 특수문자 이스케이프
+	msg = msg.replace("\"", "\\\"").replace("\n", "\\n").replace("\r", "");
 %>
 <!DOCTYPE html>
 <html>

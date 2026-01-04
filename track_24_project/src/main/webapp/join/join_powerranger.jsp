@@ -9,7 +9,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>회원가입 | 결정러</title>
-  <link href="css/join.css" rel="stylesheet">
+  <link href="<%=request.getContextPath()%>/css/join.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 	<script type = "text/javascript">
 		function goSave(){
@@ -41,7 +41,7 @@
     <!-- LEFT -->
     <div class="left">
       <div class="character-wrap">
-        <img src="images/레인저.png" alt="결정러 전대" class="ranger-image">
+        <img src="<%=request.getContextPath()%>/images/레인저.png" alt="결정러 전대" class="ranger-image">
       </div>
       <div class="bubble">
         <h3 id="bubbleTitle">처음 만나서 반갑다! 제군들!</h3>
