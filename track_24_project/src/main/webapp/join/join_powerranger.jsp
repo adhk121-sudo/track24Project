@@ -11,6 +11,15 @@
   <title>회원가입 | 결정러</title>
   <link href="<%=request.getContextPath()%>/css/join.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+	<script type = "text/javascript">
+		function goSave(){
+			joinForm.t_gubun.value = "DBjoin";
+			joinForm.method = "post";
+			joinForm.action = "Power";
+			joinForm.submit();
+		}
+	</script>
+
 </head>
 <body>
 
@@ -46,8 +55,8 @@
       <h2>회원가입</h2>
       <p class="sub">결정러 전대원이 되어주세요!</p>
 
-      <form name="joinForm" id="joinForm" method="post" action="#">
-        
+      <form name="joinForm" id="joinForm">
+        <input type = "hidden" name = "t_gubun">
         <!-- STEP 1: 기본 정보 -->
         <div class="panel active" data-step="1">
           <div class="field">
@@ -439,7 +448,7 @@
         <div class="actions">
           <button type="button" class="btn outline" id="prevBtn">← 이전</button>
           <button type="button" class="btn primary" id="nextBtn">다음 →</button>
-          <button type="submit" class="btn primary" id="submitBtn">🎉 가입 완료!</button>
+          <button type="submit" class="btn primary" id="submitBtn" onclick = "goSave()">🎉 가입 완료!</button>
         </div>
       </form>
     </div>

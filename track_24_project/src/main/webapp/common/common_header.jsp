@@ -14,7 +14,12 @@
   String activeLogin = uri.contains("login") ? "active" : "";
   String activeJoin = uri.contains("join") ? "active" : "";
   
+<<<<<<< HEAD
   // 세션에서 로그인 정보 확인 (JSP의 내장 session 객체 사용)
+=======
+  // 세션에서 로그인 정보 확인
+  
+>>>>>>> refs/remotes/origin/main
   String sessionId = (String)session.getAttribute("sessionId");
   String sessionName = (String)session.getAttribute("sessionName");
   boolean isLogin = (sessionId != null && !sessionId.equals(""));
