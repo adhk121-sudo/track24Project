@@ -5,28 +5,28 @@
 Thumbs.db
 
 ############################
-# Eclipse (개인 영역만)
+# Eclipse
 ############################
 .metadata/
 .recommenders/
 
 ############################
-# IntelliJ (혼용 시)
+# IntelliJ
 ############################
 .idea/
 *.iml
 
 ############################
-# Build 결과물만 제외
+# Build 결과물
 ############################
 /target/
 /bin/
 /build/
 /out/
-/WEB-INF/classes/
+*.class
 
 ############################
-# Server (Tomcat 런타임 자체)
+# Server
 ############################
 Servers/
 
@@ -36,32 +36,6 @@ Servers/
 *.log
 
 ############################
-# ❗ 반드시 Git에 포함되어야 하는 설정 ❗
-# (ignore 하면 안 됨)
+# API 키 파일 (중요!)
 ############################
-# .classpath
-# .project
-# .settings/
-# pom.xml
-# src/main/java
-# src/main/webapp
-<<<<<<< HEAD
-# /build/          # 이 줄 삭제 또는 # 붙이기
-# *.class          # 이 줄 삭제 또는 # 붙이기
-# /target/         # 이 줄 삭제 또는 # 붙이기
-=======
->>>>>>> branch 'main' of https://github.com/adhk121-sudo/track24Project.git
-
-
-## 4. .gitignore 설정 (중요! ⭐)
-
-# API 키 파일 제외
 src/config.properties
-
-# 기타 제외 항목
-*.class
-.settings/
-bin/
-build/
-
-
