@@ -13,7 +13,7 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 	<script type = "text/javascript">
 		function goSave(){
-			joinForm.t_gubun.value = "DBjoin";
+			joinForm.t_gubun.value = "DBjoin"; 
 			joinForm.method = "post";
 			joinForm.action = "Power";
 			joinForm.submit();
@@ -448,7 +448,7 @@
         <div class="actions">
           <button type="button" class="btn outline" id="prevBtn">← 이전</button>
           <button type="button" class="btn primary" id="nextBtn">다음 →</button>
-          <button type="submit" class="btn primary" id="submitBtn" onclick = "goSave()">🎉 가입 완료!</button>
+          <button type="button" class="btn primary" id="submitBtn" >🎉 가입 완료!</button>
         </div>
       </form>
     </div>
@@ -587,6 +587,8 @@
         e.preventDefault();
         return;
       }
+      document.joinForm.t_gubun.value = "DBjoin"; // ⭐ 여기서 세팅
+      document.joinForm.method = "post";
       document.joinForm.action = "Power";
       document.joinForm.submit();
     };
