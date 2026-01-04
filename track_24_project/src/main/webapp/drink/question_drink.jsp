@@ -25,13 +25,14 @@
     </div>
 
     <!-- 폼 시작 -->
-    <form name="drinkForm" id="questionForm" method="post" action="DrinkAI">
+    <form name="drinkForm" id="questionForm" method="post" action="RecommandAI">
       
       <!-- hidden input으로 답변 저장 -->
-      <input type="hidden" name="mood" id="mood_input">
-      <input type="hidden" name="temp" id="temp_input">
-      <input type="hidden" name="type" id="type_input">
-      <input type="hidden" name="sweet" id="sweet_input">
+        <input type="hidden" name="category" value="drink">  <!-- 카테고리만 다르게 -->
+  		<input type="hidden" name="q1" id="q1_input">
+  		<input type="hidden" name="q2" id="q2_input">
+  		<input type="hidden" name="q3" id="q3_input">
+  		<input type="hidden" name="q4" id="q4_input">
 
       <div class="question-card">
         
@@ -243,7 +244,7 @@
     const answers = {};
     
     // 각 스텝별 hidden input id
-    const inputIds = ['', 'mood_input', 'temp_input', 'type_input', 'sweet_input'];
+    const inputIds = ['', 'q1_input', 'q2_input', 'q3_input', 'q4_input'];
 
     function updateUI() {
       // 진행 바 업데이트
