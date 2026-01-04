@@ -553,6 +553,13 @@ input::placeholder {
 .checkbox-group[data-category="food"] .checkbox-item input:checked + .checkbox-label .checkbox-box::after {
   color: #dc2626;
 }
+/* 🥤 음료 - 레몬색 */
+.checkbox-group[data-category="drink"] .checkbox-item input:checked + .checkbox-label {
+  background: linear-gradient(135deg, #d4d700, #ecef4c);
+}
+.checkbox-group[data-category="drink"] .checkbox-item input:checked + .checkbox-label .checkbox-box::after {
+  color: #d4d700;
+}
 
 .checkbox-group[data-category="music"] .checkbox-item input:checked + .checkbox-label {
   background: linear-gradient(135deg, #7c3aed, #a855f7);
