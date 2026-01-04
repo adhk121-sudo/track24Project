@@ -4,7 +4,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>  
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 <link href="css/main.css" rel="stylesheet">
-<link rel="stylesheet" href="../css/header.css">
+<link rel="stylesheet" href="css/header.css">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 <script type="text/javascript" src="js/jquery-1.8.1.min.js"></script>    
 

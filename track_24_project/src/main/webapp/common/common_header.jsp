@@ -13,6 +13,16 @@
   String activeMusic = uri.contains("music") ? "active" : "";
   String activeLogin = uri.contains("login") ? "active" : "";
   String activeJoin = uri.contains("join") ? "active" : "";
+  
+<<<<<<< HEAD
+  // 세션에서 로그인 정보 확인 (JSP의 내장 session 객체 사용)
+=======
+  // 세션에서 로그인 정보 확인
+  
+>>>>>>> refs/remotes/origin/main
+  String sessionId = (String)session.getAttribute("sessionId");
+  String sessionName = (String)session.getAttribute("sessionName");
+  boolean isLogin = (sessionId != null && !sessionId.equals(""));
 %>
 
 <style>
@@ -259,8 +269,37 @@ body::before {
   </nav>
 
   <div class="header-actions">
-    <a href="javascript:goPage('login')" class="btn-outline <%=activeLogin%>">로그인</a>
-    <a href="javascript:goPage('join')" class="btn-primary <%=activeJoin%>">회원가입</a>
+    <%
+      if(isLogin) {
+    %>
+      <!-- 로그인 상태 -->
+      <div class="header-profile" onclick="location.href='Power?t_gubun=mypage'">
+        <div class="profile-avatar">
+          <%
+            String avatarText = "U";
+            if(sessionName != null && sessionName.length() > 0) {
+              avatarText = sessionName.substring(0, 1);
+            }
+            out.print(avatarText);
+          %>
+        </div>
+        <span class="profile-name">
+          <%
+            String displayName = sessionName != null ? sessionName : (sessionId != null ? sessionId : "");
+            out.print(displayName + "님");
+          %>
+        </span>
+      </div>
+      <a href="Logout" class="btn-outline">로그아웃</a>
+    <%
+      } else {
+    %>
+      <!-- 비로그인 상태 -->
+      <a href="javascript:goPage('login')" class="btn-outline <%=activeLogin%>">로그인</a>
+      <a href="javascript:goPage('join')" class="btn-primary <%=activeJoin%>">회원가입</a>
+    <%
+      }
+    %>
   </div>
 </div>
   

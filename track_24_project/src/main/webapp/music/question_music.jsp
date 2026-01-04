@@ -6,7 +6,7 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>뮤직레인저 추천 | 결정러</title>
-  <link href="css/question.css" rel="stylesheet">
+  <link href="<%=request.getContextPath()%>/css/question.css" rel="stylesheet" type="text/css">
 </head>
 <body class="theme-music">
 
@@ -25,13 +25,14 @@
     </div>
 
     <!-- 폼 시작 -->
-    <form name="musicForm" id="questionForm" method="post" action="MusicAI">
+    <form name="musicForm" id="questionForm" method="post" action="RecommendAI">
       
       <!-- hidden input으로 답변 저장 -->
-      <input type="hidden" name="mood" id="mood_input">
-      <input type="hidden" name="genre" id="genre_input">
-      <input type="hidden" name="situation" id="situation_input">
-      <input type="hidden" name="tempo" id="tempo_input">
+    <input type="hidden" name="category" value="music">  <!-- 카테고리만 다르게 -->
+  	<input type="hidden" name="q1" id="q1_input">
+  	<input type="hidden" name="q2" id="q2_input">
+  	<input type="hidden" name="q3" id="q3_input">
+  	<input type="hidden" name="q4" id="q4_input">
 
       <div class="question-card">
         
@@ -40,7 +41,7 @@
           <div class="question-header">
             <div class="character-area">
               <div class="character-icon">
-                <img src="images/music_ranger.png" alt="뮤직레인저">
+                <img src="<%=request.getContextPath()%>/images/music_ranger.png" alt="뮤직레인저">
               </div>
             </div>
             <div class="question-area">
@@ -86,7 +87,7 @@
           <div class="question-header">
             <div class="character-area">
               <div class="character-icon">
-                <img src="images/music_ranger.png" alt="뮤직레인저">
+                <img src="<%=request.getContextPath()%>/images/music_ranger.png" alt="뮤직레인저">
               </div>
             </div>
             <div class="question-area">
@@ -132,7 +133,7 @@
           <div class="question-header">
             <div class="character-area">
               <div class="character-icon">
-                <img src="images/music_ranger.png" alt="뮤직레인저">
+                <img src="<%=request.getContextPath()%>/images/music_ranger.png" alt="뮤직레인저">
               </div>
             </div>
             <div class="question-area">
@@ -178,7 +179,7 @@
           <div class="question-header">
             <div class="character-area">
               <div class="character-icon">
-                <img src="images/music_ranger.png" alt="뮤직레인저">
+                <img src="<%=request.getContextPath()%>/images/music_ranger.png" alt="뮤직레인저">
               </div>
             </div>
             <div class="question-area">
@@ -242,8 +243,8 @@
     const MAX_STEP = 4;
     const answers = {};
     
-    // 각 스텝별 hidden input id
-    const inputIds = ['', 'mood_input', 'genre_input', 'situation_input', 'tempo_input'];
+ // 모든 페이지 동일
+    const inputIds = ['', 'q1_input', 'q2_input', 'q3_input', 'q4_input'];
 
     function updateUI() {
       // 진행 바 업데이트

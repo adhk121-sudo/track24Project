@@ -5,6 +5,27 @@ public class ProjectDto {
 	mobile_1, mobile_2, mobile_3, email_1, email_2,
 	gender, mbti, style, food, drink, music, movie, book, allergy, reg_date, update_date;
 
+	
+	
+	public ProjectDto(String style, String food, String drink, String music, String movie, String book,
+			String allergy) {
+		super();
+		this.style = style;
+		this.food = food;
+		this.drink = drink;
+		this.music = music;
+		this.movie = movie;
+		this.book = book;
+		this.allergy = allergy;
+	}
+
+	public ProjectDto(String id, String name, String style) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.style = style;
+	}
+
 	public ProjectDto(String id, String name, String pw, String pw_length, String age, String area, String mobile_1,
 			String mobile_2, String mobile_3, String email_1, String email_2, String gender, String mbti, String style,
 			String food, String drink, String music, String movie, String book, String allergy, String reg_date, String update_date) {

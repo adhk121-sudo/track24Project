@@ -3,9 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>  
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
-<link rel="stylesheet" href="css/login.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/login.css">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
-<script type="text/javascript" src="js/jquery-1.8.1.min.js"></script>    
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-1.8.1.min.js"></script>    
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -25,7 +25,7 @@
     <!-- LEFT -->
 <div class="left">
   <div class="character-wrap">
-    <img src="images/레인저.png" alt="결정러 전대" class="ranger-image">
+    <img src="<%=request.getContextPath()%>/images/레인저.png" alt="결정러 전대" class="ranger-image">
   </div>
       <div class="bubble">
         <h3>다시 만나서 반가워! 😊</h3>
@@ -37,7 +37,7 @@
       <h2>로그인</h2>
       <p class="sub">결정러 전대에 합류하세요!</p>
 
-      <form id="loginForm" method="post" action="#">
+      <form id="loginForm" method="post" action="Login">
         <div class="field">
           <div class="label">아이디</div>
           <input type="text" name="login_id" id="login_id" placeholder="아이디 입력">
