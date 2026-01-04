@@ -78,7 +78,7 @@ public class Login extends HttpServlet {
 		request.setAttribute("msg", msg);
 		request.setAttribute("url", url);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("common/alert.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("common_alert.jsp");
 		rd.forward(request, response);
 	}
 
