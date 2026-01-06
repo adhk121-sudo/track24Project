@@ -11,12 +11,30 @@
   <title>회원가입 | 결정러</title>
   <link href="<%=request.getContextPath()%>/css/join.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+	<script type="text/javascript" src="js/jquery-1.8.1.min.js"></script>
 	<script type = "text/javascript">
-		function goSave(){
-			joinForm.t_gubun.value = "DBjoin"; 
-			joinForm.method = "post";
-			joinForm.action = "Power";
-			joinForm.submit();
+		function goCheck(){
+			if(joinForm.login_id == "") {
+				alert("ID중복검사 해주세요.");
+				joinForm.login_id.focus();
+				return;
+				}
+		      var id = joinForm.login_id.value;
+		      $.ajax({
+		         type :"POST",
+		         url : "CheckId",
+		         data: "t_id="+id,
+		         dataType : "text",
+		         error : function(){
+		            alert('통신실패');
+		         },
+		         success : function(data){
+		           	//alert(data);
+		            var result = $.trim(data);
+		           	joinForm.confirm_id.value = result;
+		         }
+		      });         
+		
 		}
 	</script>
 
@@ -63,10 +81,10 @@
             <div class="label">아이디</div>
             <div class="with-btn">
               <input type="text" name="login_id" id="login_id" placeholder="아이디 입력">
-              <button type="button" class="btn gray">중복확인</button>
+              <button type="button" class="btn gray" onclick = "goCheck()">중복확인</button>
             </div>
           </div>
-
+		  <input type = "text" name = "confirm_id" readonly>
           <div class="row">
             <div class="field">
               <div class="label">비밀번호</div>
