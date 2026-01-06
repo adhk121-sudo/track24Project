@@ -146,4 +146,23 @@ public class ProjectDao {
 		return dto;
 	}
 
+	public int checkId(String id) {
+		int result = 0;
+		String query = "select count(*) from team_random_member where id = '"+id+"'";
+		System.out.println(query);
+		try {
+			conn = DBConnection.getConn();
+			pstmt = conn.prepareStatement(query);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				result = rs.getInt("count(*)");
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBConnection.closeDB(conn, pstmt, rs);
+		}
+		return result;
+	}
+
 }
