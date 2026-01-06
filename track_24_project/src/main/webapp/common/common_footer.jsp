@@ -33,7 +33,7 @@
 }
 
 .footer-text {
-  font-size: 13px;
+  font-size: 15px;
   color: #6b7280;
 }
 
@@ -70,15 +70,15 @@
   <div class="footer-inner">
     <div class="footer-logo">
       <span class="icon">⚡</span>
-      <span>결정러</span>
+      <span>결정레인저</span>
     </div>
     
-    <p class="footer-text">© 2024 결정러. 선택장애 해결 전대</p>
+    <p class="footer-text">© 2024 결정레인저. 선택장애 해결 전대</p>
     
     <div class="footer-links">
-      <a href="#" class="footer-link">이용약관</a>
-      <a href="#" class="footer-link">개인정보처리방침</a>
-      <a href="#" class="footer-link">문의하기</a>
+      <span>이용약관</span>
+      <span>개인정보처리방침</span>
+      <span>문의하기</span>
     </div>
   </div>
 </footer>

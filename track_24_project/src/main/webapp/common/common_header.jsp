@@ -182,7 +182,7 @@ body::before {
   border-radius: 999px;
   background: rgba(139, 92, 246, 0.1);
   border: 1px solid rgba(139, 92, 246, 0.2);
-  cursor: pointer;
+  
   transition: all 0.3s;
 }
 
@@ -194,7 +194,7 @@ body::before {
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #7c3aed, #a855f7);
+  background: linear-gradient(135deg, #eaed3a, #f6d63b);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -251,7 +251,7 @@ body::before {
 <div class="header-inner">
   <a href="Power" class="header-logo">
     <span class="icon">⚡</span>
-    <span>결정러</span>
+    <span>결정레인저</span>
   </a>
 
   <nav class="header-nav">
@@ -268,7 +268,7 @@ body::before {
       if(isLogin) {
     %>
       <!-- 로그인 상태 -->
-      <div class="header-profile" onclick="location.href='Power?t_gubun=mypage'">
+      <div class="header-profile" >
         <div class="profile-avatar">
           <%
             String avatarText = "U";

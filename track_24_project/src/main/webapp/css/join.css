@@ -275,6 +275,43 @@ input, select {
   transition: all 0.3s;
   color: #1e1b4b;
 }
+/* 아이디 입력 + 확인결과 스타일 */
+.id-input {
+  flex: 2;
+}
+
+/* 중복확인 결과 텍스트 */
+.id-result {
+    font-size: 13px;
+    font-weight: 700;
+    padding: 8px 0;
+    display: block;
+}
+
+.id-result.success {
+    color: #059669;
+}
+
+.id-result.fail {
+    color: #dc2626;
+}
+css/* 중복확인 결과 텍스트 */
+.id-result {
+  font-size: 13px;
+  font-weight: 700;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.id-result.success {
+  color: #059669;
+}
+
+.id-result.fail {
+  color: #dc2626;
+}
 
 input:focus, select:focus {
   outline: none;

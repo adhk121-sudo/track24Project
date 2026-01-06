@@ -32,7 +32,6 @@ public class CheckId extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
-		response.setCharacterEncoding("utf-8");
 		PrintWriter out = response.getWriter();
 		ProjectDao dao = new ProjectDao();
 		String id = request.getParameter("t_id");
