@@ -21,7 +21,7 @@
     <aside class="mp-sidebar">
       <div class="mp-profile">
         <div class="mp-avatar">😊</div>
-        <div class="mp-name">${member.nickname}님</div>
+        <div class="mp-name">${member.nickname}님ㄴ1</div>
         <div class="mp-email">${member.email_1}@${member.email_2}</div>
       </div>
 
