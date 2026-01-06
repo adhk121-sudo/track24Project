@@ -21,6 +21,25 @@
 %>
 
 <style>
+
+.header-gear{
+  width: 40px;
+  height: 40px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius: 999px;
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  background: rgba(255,255,255,0.8);
+  text-decoration:none;
+  transition: all .2s;
+  font-size: 18px;
+}
+.header-gear:hover{
+  background: rgba(139, 92, 246, 0.12);
+  transform: translateY(-1px);
+}
+
 :root {
   --header-h: 70px;
   --bg: linear-gradient(180deg, #e0e7ff 0%, #c7d2fe 30%, #ddd6fe 60%, #ede9fe 100%);
@@ -268,7 +287,7 @@ body::before {
       if(isLogin) {
     %>
       <!-- 로그인 상태 -->
-      <div class="header-profile" onclick="location.href='Power?t_gubun=mypage'">
+      <div class="header-profile">
         <div class="profile-avatar">
           <%
             String avatarText = "U";
@@ -285,6 +304,8 @@ body::before {
           %>
         </span>
       </div>
+      <!-- ⚙️ 상세페이지 -->
+<a class="header-gear" href="Power?t_gubun=mypage" title="상세페이지">⚙️</a>
       <a href="Logout" class="btn-outline">로그아웃</a>
     <%
       } else {

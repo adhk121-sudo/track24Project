@@ -4,6 +4,13 @@
   String tab = request.getParameter("tab");
   if(tab == null) tab = "profile";
 %>
+<%
+String mpSessionId = (String)session.getAttribute("sessionId");
+if(mpSessionId == null || mpSessionId.equals("")){
+  response.sendRedirect(request.getContextPath() + "/Power?t_gubun=login");
+  return;
+}
+%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>

@@ -56,6 +56,18 @@ public class Power extends HttpServlet {
 			viewPage = "book/question_book.jsp";
 		}else if(gubun.equals("music")) {
 			viewPage = "music/question_music.jsp";
+		}else if(gubun.equals("mypage")) {
+		    // 로그인 체크
+		    javax.servlet.http.HttpSession session = request.getSession();
+		    String sessionId = (String)session.getAttribute("sessionId");
+
+		    if(sessionId == null || sessionId.equals("")) {
+		        request.setAttribute("t_msg", "로그인 후 이용 가능합니다");
+		        request.setAttribute("t_url", "Power?t_gubun=login");
+		        viewPage = "common_alert.jsp";
+		    } else {
+		        viewPage = "mypage/mypage.jsp";
+		    }
 		}
 	
 		RequestDispatcher rd = request.getRequestDispatcher(viewPage);
