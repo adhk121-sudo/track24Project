@@ -14,7 +14,7 @@ public class ProjectDao {
 
 	public int memberJoin(ProjectDto dto) {
 		int row = 0;
-		String query = "insert into team_random_member\r\n"
+		String sql = "insert into team_random_member\r\n"
 				+ "(id, name, password, password_length, age, area,\r\n"
 				+ "mobile_1, mobile_2, mobile_3, email_1, email_2,\r\n"
 				+ "gender, mbti, allergy, food, drink, music, book, movie, style, reg_date)\r\n"
@@ -23,11 +23,11 @@ public class ProjectDao {
 				+ "'"+dto.getDrink()+"','"+dto.getMusic()+"','"+dto.getBook()+"','"+dto.getMovie()+"', '"+dto.getStyle()+"', to_date('"+dto.getReg_date()+"','yyyy-MM-dd hh24:mi:ss'))";
 		try {
 			conn = DBConnection.getConn();
-			pstmt = conn.prepareStatement(query);
+			pstmt = conn.prepareStatement(sql);
 			row = pstmt.executeUpdate();
 		}catch(Exception e) {
 			e.printStackTrace();
-			System.out.println("쿼리문 오류: " + query);
+			System.out.println("쿼리문 오류: " + sql);
 		}finally {
 			DBConnection.closeDB(conn, pstmt, rs);
 		}
@@ -38,13 +38,13 @@ public class ProjectDao {
 	public ProjectDto memberLogin(String id, String pw) {
 	    ProjectDto dto = null;
 
-	    String query = "SELECT ID, NAME, STYLE "
+	    String sql = "SELECT ID, NAME, STYLE "
 	                 + "FROM TEAM_RANDOM_MEMBER "
 	                 + "WHERE ID = ? AND PASSWORD = ?";
 
 	    try {
 	        conn = DBConnection.getConn();
-	        pstmt = conn.prepareStatement(query);
+	        pstmt = conn.prepareStatement(sql);
 	        pstmt.setString(1, id);
 	        pstmt.setString(2, pw);
 	        rs = pstmt.executeQuery();
@@ -57,7 +57,7 @@ public class ProjectDao {
 	        }
 	    } catch (Exception e) {
 	        e.printStackTrace();
-	        System.out.println("로그인 쿼리 오류: " + query);
+	        System.out.println("로그인 쿼리 오류: " + sql);
 	    } finally {
 	        DBConnection.closeDB(conn, pstmt, rs);
 	    }
@@ -68,12 +68,12 @@ public class ProjectDao {
 	//회원 전체 조회
 	public ProjectDto memberList(String id, String pw) {
 		ProjectDto dto = null;
-		String query = "SELECT id, name, pw, age, area, mobile_1, mobile_2, mobile_3, " +
+		String sql = "SELECT id, name, pw, age, area, mobile_1, mobile_2, mobile_3, " +
 					   "email_1, email_2, gender, mbti, style, food, drink, music, movie, book, allergy, reg_date " +
 					   "FROM track24_member WHERE id = ? AND pw = ?";
 		try {
 			conn = DBConnection.getConn();
-			pstmt = conn.prepareStatement(query);
+			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 			pstmt.setString(2, pw);
 			rs = pstmt.executeQuery();
@@ -106,7 +106,7 @@ public class ProjectDao {
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
-			System.out.println("로그인 쿼리 오류: " + query);
+			System.out.println("memberList 오류: " + sql);
 		}finally {
 			DBConnection.closeDB(conn, pstmt, rs);
 		}
@@ -148,11 +148,11 @@ public class ProjectDao {
 
 	public int checkId(String id) {
 		int result = 0;
-		String query = "select count(*) from team_random_member where id = '"+id+"'";
-		System.out.println(query);
+		String sql = "select count(*) from team_random_member where id = '"+id+"'";
+		
 		try {
 			conn = DBConnection.getConn();
-			pstmt = conn.prepareStatement(query);
+			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				result = rs.getInt("count(*)");

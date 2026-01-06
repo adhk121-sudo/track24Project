@@ -13,30 +13,64 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 	<script type="text/javascript" src="js/jquery-1.8.1.min.js"></script>
 	<script type = "text/javascript">
-		function goCheck(){
-			if(joinForm.login_id == "") {
-				alert("ID중복검사 해주세요.");
-				joinForm.login_id.focus();
-				return;
-				}
-		      var id = joinForm.login_id.value;
-		      $.ajax({
-		         type :"POST",
-		         url : "CheckId",
-		         data: "t_id="+id,
-		         dataType : "text",
-		         error : function(){
-		            alert('통신실패');
-		         },
-		         success : function(data){
-		           	//alert(data);
-		            var result = $.trim(data);
-		           	joinForm.confirm_id.value = result;
-		         }
-		      });         
-		
-		}
+	<script type="text/javascript" src="js/jquery-1.8.1.min.js"></script>
+	<script type="text/javascript">
+	function goCheck() {
+	    var id = joinForm.login_id.value;
+	    
+	    // 빈 값 체크
+	    if (id == null || id.trim() == "") {
+	        alert("아이디를 입력해주세요!");
+	        joinForm.login_id.focus();
+	        return;
+	    }
+	    
+	    $.ajax({
+	        type: "POST",
+	        url: "CheckId",
+	        data: "t_id=" + id,
+	        dataType: "text",
+	        error: function() {
+	            alert('통신 실패!');
+	        },
+	        success: function(data) {
+	            var result = $.trim(data);
+	            var confirmSpan = document.getElementById("confirm_id");
+	            var confirmValue = document.getElementById("confirm_id_value");
+	            
+	            // 클래스 초기화
+	            confirmSpan.classList.remove("success", "fail");
+	            
+	            if (result == "사용가능한 아이디입니다.") {
+	                // 사용 가능
+	                confirmSpan.textContent = "✓ " + result;
+	                confirmSpan.classList.add("success");
+	                confirmValue.value = "Y";
+	                
+	            } else {
+	                // 사용 불가
+	                confirmSpan.textContent = "✗ " + result;
+	                confirmSpan.classList.add("fail");
+	                confirmValue.value = "N";
+	                
+	                joinForm.login_id.value = "";  // 입력칸 비우기
+	                joinForm.login_id.focus();     // 포커스 이동
+	            }
+	        }
+	    });
+	}
+	document.getElementById("login_id").addEventListener("input", function() {
+	    var confirmSpan = document.getElementById("confirm_id");
+	    var confirmValue = document.getElementById("confirm_id_value");
+	    
+	    // 아이디 수정하면 확인 결과 초기화
+	    confirmSpan.textContent = "";
+	    confirmSpan.classList.remove("success", "fail");
+	    confirmValue.value = "";
+	});
+	
 	</script>
+	
 
 </head>
 <body>
@@ -77,14 +111,15 @@
         <input type = "hidden" name = "t_gubun">
         <!-- STEP 1: 기본 정보 -->
         <div class="panel active" data-step="1">
-          <div class="field">
-            <div class="label">아이디</div>
-            <div class="with-btn">
-              <input type="text" name="login_id" id="login_id" placeholder="아이디 입력">
-              <button type="button" class="btn gray" onclick = "goCheck()">중복확인</button>
-            </div>
-          </div>
-		  <input type = "text" name = "confirm_id" readonly>
+       <div class="field">
+    	<div class="label">아이디</div>
+    		<div class="with-btn">
+        	<input type="text" name="login_id" id="login_id" placeholder="아이디 입력">
+       		<button type="button" class="btn gray" onclick="goCheck()">중복확인</button>
+    			</div>
+    			<span id="confirm_id" class="id-result"></span>
+    			<input type="hidden" name="confirm_id_value" id="confirm_id_value">
+			</div>
           <div class="row">
             <div class="field">
               <div class="label">비밀번호</div>
@@ -541,6 +576,12 @@
       
       if (step === 1) {
         if (checkEmpty(f.login_id, "아이디를 입력해주세요!")) return false;
+     	// 중복확인 했는지 체크
+        var confirmValue = document.getElementById("confirm_id_value").value;
+        if (confirmValue != "Y") {
+            alert("아이디 중복확인을 해주세요!");
+            return false;
+        } 
         if (checkLength(f.pw, 8, "비밀번호는 8자 이상 입력해주세요!")) return false;
         if (checkEmpty(f.pw2, "비밀번호 확인을 입력해주세요!")) return false;
         if (checkMatch(f.pw, f.pw2, "비밀번호가 일치하지 않아요!")) return false;

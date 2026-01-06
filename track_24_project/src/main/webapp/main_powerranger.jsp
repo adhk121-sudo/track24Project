@@ -13,7 +13,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>결정러 - 선택장애 해결사</title>
+  <title>결정레인저 - 선택장애 해결사</title>
 </head>
 
 <body>
