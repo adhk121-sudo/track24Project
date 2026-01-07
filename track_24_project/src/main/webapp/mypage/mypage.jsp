@@ -9,12 +9,11 @@
   <title>마이페이지 | 결정러</title>
   <link rel="stylesheet" href="<%=request.getContextPath()%>/css/mypage.css">
 </head>
+
 <body>
 
   <!-- 공통 헤더 -->
-  <header class="header">
-    <%@ include file="../common/common_header.jsp" %>
-  </header>
+  <%@ include file="../common/common_header.jsp" %>
 
   <!-- 메인 컨텐츠 -->
   <div class="mypage-container">
@@ -65,7 +64,7 @@
             <p>내 기본 정보를 확인/수정할 수 있어요</p>
           </div>
 
-          <form method="post" action="<%=request.getContextPath()%>/Power?t_gubun=updateProfile" id="profileForm">
+          <form method="post" action="<%=request.getContextPath()%>/mypage?t_gubun=updateProfile" id="profileForm">
             <div class="mp-form-grid">
 
               <div class="field">
@@ -156,7 +155,8 @@
             </div>
 
             <div class="mp-actions">
-              <button type="submit" class="btn primary">💾 저장하기</button>
+              <button type="button" class="btn outline" id="btnEdit">✏️ 수정하기</button>
+ 			 <button type="submit" class="btn primary" id="btnSave" style="display:none;">💾 저장하기</button>
             </div>
           </form>
         </div>
@@ -171,7 +171,7 @@
           </div>
 
           <form name="tasteForm" method="post"
-                action="<%=request.getContextPath()%>/Power?t_gubun=updateTaste"
+                action="<%=request.getContextPath()%>/mypage?t_gubun=updateTaste"
                 id="tasteForm">
 
             <!-- 음식 -->
@@ -390,26 +390,25 @@
             <p>현재 비밀번호 확인 후 변경할 수 있어요</p>
           </div>
 
-          <form method="post" action="<%=request.getContextPath()%>/Power?t_gubun=updatePw" id="pwForm">
-            <div class="mp-form-grid">
-              <div class="field span-2">
-                <div class="label">현재 비밀번호</div>
-                <input type="password" name="t_now_pw" required>
-              </div>
-              <div class="field">
-                <div class="label">새 비밀번호</div>
-                <input type="password" name="t_new_pw" required>
-              </div>
-              <div class="field">
-                <div class="label">새 비밀번호 확인</div>
-                <input type="password" name="t_new_pw2" required>
-              </div>
-            </div>
-
-            <div class="mp-actions">
-              <button type="submit" class="btn primary">변경하기</button>
-            </div>
-          </form>
+          <form method="post" action="<%=request.getContextPath()%>/mypage?t_gubun=pwUpdate" id="pwForm">
+  <div class="mp-form-grid">
+    <div class="field span-2">
+      <div class="label">현재 비밀번호</div>
+      <input type="password" name="t_now_pw" required>
+    </div>
+    <div class="field">
+      <div class="label">새 비밀번호</div>
+      <input type="password" name="t_new_pw" required>
+    </div>
+    <div class="field">
+      <div class="label">새 비밀번호 확인</div>
+      <input type="password" name="t_new_pw_confirm" required>
+    </div>
+  </div>
+  <div class="mp-actions">
+    <button type="submit" class="btn primary">변경하기</button>
+  </div>
+</form>
         </div>
       </div>
 
@@ -423,21 +422,91 @@
 
   <!-- ================= JS: 탭 전환 + 주소 고정 (중복X) ================= -->
   <script>
-    document.querySelectorAll('.mp-menu-item[data-tab]').forEach(item => {
-      item.addEventListener('click', function () {
-        const tab = this.dataset.tab;
+  
+//====== [진단] 클릭이 안 먹을 때, 실제 클릭된 요소가 뭔지 확인 ======
+  document.addEventListener("click", function(e){
+    // input/select 클릭 시도했는데 다른게 잡히면 범인임
+    const tag = e.target.tagName;
+    console.log("CLICK TARGET:", tag, e.target);
+  }, true);
 
-        document.querySelectorAll('.mp-menu-item').forEach(m => m.classList.remove('active'));
-        this.classList.add('active');
+  // ====== [진단] 입력칸 위를 덮는 요소가 있는지 확인 (마우스 위치 기준) ======
+  document.addEventListener("mousemove", function(e){
+    const el = document.elementFromPoint(e.clientX, e.clientY);
+    // input/select 위에 마우스 올렸는데 el이 input이 아니면 덮개임
+    if(el && (el.tagName !== "INPUT" && el.tagName !== "SELECT" && el.tagName !== "TEXTAREA")){
+      // 너무 많이 찍히면 렉이니 주석처리 가능
+      // console.log("TOP ELEMENT:", el.tagName, el.className);
+    }
+  });
+//탭 전환
+  document.querySelectorAll('.mp-menu-item[data-tab]').forEach(item => {
+    item.addEventListener('click', function () {
+      const tab = this.dataset.tab;
 
-        document.querySelectorAll('.mp-panel').forEach(p => p.classList.remove('active'));
-        const target = document.querySelector('.mp-panel[data-tab="' + tab + '"]');
-        if (target) target.classList.add('active');
+      document.querySelectorAll('.mp-menu-item').forEach(m => m.classList.remove('active'));
+      this.classList.add('active');
 
-        // 주소창은 항상 /mypage 로 고정
-        history.replaceState(null, '', '<%=request.getContextPath()%>/mypage');
-      });
+      document.querySelectorAll('.mp-panel').forEach(p => p.classList.remove('active'));
+      const target = document.querySelector('.mp-panel[data-tab="' + tab + '"]');
+      if (target) target.classList.add('active');
+
+      history.replaceState(null, '', '<%=request.getContextPath()%>/mypage');
     });
+  });
+
+  // ===== 상세정보: 수정모드 토글 =====
+  const editBtn = document.getElementById("btnEdit");
+  const saveBtn = document.getElementById("btnSave");
+  const profileForm = document.getElementById("profileForm");
+
+  if (profileForm && editBtn && saveBtn) {
+
+    // 1) 처음엔 입력만 잠그기 (버튼은 잠그지 않음)
+    profileForm.querySelectorAll("input, select").forEach(el => {
+      // 버튼류/hidden은 건드리지 않기(안전)
+      if (el.type === "hidden" || el.type === "button" || el.type === "submit") return;
+      el.disabled = true;
+    });
+
+    // 2) 수정하기 누르면 입력 활성화 + 저장버튼 표시
+    editBtn.addEventListener("click", () => {
+      profileForm.querySelectorAll("input, select").forEach(el => {
+        if (el.type === "hidden" || el.type === "button" || el.type === "submit") return;
+        el.disabled = false;
+      });
+      editBtn.style.display = "none";
+      saveBtn.style.display = "inline-flex";
+    });
+
+    // 3) 저장(submit) 직전에 disabled 풀어서 값 전송되게
+    profileForm.addEventListener("submit", () => {
+      profileForm.querySelectorAll("input, select").forEach(el => el.disabled = false);
+    });
+  }
+  
+  (function(){
+    const box = document.createElement('div');
+    box.style.cssText =
+      'position:fixed;left:12px;bottom:12px;z-index:999999;' +
+      'background:#fff;padding:8px 10px;border:1px solid #000;' +
+      'font-size:12px;border-radius:6px;opacity:.95';
+    box.textContent = 'click test ready';
+    document.body.appendChild(box);
+
+    document.addEventListener('click', function(e){
+      const top = document.elementFromPoint(e.clientX, e.clientY);
+      const cs = top ? getComputedStyle(top) : null;
+
+      box.textContent =
+        'TOP: ' + (top ? top.tagName : '-') +
+        ' #' + (top && top.id ? top.id : '-') +
+        ' .' + (top && top.className ? top.className : '-') +
+        ' | z=' + (cs ? cs.zIndex : '-') +
+        ' | pos=' + (cs ? cs.position : '-');
+    }, true);
+  })();
+  
   </script>
 
 </body>
