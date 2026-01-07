@@ -305,7 +305,7 @@ body::before {
         </span>
       </div>
       <!-- ⚙️ 상세페이지 -->
-<a class="header-gear" href="Power?t_gubun=mypage" title="상세페이지">⚙️</a>
+<a class="header-gear" href="<%=request.getContextPath()%>/mypage" title="상세페이지">⚙️</a>
       <a href="Logout" class="btn-outline">로그아웃</a>
     <%
       } else {
