@@ -84,6 +84,14 @@ public class Login extends HttpServlet {
 			session.setAttribute("sessionName", dto.getName());
 			session.setAttribute("sessionDto", dto);
 
+			if(dto.getId().equals("manager")||dto.getId().equals("admin")) {  // 또는 dto.getRole().equals("admin")
+		        session.setAttribute("sessionTop", "admin");
+		        
+		    } else {
+		        session.setAttribute("sessionTop", "user");
+		    }
+		    
+			
 			msg = dto.getName() + "님 환영합니다!";
 			url = "Power?t_gubun=main";
 		} else {
