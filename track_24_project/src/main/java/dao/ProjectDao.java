@@ -3,6 +3,10 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 import common.DBConnection;
 import dto.ProjectDto;
@@ -11,7 +15,9 @@ public class ProjectDao {
 	Connection conn = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
-
+	
+	
+	//로그인
 	public int memberJoin(ProjectDto dto) {
 		int row = 0;
 		String sql = "insert into team_random_member\r\n"
@@ -214,6 +220,101 @@ public class ProjectDao {
 	    }
 	    return dto;
 	}
+	
+	
+	public void saveClickLog(String category, int questionNum, String answerValue) {
+	    String query = "INSERT INTO click_log (log_id, category, question_num, answer_value, click_date) " +
+	                   "VALUES (click_log_seq.NEXTVAL, ?, ?, ?, SYSDATE)";
+	    try {
+	        conn = DBConnection.getConn();
+	        pstmt = conn.prepareStatement(query);
+	        pstmt.setString(1, category);
+	        pstmt.setInt(2, questionNum);
+	        pstmt.setString(3, answerValue);
+	        pstmt.executeUpdate();
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        DBConnection.closeDB(conn, pstmt, rs);
+	    }
+	}
 
+	// ProjectDao.java
 
+	// 카테고리별 총 클릭 수
+	public int getCategoryTotal(String category) {
+	    int total = 0;
+	    String query = "SELECT COUNT(*) FROM click_log WHERE category = ?";
+	    try {
+	        conn = DBConnection.getConn();
+	        pstmt = conn.prepareStatement(query);
+	        pstmt.setString(1, category);
+	        rs = pstmt.executeQuery();
+	        if (rs.next()) {
+	            total = rs.getInt(1);
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        DBConnection.closeDB(conn, pstmt, rs);
+	    }
+	    return total;
+	}
+
+	// 질문별 선택지 클릭 수
+	public Map<String, Integer> getQuestionStats(String category, int questionNum) {
+	    Map<String, Integer> stats = new LinkedHashMap<>();
+	    String query = "SELECT answer_value, COUNT(*) as cnt " +
+	                   "FROM click_log " +
+	                   "WHERE category = ? AND question_num = ? " +
+	                   "GROUP BY answer_value";
+	    try {
+	        conn = DBConnection.getConn();
+	        pstmt = conn.prepareStatement(query);
+	        pstmt.setString(1, category);
+	        pstmt.setInt(2, questionNum);
+	        rs = pstmt.executeQuery();
+	        while (rs.next()) {
+	            stats.put(rs.getString("answer_value"), rs.getInt("cnt"));
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        DBConnection.closeDB(conn, pstmt, rs);
+	    }
+	    return stats;
+	}
+
+	// 월별 추이
+	public List<Integer> getMonthlyTrend(String category) {
+	    List<Integer> monthly = new ArrayList<>();
+	    String query = "SELECT TO_CHAR(click_date, 'MM') as month, COUNT(*) as cnt " +
+	                   "FROM click_log " +
+	                   "WHERE category = ? " +
+	                   "GROUP BY TO_CHAR(click_date, 'MM') " +
+	                   "ORDER BY month";
+	    try {
+	        conn = DBConnection.getConn();
+	        pstmt = conn.prepareStatement(query);
+	        pstmt.setString(1, category);
+	        rs = pstmt.executeQuery();
+	        
+	        // 1~12월 초기화
+	        int[] months = new int[12];
+	        while (rs.next()) {
+	            int month = Integer.parseInt(rs.getString("month"));
+	            months[month - 1] = rs.getInt("cnt");
+	        }
+	        for (int cnt : months) {
+	            monthly.add(cnt);
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        DBConnection.closeDB(conn, pstmt, rs);
+	    }
+	    return monthly;
+	}
+	
+	
 }

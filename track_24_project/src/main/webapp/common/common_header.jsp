@@ -305,7 +305,15 @@ body::before {
         </span>
       </div>
       <!-- ⚙️ 상세페이지 -->
-<a class="header-gear" href="<%=request.getContextPath()%>/mypage" title="상세페이지">⚙️</a>
+      <%HttpSession session1 = request.getSession();
+      	String level= (String)session1.getAttribute("sessionTop");
+      	out.print(level);
+      	if(level.equals("manager")||level.equals("admin")){
+      %>
+      <a class="header-gear" href="AdminDashboard" title="상세페이지">⚙️</a>
+      <%}else{ %>
+	  <a class="header-gear" href="<%=request.getContextPath()%>/mypage" title="상세페이지">⚙️</a>
+	  <%} %>
       <a href="Logout" class="btn-outline">로그아웃</a>
     <%
       } else {

@@ -44,6 +44,16 @@ public class RecommendAI extends HttpServlet {
         String q3 = request.getParameter("q3");
         String q4 = request.getParameter("q4");
         
+        // RecommendAI.java - doPost 안에 추가
+        // 클릭 로그 저장
+        ProjectDao dao = new ProjectDao();
+        dao.saveClickLog(category, 1, q1);
+        dao.saveClickLog(category, 2, q2);
+        dao.saveClickLog(category, 3, q3);
+        dao.saveClickLog(category, 4, q4);
+        
+        
+        
         //==3. 로그인 확인 & 회원 정보 받기==
         HttpSession session = request.getSession();
         
@@ -56,7 +66,7 @@ public class RecommendAI extends HttpServlet {
         
 
         if (isLogin) {
-            ProjectDao dao = new ProjectDao();
+            
             ProjectDto member = dao.getMemberPreference(sessionId);
             if(member != null) {
             	//카테고리별 취향 가져오기
@@ -174,6 +184,7 @@ public class RecommendAI extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
 		doGet(request, response);
 	}
 
