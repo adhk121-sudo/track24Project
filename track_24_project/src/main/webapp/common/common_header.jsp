@@ -288,7 +288,6 @@ body::before {
     %>
       <!-- 로그인 상태 -->
       <div class="header-profile" >
-      <div class="header-profile">
         <div class="profile-avatar">
           <%
             String avatarText = "U";
