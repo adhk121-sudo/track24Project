@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import common.CommonPower;
 import common.member.PowerJoin;
+import dao.ProjectDao;
+import dto.ProjectDto;
 
 /**
  * Servlet implementation class Power
@@ -34,6 +36,10 @@ public class Power extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		
 		String gubun = request.getParameter("t_gubun");
+		String uri = request.getRequestURI(); // 예: /track_24_project/mypage
+		if(uri != null && uri.endsWith("/mypage")) {
+		    gubun = "mypage";
+		}
 		if(gubun==null) gubun = "main";
 		String viewPage = "";
 		if(gubun.equals("main")) {
@@ -57,19 +63,28 @@ public class Power extends HttpServlet {
 		}else if(gubun.equals("music")) {
 			viewPage = "music/question_music.jsp";
 		}else if(gubun.equals("mypage")) {
-		    // 로그인 체크
 		    javax.servlet.http.HttpSession session = request.getSession();
 		    String sessionId = (String)session.getAttribute("sessionId");
 
 		    if(sessionId == null || sessionId.equals("")) {
 		        request.setAttribute("t_msg", "로그인 후 이용 가능합니다");
-		        request.setAttribute("t_url", "Power?t_gubun=login");
+		        request.setAttribute("t_url", request.getContextPath() + "/Power?t_gubun=login");
 		        viewPage = "common_alert.jsp";
 		    } else {
+		        ProjectDao dao = new ProjectDao();
+
+		        // 1) 기본정보(상세정보) 조회
+		        ProjectDto member = dao.getMemberDetail(sessionId);
+
+		        // 2) 취향정보 조회(이미 dao에 getMemberPreference 있음)
+		        ProjectDto pref = dao.getMemberPreference(sessionId);
+
+		        request.setAttribute("member", member);
+		        request.setAttribute("pref", pref);  // 취향은 pref로 따로 써도 되고 member에 합쳐도 됨
+
 		        viewPage = "mypage/mypage.jsp";
 		    }
 		}
-	
 		RequestDispatcher rd = request.getRequestDispatcher(viewPage);
 		rd.forward(request, response);
 	}

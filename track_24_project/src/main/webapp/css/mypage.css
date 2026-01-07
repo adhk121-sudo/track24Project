@@ -5,9 +5,7 @@
   box-sizing: border-box;
 }
 
-html {
-  height: 100%;
-}
+html { height: 100%; }
 
 body {
   min-height: 100%;
@@ -23,7 +21,7 @@ body::before {
   content: '';
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: 
+  background:
     radial-gradient(ellipse at 20% 20%, rgba(249, 115, 22, 0.1) 0%, transparent 50%),
     radial-gradient(ellipse at 80% 30%, rgba(168, 85, 247, 0.1) 0%, transparent 50%),
     radial-gradient(ellipse at 40% 80%, rgba(34, 197, 94, 0.08) 0%, transparent 50%),
@@ -40,7 +38,7 @@ body::before {
   gap: 30px;
   max-width: 1200px;
   width: 94%;
-  margin: 100px auto 40px;
+  margin: 100px auto 40px; /* 헤더 고정이라면 여기 유지 */
   position: relative;
   z-index: 1;
 }
@@ -63,7 +61,7 @@ body::before {
   text-align: center;
   padding-bottom: 24px;
   border-bottom: 1px dashed rgba(139, 92, 246, 0.2);
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 
 .mp-avatar {
@@ -91,41 +89,56 @@ body::before {
   color: #9ca3af;
 }
 
-/* 메뉴 리스트 */
+/* ===== 메뉴 리스트 (여기가 핵심 수정) ===== */
 .mp-menu {
   list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;        /* ✅ 메뉴 간격 통일 */
+  margin-top: 16px;
 }
 
 .mp-menu-item {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 14px 18px;
+  padding: 14px 16px;
   border-radius: 14px;
   font-size: 15px;
-  font-weight: 600;
-  color: #6b7280;
+  font-weight: 700;
   cursor: pointer;
-  transition: all 0.3s;
-  margin-bottom: 8px;
+  user-select: none;
+  transition: all 0.25s ease;
+  width: 100%;
+
+  /* ✅ 기본도 카드/버튼처럼 */
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(124, 58, 237, 0.15);
+  color: #4b5563;
 }
 
 .mp-menu-item:hover {
   background: rgba(139, 92, 246, 0.08);
+  border-color: rgba(139, 92, 246, 0.25);
   color: #5b21b6;
 }
 
 .mp-menu-item.active {
+  /* ✅ active는 크기/여백 바꾸지 말고 색만 진하게 */
   background: linear-gradient(135deg, #7c3aed, #a855f7);
-  color: white;
-  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+  border-color: transparent;
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(139, 92, 246, 0.28);
 }
 
 .mp-icon {
   font-size: 20px;
+  width: 26px;
+  display: inline-flex;
+  justify-content: center;
 }
 
-/* 로그아웃 */
+/* ===== 로그아웃 ===== */
 .mp-logout {
   margin-top: 24px;
   padding-top: 24px;
@@ -138,11 +151,11 @@ body::before {
   padding: 12px;
   border-radius: 12px;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 700;
   color: #ef4444;
   background: rgba(239, 68, 68, 0.1);
   text-decoration: none;
-  transition: all 0.3s;
+  transition: all 0.25s ease;
 }
 
 .btn-logout:hover {
@@ -150,17 +163,10 @@ body::before {
 }
 
 /* ===== 메인 영역 ===== */
-.mp-main {
-  min-width: 0;
-}
+.mp-main { min-width: 0; }
 
-.mp-panel {
-  display: none;
-}
-
-.mp-panel.active {
-  display: block;
-}
+.mp-panel { display: none; }
+.mp-panel.active { display: block; }
 
 /* 카드 */
 .mp-card {
@@ -172,13 +178,11 @@ body::before {
   border: 1px solid rgba(139, 92, 246, 0.1);
 }
 
-.mp-card-header {
-  margin-bottom: 30px;
-}
+.mp-card-header { margin-bottom: 30px; }
 
 .mp-card-header h2 {
   font-size: 24px;
-  font-weight: 800;
+  font-weight: 900;
   color: #1e1b4b;
   margin-bottom: 8px;
 }
@@ -195,9 +199,7 @@ body::before {
   gap: 20px;
 }
 
-.mp-form-grid .span-2 {
-  grid-column: span 2;
-}
+.mp-form-grid .span-2 { grid-column: span 2; }
 
 /* 필드 */
 .field {
@@ -208,7 +210,7 @@ body::before {
 
 .label {
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 800;
   color: #5b21b6;
 }
 
@@ -218,8 +220,8 @@ input, select {
   border: 2px solid rgba(139, 92, 246, 0.2);
   border-radius: 14px;
   font-size: 15px;
-  background: rgba(255, 255, 255, 0.9);
-  transition: all 0.3s;
+  background: rgba(255, 255, 255, 0.92);
+  transition: all 0.25s ease;
   color: #1e1b4b;
 }
 
@@ -229,9 +231,7 @@ input:focus, select:focus {
   box-shadow: 0 0 0 4px rgba(168, 85, 247, 0.1);
 }
 
-input::placeholder {
-  color: #c4b5fd;
-}
+input::placeholder { color: #c4b5fd; }
 
 /* 이메일/전화번호 행 */
 .email-row, .phone-row {
@@ -240,31 +240,24 @@ input::placeholder {
   gap: 10px;
 }
 
-.email-row input, .phone-row input {
-  flex: 1;
-}
-
-.email-row select {
-  flex: 1;
-}
+.email-row input, .phone-row input { flex: 1; }
+.email-row select { flex: 1; }
 
 .email-row .at, .phone-row .dash {
   color: #9ca3af;
-  font-weight: 600;
+  font-weight: 700;
 }
 
-.phone-row input {
-  text-align: center;
-}
+.phone-row input { text-align: center; }
 
 /* ===== 버튼 ===== */
 .btn {
   padding: 14px 28px;
   border-radius: 14px;
   font-size: 15px;
-  font-weight: 700;
+  font-weight: 800;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: all 0.25s ease;
   border: none;
   text-decoration: none;
   display: inline-flex;
@@ -303,13 +296,11 @@ input::placeholder {
 }
 
 /* ===== 체크박스 (취향선택) ===== */
-.chip-group {
-  margin-bottom: 24px;
-}
+.chip-group { margin-bottom: 24px; }
 
 .chip-title {
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 800;
   color: #5b21b6;
   margin-bottom: 12px;
 }
@@ -320,13 +311,8 @@ input::placeholder {
   gap: 10px;
 }
 
-.checkbox-item {
-  position: relative;
-}
-
-.checkbox-item input[type="checkbox"] {
-  display: none;
-}
+.checkbox-item { position: relative; }
+.checkbox-item input[type="checkbox"] { display: none; }
 
 .checkbox-label {
   display: flex;
@@ -336,11 +322,11 @@ input::placeholder {
   border-radius: 12px;
   border: 2px solid rgba(139, 92, 246, 0.2);
   background: rgba(255, 255, 255, 0.9);
-  font-weight: 600;
+  font-weight: 700;
   font-size: 14px;
   color: #4b5563;
   cursor: pointer;
-  transition: all 0.25s;
+  transition: all 0.25s ease;
 }
 
 .checkbox-label:hover {
@@ -357,7 +343,7 @@ input::placeholder {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.25s;
+  transition: all 0.25s ease;
   flex-shrink: 0;
 }
 
@@ -368,7 +354,7 @@ input::placeholder {
   color: white;
   opacity: 0;
   transform: scale(0);
-  transition: all 0.2s;
+  transition: all 0.2s ease;
 }
 
 .checkbox-item input:checked + .checkbox-label {
@@ -426,13 +412,8 @@ input::placeholder {
 }
 
 /* ===== 비밀번호 변경 ===== */
-.pw-form {
-  max-width: 450px;
-}
-
-.pw-form .field {
-  margin-bottom: 20px;
-}
+.pw-form { max-width: 450px; }
+.pw-form .field { margin-bottom: 20px; }
 
 .pw-hint {
   background: rgba(139, 92, 246, 0.08);
@@ -443,14 +424,12 @@ input::placeholder {
 
 .pw-hint p {
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 800;
   color: #5b21b6;
   margin-bottom: 10px;
 }
 
-.pw-hint ul {
-  padding-left: 20px;
-}
+.pw-hint ul { padding-left: 20px; }
 
 .pw-hint li {
   font-size: 13px;
@@ -464,18 +443,13 @@ input::placeholder {
   padding: 12px 16px;
   border-radius: 12px;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 700;
   margin-bottom: 20px;
 }
 
 /* ===== 결과 이력 ===== */
-.history-filter {
-  margin-bottom: 20px;
-}
-
-.history-filter select {
-  max-width: 200px;
-}
+.history-filter { margin-bottom: 20px; }
+.history-filter select { max-width: 200px; }
 
 .history-list {
   display: flex;
@@ -491,7 +465,7 @@ input::placeholder {
   background: rgba(255, 255, 255, 0.8);
   border-radius: 16px;
   border: 1px solid rgba(139, 92, 246, 0.1);
-  transition: all 0.3s;
+  transition: all 0.25s ease;
   cursor: pointer;
 }
 
@@ -512,39 +486,34 @@ input::placeholder {
   flex-shrink: 0;
 }
 
-.history-icon.food { background: linear-gradient(135deg, #fee2e2, #fecaca); }
+.history-icon.food  { background: linear-gradient(135deg, #fee2e2, #fecaca); }
 .history-icon.movie { background: linear-gradient(135deg, #ede9fe, #ddd6fe); }
-.history-icon.book { background: linear-gradient(135deg, #d1fae5, #a7f3d0); }
+.history-icon.book  { background: linear-gradient(135deg, #d1fae5, #a7f3d0); }
 .history-icon.music { background: linear-gradient(135deg, #dbeafe, #bfdbfe); }
 
-.history-content {
-  flex: 1;
-  min-width: 0;
-}
+.history-content { flex: 1; min-width: 0; }
 
 .history-title {
   font-size: 15px;
-  font-weight: 700;
+  font-weight: 800;
   color: #1e1b4b;
   margin-bottom: 6px;
 }
 
-.history-result {
-  margin-bottom: 4px;
-}
+.history-result { margin-bottom: 4px; }
 
 .badge {
   display: inline-block;
   padding: 4px 12px;
   border-radius: 999px;
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 800;
   color: white;
 }
 
-.badge.food { background: linear-gradient(135deg, #dc2626, #f97316); }
+.badge.food  { background: linear-gradient(135deg, #dc2626, #f97316); }
 .badge.movie { background: linear-gradient(135deg, #7c3aed, #a855f7); }
-.badge.book { background: linear-gradient(135deg, #059669, #22c55e); }
+.badge.book  { background: linear-gradient(135deg, #059669, #22c55e); }
 .badge.music { background: linear-gradient(135deg, #2563eb, #3b82f6); }
 
 .history-date {
@@ -587,7 +556,7 @@ input::placeholder {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-weight: 800;
+  font-weight: 900;
   font-size: 16px;
   color: #5b21b6;
 }
@@ -606,12 +575,10 @@ input::placeholder {
   font-size: 13px;
   color: #6b7280;
   text-decoration: none;
-  transition: color 0.3s;
+  transition: color 0.25s ease;
 }
 
-.footer-link:hover {
-  color: #5b21b6;
-}
+.footer-link:hover { color: #5b21b6; }
 
 /* ===== 반응형 ===== */
 @media (max-width: 900px) {
@@ -619,7 +586,7 @@ input::placeholder {
     grid-template-columns: 1fr;
     margin-top: 80px;
   }
-  
+
   .mp-sidebar {
     position: static;
     display: grid;
@@ -628,7 +595,7 @@ input::placeholder {
     gap: 20px;
     padding: 20px;
   }
-  
+
   .mp-profile {
     border-bottom: none;
     margin-bottom: 0;
@@ -638,88 +605,72 @@ input::placeholder {
     align-items: center;
     gap: 12px;
   }
-  
+
   .mp-avatar {
     width: 50px;
     height: 50px;
     font-size: 24px;
     margin: 0;
   }
-  
-  .mp-email {
-    display: none;
-  }
-  
+
+  .mp-email { display: none; }
+
   .mp-menu {
     display: flex;
+    flex-direction: row;
     gap: 8px;
     overflow-x: auto;
+    margin-top: 0;
   }
-  
+
   .mp-menu-item {
     padding: 10px 14px;
-    margin-bottom: 0;
     white-space: nowrap;
     font-size: 13px;
   }
-  
-  .mp-menu-item span:first-child {
-    display: none;
-  }
-  
+
+  .mp-menu-item .mp-icon { display: none; }
+
   .mp-logout {
     margin-top: 0;
     padding-top: 0;
     border-top: none;
   }
-  
+
   .btn-logout {
     padding: 10px 16px;
     font-size: 13px;
   }
-  
-  .mp-form-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .mp-form-grid .span-2 {
-    grid-column: span 1;
-  }
+
+  .mp-form-grid { grid-template-columns: 1fr; }
+  .mp-form-grid .span-2 { grid-column: span 1; }
 }
 
 @media (max-width: 500px) {
-  .mp-card {
-    padding: 24px 20px;
-  }
-  
+  .mp-card { padding: 24px 20px; }
+
   .email-row, .phone-row {
     flex-direction: column;
     align-items: stretch;
   }
-  
-  .email-row .at, .phone-row .dash {
-    display: none;
-  }
-  
-  .checkbox-group {
-    gap: 8px;
-  }
-  
+
+  .email-row .at, .phone-row .dash { display: none; }
+
+  .checkbox-group { gap: 8px; }
+
   .checkbox-label {
     padding: 8px 12px;
     font-size: 13px;
   }
-  
-  .history-item {
-    padding: 14px 16px;
-  }
-  
+
+  .history-item { padding: 14px 16px; }
+
   .history-icon {
     width: 40px;
     height: 40px;
     font-size: 20px;
   }
-  
+
   .footer-inner {
     flex-direction: column;
     text-align: center;

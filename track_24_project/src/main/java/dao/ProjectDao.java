@@ -164,5 +164,56 @@ public class ProjectDao {
 		}
 		return result;
 	}
+	public ProjectDto getMemberDetail(String id){
+	    ProjectDto dto = null;
+
+	    String sql = "select id, name, password, password_length, age, area, " +
+	                 "mobile_1, mobile_2, mobile_3, email_1, email_2, " +
+	                 "gender, mbti, style, food, drink, music, movie, book, allergy, " +
+	                 "to_char(reg_date,'yyyy-MM-dd hh24:mi:ss') as reg_date, " +
+	                 "to_char(update_date,'yyyy-MM-dd hh24:mi:ss') as update_date " +
+	                 "from team_random_member where id = ?";
+
+	    try{
+	        conn = DBConnection.getConn();
+	        pstmt = conn.prepareStatement(sql);
+	        pstmt.setString(1, id);
+	        rs = pstmt.executeQuery();
+
+	        if(rs.next()){
+	            dto = new ProjectDto(
+	                rs.getString("id"),
+	                rs.getString("name"),
+	                rs.getString("password"),
+	                rs.getString("password_length"),
+	                rs.getString("age"),
+	                rs.getString("area"),
+	                rs.getString("mobile_1"),
+	                rs.getString("mobile_2"),
+	                rs.getString("mobile_3"),
+	                rs.getString("email_1"),
+	                rs.getString("email_2"),
+	                rs.getString("gender"),
+	                rs.getString("mbti"),
+	                rs.getString("style"),
+	                rs.getString("food"),
+	                rs.getString("drink"),
+	                rs.getString("music"),
+	                rs.getString("movie"),
+	                rs.getString("book"),
+	                rs.getString("allergy"),
+	                rs.getString("reg_date"),
+	                rs.getString("update_date")
+	            );
+	        }
+	    }catch(Exception e){
+	        e.printStackTrace();
+	        System.out.println("getMemberDetail 오류: " + sql);
+	    }finally{
+	        DBConnection.closeDB(conn, pstmt, rs);
+	    }
+	    return dto;
+	}
+
 
 }
