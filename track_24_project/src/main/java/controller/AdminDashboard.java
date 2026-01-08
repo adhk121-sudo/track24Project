@@ -54,6 +54,14 @@ ProjectDao dao = new ProjectDao();
         request.setAttribute("bookMonthly", listToChartData(dao.getMonthlyTrend("book")));
         request.setAttribute("musicMonthly", listToChartData(dao.getMonthlyTrend("music")));
         
+     // AdminDashboard.java에 추가
+        request.setAttribute("foodMonthlyDetail", listToChartData(dao.getMonthlyTrend("food")));
+        request.setAttribute("drinkMonthlyDetail", listToChartData(dao.getMonthlyTrend("drink")));
+        request.setAttribute("movieMonthlyDetail", listToChartData(dao.getMonthlyTrend("movie")));
+        request.setAttribute("bookMonthlyDetail", listToChartData(dao.getMonthlyTrend("book")));
+        request.setAttribute("musicMonthlyDetail", listToChartData(dao.getMonthlyTrend("music")));
+        
+        
         RequestDispatcher rd = request.getRequestDispatcher("admin/admin.jsp");
         rd.forward(request, response);
     }
