@@ -307,7 +307,7 @@ body::before {
       <!-- ⚙️ 상세페이지 -->
       <%HttpSession session1 = request.getSession();
       	String level= (String)session1.getAttribute("sessionTop");
-      	out.print(level);
+      	
       	if(level.equals("manager")||level.equals("admin")){
       %>
       <a class="header-gear" href="AdminDashboard" title="상세페이지">⚙️</a>
