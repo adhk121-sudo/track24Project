@@ -47,6 +47,27 @@ ProjectDao dao = new ProjectDao();
         request.setAttribute("foodQ3Data", mapToChartData(dao.getQuestionStats("food", 3)));
         request.setAttribute("foodQ4Data", mapToChartData(dao.getQuestionStats("food", 4)));
         
+        // 드링크레인저 질문별 통계
+        request.setAttribute("drinkQ1Data", mapToChartData(dao.getQuestionStats("drink", 1)));
+        request.setAttribute("drinkQ2Data", mapToChartData(dao.getQuestionStats("drink", 2)));
+        request.setAttribute("drinkQ3Data", mapToChartData(dao.getQuestionStats("drink", 3)));
+        request.setAttribute("drinkQ4Data", mapToChartData(dao.getQuestionStats("drink", 4)));
+        // 무비레인저 질문별 통계
+        request.setAttribute("movieQ1Data", mapToChartData(dao.getQuestionStats("moive", 1)));
+        request.setAttribute("movieQ2Data", mapToChartData(dao.getQuestionStats("moive", 2)));
+        request.setAttribute("movieQ3Data", mapToChartData(dao.getQuestionStats("moive", 3)));
+        request.setAttribute("movieQ4Data", mapToChartData(dao.getQuestionStats("moive", 4)));
+        // 북레인저 질문별 통계
+        request.setAttribute("bookQ1Data", mapToChartData(dao.getQuestionStats("book", 1)));
+        request.setAttribute("bookQ2Data", mapToChartData(dao.getQuestionStats("book", 2)));
+        request.setAttribute("bookQ3Data", mapToChartData(dao.getQuestionStats("book", 3)));
+        request.setAttribute("bookQ4Data", mapToChartData(dao.getQuestionStats("book", 4)));
+        // 뮤직레인저 질문별 통계
+        request.setAttribute("musicQ1Data", mapToChartData(dao.getQuestionStats("music", 1)));
+        request.setAttribute("musicQ2Data", mapToChartData(dao.getQuestionStats("music", 2)));
+        request.setAttribute("musicQ3Data", mapToChartData(dao.getQuestionStats("music", 3)));
+        request.setAttribute("musicQ4Data", mapToChartData(dao.getQuestionStats("music", 4)));
+        
         // 월별 추이
         request.setAttribute("foodMonthly", listToChartData(dao.getMonthlyTrend("food")));
         request.setAttribute("drinkMonthly", listToChartData(dao.getMonthlyTrend("drink")));

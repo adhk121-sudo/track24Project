@@ -262,12 +262,15 @@ public class ProjectDao {
 	}
 
 	// 질문별 선택지 클릭 수
+	
+	
 	public Map<String, Integer> getQuestionStats(String category, int questionNum) {
-	    Map<String, Integer> stats = new LinkedHashMap<>();
+	    Map<String, Integer> stats = new LinkedHashMap<>();  // 순서 유지!
 	    String query = "SELECT answer_value, COUNT(*) as cnt " +
 	                   "FROM click_log " +
 	                   "WHERE category = ? AND question_num = ? " +
-	                   "GROUP BY answer_value";
+	                   "GROUP BY answer_value " +
+	                   "ORDER BY answer_value";  // 순서 정렬
 	    try {
 	        conn = DBConnection.getConn();
 	        pstmt = conn.prepareStatement(query);
