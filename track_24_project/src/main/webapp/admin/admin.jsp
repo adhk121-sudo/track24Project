@@ -285,50 +285,33 @@
         
         // ===== 전체 월별 추이 차트 =====
         new Chart(document.getElementById('allTrendChart'), {
-            type: 'line',
-            data: {
-                labels: ['1월', '2월', '3월', '4월', '5월', '6월'],
-                datasets: [
-                    {
-                        label: '맛레인저',
-                        data: [${foodMonthly}],
-                        borderColor: '#f97316',
-                        tension: 0.3
-                    },
-                    {
-                        label: '드링크레인저',
-                        data: [${drinkMonthly}],
-                        borderColor: '#eab308',
-                        tension: 0.3
-                    },
-                    {
-                        label: '무비레인저',
-                        data: [${movieMonthly}],
-                        borderColor: '#a855f7',
-                        tension: 0.3
-                    },
-                    {
-                        label: '북레인저',
-                        data: [${bookMonthly}],
-                        borderColor: '#22c55e',
-                        tension: 0.3
-                    },
-                    {
-                        label: '뮤직레인저',
-                        data: [${musicMonthly}],
-                        borderColor: '#3b82f6',
-                        tension: 0.3
-                    }
-                ]
+    type: 'line',
+    data: {
+        labels: ['1월', '2월', '3월', '4월', '5월', '6월'],
+        datasets: [
+            {
+                label: '맛레인저',
+                data: [${foodMonthly}],
+                borderColor: '#f97316',
+                tension: 0.3
             },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: { position: 'bottom' }
-                }
+            // ... 나머지 데이터셋
+        ]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: { position: 'bottom' }
+        },
+        // ⭐ Y축 설정 추가
+        scales: {
+            y: {
+                beginAtZero: true,  // 0부터 시작
+                min: 0              // 최소값 0 (마이너스 없음)
             }
-        });
-        
+        }
+    }
+});
         // ===== 맛레인저 차트 =====
         // Q1 차트
         new Chart(document.getElementById('foodQ1Chart'), {
@@ -393,12 +376,271 @@
                 plugins: { legend: { position: 'bottom' } }
             }
         });
+     // ===== 드링크레인저 차트 =====
+        // Q1 차트
+        new Chart(document.getElementById('foodQ1Chart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['기분 좋아', '피곤해', '스트레스', '배고파'],
+                datasets: [{
+                    data: [${foodQ1Data}],
+                    backgroundColor: colors.food
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { position: 'bottom' } }
+            }
+        });
         
-        // 맛레인저 월별 추이
+        // Q2 차트
+        new Chart(document.getElementById('foodQ2Chart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['아침', '점심', '저녁', '야식'],
+                datasets: [{
+                    data: [${foodQ2Data}],
+                    backgroundColor: colors.food
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { position: 'bottom' } }
+            }
+        });
+        
+        // Q3 차트
+        new Chart(document.getElementById('foodQ3Chart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['매운맛', '담백한맛', '달콤한맛', '느끼한맛'],
+                datasets: [{
+                    data: [${foodQ3Data}],
+                    backgroundColor: colors.food
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { position: 'bottom' } }
+            }
+        });
+        
+        // Q4 차트
+        new Chart(document.getElementById('foodQ4Chart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['혼자', '친구', '가족', '연인'],
+                datasets: [{
+                    data: [${foodQ4Data}],
+                    backgroundColor: colors.food
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { position: 'bottom' } }
+            }
+        });
+     // ===== 무비레인저 차트 =====
+        // Q1 차트
+        new Chart(document.getElementById('foodQ1Chart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['기분 좋아', '피곤해', '스트레스', '배고파'],
+                datasets: [{
+                    data: [${foodQ1Data}],
+                    backgroundColor: colors.food
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { position: 'bottom' } }
+            }
+        });
+        
+        // Q2 차트
+        new Chart(document.getElementById('foodQ2Chart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['아침', '점심', '저녁', '야식'],
+                datasets: [{
+                    data: [${foodQ2Data}],
+                    backgroundColor: colors.food
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { position: 'bottom' } }
+            }
+        });
+        
+        // Q3 차트
+        new Chart(document.getElementById('foodQ3Chart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['매운맛', '담백한맛', '달콤한맛', '느끼한맛'],
+                datasets: [{
+                    data: [${foodQ3Data}],
+                    backgroundColor: colors.food
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { position: 'bottom' } }
+            }
+        });
+        
+     // ===== 북레인저 차트 =====
+        // Q1 차트
+        new Chart(document.getElementById('foodQ1Chart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['기분 좋아', '피곤해', '스트레스', '배고파'],
+                datasets: [{
+                    data: [${foodQ1Data}],
+                    backgroundColor: colors.food
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { position: 'bottom' } }
+            }
+        });
+        
+        // Q2 차트
+        new Chart(document.getElementById('foodQ2Chart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['아침', '점심', '저녁', '야식'],
+                datasets: [{
+                    data: [${foodQ2Data}],
+                    backgroundColor: colors.food
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { position: 'bottom' } }
+            }
+        });
+        
+        // Q3 차트
+        new Chart(document.getElementById('foodQ3Chart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['매운맛', '담백한맛', '달콤한맛', '느끼한맛'],
+                datasets: [{
+                    data: [${foodQ3Data}],
+                    backgroundColor: colors.food
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { position: 'bottom' } }
+            }
+        });
+        
+        // Q4 차트
+        new Chart(document.getElementById('foodQ4Chart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['혼자', '친구', '가족', '연인'],
+                datasets: [{
+                    data: [${foodQ4Data}],
+                    backgroundColor: colors.food
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { position: 'bottom' } }
+            }
+        });
+        
+        // Q4 차트
+        new Chart(document.getElementById('foodQ4Chart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['혼자', '친구', '가족', '연인'],
+                datasets: [{
+                    data: [${foodQ4Data}],
+                    backgroundColor: colors.food
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { position: 'bottom' } }
+            }
+        }); 
+        
+        
+     // ===== 뮤직레인저 차트 =====
+        // Q1 차트
+        new Chart(document.getElementById('foodQ1Chart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['기분 좋아', '피곤해', '스트레스', '배고파'],
+                datasets: [{
+                    data: [${foodQ1Data}],
+                    backgroundColor: colors.food
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { position: 'bottom' } }
+            }
+        });
+        
+        // Q2 차트
+        new Chart(document.getElementById('foodQ2Chart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['아침', '점심', '저녁', '야식'],
+                datasets: [{
+                    data: [${foodQ2Data}],
+                    backgroundColor: colors.food
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { position: 'bottom' } }
+            }
+        });
+        
+        // Q3 차트
+        new Chart(document.getElementById('foodQ3Chart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['매운맛', '담백한맛', '달콤한맛', '느끼한맛'],
+                datasets: [{
+                    data: [${foodQ3Data}],
+                    backgroundColor: colors.food
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { position: 'bottom' } }
+            }
+        });
+        
+        // Q4 차트
+        new Chart(document.getElementById('foodQ4Chart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['혼자', '친구', '가족', '연인'],
+                datasets: [{
+                    data: [${foodQ4Data}],
+                    backgroundColor: colors.food
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { position: 'bottom' } }
+            }
+        });
+        
+     // ===== 맛레인저 월별 추이 =====
         new Chart(document.getElementById('foodTrendChart'), {
             type: 'bar',
             data: {
-                labels: ['1월', '2월', '3월', '4월', '5월', '6월'],
+                labels: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
                 datasets: [{
                     label: '사용 횟수',
                     data: [${foodMonthlyDetail}],
@@ -407,12 +649,92 @@
             },
             options: {
                 responsive: true,
-                plugins: { legend: { display: false } }
+                plugins: { legend: { display: false } },
+                scales: {
+                    y: { beginAtZero: true, min: 0 }
+                }
             }
         });
-        
-        // 다른 카테고리도 동일한 패턴으로...
-        // (드링크, 무비, 북, 뮤직)
+
+        // ===== 드링크레인저 월별 추이 =====
+        new Chart(document.getElementById('drinkTrendChart'), {
+            type: 'bar',
+            data: {
+                labels: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+                datasets: [{
+                    label: '사용 횟수',
+                    data: [${drinkMonthlyDetail}],
+                    backgroundColor: '#eab308'
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { display: false } },
+                scales: {
+                    y: { beginAtZero: true, min: 0 }
+                }
+            }
+        });
+
+        // ===== 무비레인저 월별 추이 =====
+        new Chart(document.getElementById('movieTrendChart'), {
+            type: 'bar',
+            data: {
+                labels: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+                datasets: [{
+                    label: '사용 횟수',
+                    data: [${movieMonthlyDetail}],
+                    backgroundColor: '#a855f7'
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { display: false } },
+                scales: {
+                    y: { beginAtZero: true, min: 0 }
+                }
+            }
+        });
+
+        // ===== 북레인저 월별 추이 =====
+        new Chart(document.getElementById('bookTrendChart'), {
+            type: 'bar',
+            data: {
+                labels: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+                datasets: [{
+                    label: '사용 횟수',
+                    data: [${bookMonthlyDetail}],
+                    backgroundColor: '#22c55e'
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { display: false } },
+                scales: {
+                    y: { beginAtZero: true, min: 0 }
+                }
+            }
+        });
+
+        // ===== 뮤직레인저 월별 추이 =====
+        new Chart(document.getElementById('musicTrendChart'), {
+            type: 'bar',
+            data: {
+                labels: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+                datasets: [{
+                    label: '사용 횟수',
+                    data: [${musicMonthlyDetail}],
+                    backgroundColor: '#3b82f6'
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { display: false } },
+                scales: {
+                    y: { beginAtZero: true, min: 0 }
+                }
+            }
+        });
     </script>
 </body>
 </html>
