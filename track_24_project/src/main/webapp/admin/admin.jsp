@@ -251,7 +251,7 @@
                 </div>
                 
                 <div class="trend-card">
-                    <h3>📈 뮤직레인저 월별 추이</h3>
+                    <h3>📈 뮤직레인저 월별 추이?</h3>
                     <canvas id="musicTrendChart"></canvas>
                 </div>
             </section>
