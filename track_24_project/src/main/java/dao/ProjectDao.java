@@ -8,9 +8,9 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import common.CommonUtil;
 import common.DBConnection;
 import dto.ProjectDto;
-
 public class ProjectDao {
 	Connection conn = null;
 	PreparedStatement pstmt = null;
@@ -315,6 +315,149 @@ public class ProjectDao {
 	    }
 	    return monthly;
 	}
-	
-	
+	// 1) 상세정보 수정
+	public int updateMemberProfile(String id, String name, String age, String area,
+	    String mobile_1, String mobile_2, String mobile_3,
+	    String email_1, String email_2, String gender, String mbti, String style) {
+
+	  int result = 0;
+
+	  String sql =
+	      "update team_random_member set " +
+	      "name=?, age=?, area=?, " +
+	      "mobile_1=?, mobile_2=?, mobile_3=?, " +
+	      "email_1=?, email_2=?, " +
+	      "gender=?, mbti=?, style=?, " +
+	      "update_date=sysdate " +
+	      "where id=?";
+
+	  try {
+	    conn = DBConnection.getConn();
+	    pstmt = conn.prepareStatement(sql);
+
+	    int idx = 1;
+	    pstmt.setString(idx++, name);
+	    pstmt.setString(idx++, age);
+	    pstmt.setString(idx++, area);
+
+	    pstmt.setString(idx++, mobile_1);
+	    pstmt.setString(idx++, mobile_2);
+	    pstmt.setString(idx++, mobile_3);
+
+	    pstmt.setString(idx++, email_1);
+	    pstmt.setString(idx++, email_2);
+
+	    pstmt.setString(idx++, gender);
+	    pstmt.setString(idx++, mbti);
+	    pstmt.setString(idx++, style);
+
+	    pstmt.setString(idx++, id);
+
+	    result = pstmt.executeUpdate();
+	  } catch (Exception e) {
+	    e.printStackTrace();
+	    System.out.println("updateMemberProfile 오류: " + sql);
+	  } finally {
+	    DBConnection.closeDB(conn, pstmt, rs);
+	  }
+
+	  return result;
+	}
+
+	// 2) 취향 저장
+	public int updateMemberTaste(String id, String food, String drink, String music,
+	    String movie, String book, String allergy) {
+
+	  int result = 0;
+
+	  String sql =
+	      "update team_random_member set " +
+	      "food=?, drink=?, music=?, movie=?, book=?, allergy=?, " +
+	      "update_date=sysdate " +
+	      "where id=?";
+
+	  try {
+	    conn = DBConnection.getConn();
+	    pstmt = conn.prepareStatement(sql);
+
+	    int idx = 1;
+	    pstmt.setString(idx++, food);
+	    pstmt.setString(idx++, drink);
+	    pstmt.setString(idx++, music);
+	    pstmt.setString(idx++, movie);
+	    pstmt.setString(idx++, book);
+	    pstmt.setString(idx++, allergy);
+	    pstmt.setString(idx++, id);
+
+	    result = pstmt.executeUpdate();
+	  } catch (Exception e) {
+	    e.printStackTrace();
+	    System.out.println("updateMemberTaste 오류: " + sql);
+	  } finally {
+	    DBConnection.closeDB(conn, pstmt, rs);
+	  }
+
+	  return result;
+	}
+
+	// 3) 현재 비밀번호 확인
+	public boolean checkPassword(String id, String pw) {
+	    boolean ok = false;
+
+	    String encPw = "";
+	    try {
+	        encPw = CommonUtil.encryptSHA256(pw);
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return false; // 암호화 실패면 그냥 false 처리
+	    }
+
+	    String sql = "select count(*) as cnt from team_random_member where id=? and password=?";
+
+	    try {
+	        conn = DBConnection.getConn();
+	        pstmt = conn.prepareStatement(sql);
+	        pstmt.setString(1, id);
+	        pstmt.setString(2, encPw);
+	        rs = pstmt.executeQuery();
+
+	        if (rs.next() && rs.getInt("cnt") == 1) ok = true;
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        System.out.println("checkPassword 오류: " + sql);
+	    } finally {
+	        DBConnection.closeDB(conn, pstmt, rs);
+	    }
+	    return ok;
+	}
+
+	// 4) 비밀번호 변경
+	public int updatePassword(String id, String newPw) {
+	    int result = 0;
+
+	    String encNewPw = "";
+	    try {
+	        encNewPw = CommonUtil.encryptSHA256(newPw);
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return 0; // 암호화 실패면 업데이트 실패로 처리
+	    }
+
+	    String sql = "update team_random_member set password=?, update_date=sysdate where id=?";
+
+	    try {
+	        conn = DBConnection.getConn();
+	        pstmt = conn.prepareStatement(sql);
+	        pstmt.setString(1, encNewPw);
+	        pstmt.setString(2, id);
+	        result = pstmt.executeUpdate();
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        System.out.println("updatePassword 오류: " + sql);
+	    } finally {
+	        DBConnection.closeDB(conn, pstmt, rs);
+	    }
+	    return result;
+	}
+
 }
