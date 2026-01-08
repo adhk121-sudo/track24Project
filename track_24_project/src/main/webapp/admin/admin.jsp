@@ -489,7 +489,8 @@
             }
         });
         
-        // Q4 차트
+
+     // Q4 차트
         new Chart(document.getElementById('foodQ4Chart'), {
             type: 'doughnut',
             data: {
@@ -504,6 +505,9 @@
                 plugins: { legend: { position: 'bottom' } }
             }
         }); 
+
+       
+
 
         
      // ===== 북레인저 차트 =====
