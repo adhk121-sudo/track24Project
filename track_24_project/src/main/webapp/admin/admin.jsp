@@ -489,6 +489,22 @@
             }
         });
         
+     // Q4 차트
+        new Chart(document.getElementById('foodQ4Chart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['혼자', '친구', '가족', '연인'],
+                datasets: [{
+                    data: [${foodQ4Data}],
+                    backgroundColor: colors.food
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { position: 'bottom' } }
+            }
+        }); 
+        
      // ===== 북레인저 차트 =====
         // Q1 차트
         new Chart(document.getElementById('foodQ1Chart'), {
@@ -554,21 +570,7 @@
             }
         });
         
-        // Q4 차트
-        new Chart(document.getElementById('foodQ4Chart'), {
-            type: 'doughnut',
-            data: {
-                labels: ['혼자', '친구', '가족', '연인'],
-                datasets: [{
-                    data: [${foodQ4Data}],
-                    backgroundColor: colors.food
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: { legend: { position: 'bottom' } }
-            }
-        }); 
+        
         
         
      // ===== 뮤직레인저 차트 =====
