@@ -510,7 +510,7 @@ new Chart(document.getElementById('bookQ4Chart'), {
     options: { responsive: true, plugins: { legend: { position: 'bottom' } } }
 });
 
-// ===== 뮤직레인저 차트 =====
+// ===== 뮤직레인저 차트 111=====
 new Chart(document.getElementById('musicQ1Chart'), {
     type: 'doughnut',
     data: {
