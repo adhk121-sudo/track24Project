@@ -98,7 +98,7 @@ public class RecommendAI extends HttpServlet {
         request.setAttribute("isLogin", isLogin);
         
         // ===== 7. 통합 결과 페이지로 이동 =====
-        RequestDispatcher rd = request.getRequestDispatcher("result/result.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("result.jsp");
         rd.forward(request, response);
     }
 	   
@@ -147,8 +147,16 @@ public class RecommendAI extends HttpServlet {
         
         // 요청사항
         sb.append("=== 요청 ===\n");
-        sb.append("위 조건에 맞는 추천 3가지를 해주세요.\n");
-        sb.append("각 추천마다 이유도 간단히 설명해주세요.\n\n");
+        sb.append("아래 형식으로 정확히 답변해주세요:\n\n");
+        sb.append("[메인추천]\n");
+        sb.append("이름: (추천 이름)\n");
+        sb.append("이유: (왜 이걸 추천하는지 2-3문장)\n\n");
+        sb.append("[서브추천1]\n");
+        sb.append("이름: (추천 이름)\n");
+        sb.append("이유: (간단한 이유 1문장)\n\n");
+        sb.append("[서브추천2]\n");
+        sb.append("이름: (추천 이름)\n");
+        sb.append("이유: (간단한 이유 1문장)\n\n");
         
         // 말투 설정
         if (isLogin && style != null && !style.isEmpty()) {

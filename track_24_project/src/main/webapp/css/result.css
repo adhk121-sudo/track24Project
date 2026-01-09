@@ -1,0 +1,480 @@
+/* ===== 기본 설정 ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', 'Pretendard', -apple-system, sans-serif;
+    background: linear-gradient(180deg, #e0e7ff 0%, #c7d2fe 30%, #ddd6fe 60%, #ede9fe 100%);
+    min-height: 100vh;
+    color: #1e1b4b;
+}
+
+/* 배경 효과 */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: 
+        radial-gradient(ellipse at 20% 20%, rgba(249, 115, 22, 0.1) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 30%, rgba(168, 85, 247, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ===== 테마별 배경 ===== */
+.theme-food::before {
+    background: radial-gradient(ellipse at 50% 30%, rgba(249, 115, 22, 0.15) 0%, transparent 60%);
+}
+.theme-drink::before {
+    background: radial-gradient(ellipse at 50% 30%, rgba(234, 179, 8, 0.15) 0%, transparent 60%);
+}
+.theme-movie::before {
+    background: radial-gradient(ellipse at 50% 30%, rgba(168, 85, 247, 0.15) 0%, transparent 60%);
+}
+.theme-book::before {
+    background: radial-gradient(ellipse at 50% 30%, rgba(34, 197, 94, 0.15) 0%, transparent 60%);
+}
+.theme-music::before {
+    background: radial-gradient(ellipse at 50% 30%, rgba(59, 130, 246, 0.15) 0%, transparent 60%);
+}
+
+/* ===== 결과 영역 ===== */
+.result-wrap {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 100px 20px 40px;
+    position: relative;
+    z-index: 1;
+}
+
+/* ===== 캐릭터 섹션 ===== */
+.character-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+/* 캐릭터 아이콘 - 크기 키우기 */
+.character-icon {
+    width: 180px;   /* 120px → 180px */
+    height: 180px;  /* 120px → 180px */
+    margin-bottom: 15px;
+    animation: bounce 2s ease-in-out infinite;
+}
+
+.character-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.character-speech {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: white;
+    border-radius: 999px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.character-speech .emoji {
+    font-size: 20px;
+}
+
+.character-speech .text {
+    font-size: 16px;
+    font-weight: 700;
+    color: #5b21b6;
+}
+
+/* ===== 결과 카드 ===== */
+.result-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 24px;
+    padding: 32px;
+    box-shadow: 0 20px 50px rgba(139, 92, 246, 0.15);
+    border: 1px solid rgba(139, 92, 246, 0.1);
+    margin-bottom: 30px;
+}
+
+.result-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 24px;
+    font-weight: 800;
+    color: #5b21b6;
+    margin-bottom: 20px;
+}
+
+.result-title .emoji {
+    font-size: 28px;
+}
+
+/* 선택 태그 */
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.tag {
+    padding: 8px 16px;
+    background: rgba(139, 92, 246, 0.1);
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #7c3aed;
+}
+
+/* 테마별 태그 색상 */
+.theme-food .tag { background: rgba(249, 115, 22, 0.1); color: #ea580c; }
+.theme-drink .tag { background: rgba(234, 179, 8, 0.1); color: #ca8a04; }
+.theme-movie .tag { background: rgba(168, 85, 247, 0.1); color: #9333ea; }
+.theme-book .tag { background: rgba(34, 197, 94, 0.1); color: #16a34a; }
+.theme-music .tag { background: rgba(59, 130, 246, 0.1); color: #2563eb; }
+
+/* 회원 배지 */
+.member-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #fef3c7, #fde68a);
+    border-radius: 999px;
+    margin-bottom: 20px;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.member-badge .icon {
+    font-size: 16px;
+}
+
+.member-badge .text {
+    font-size: 13px;
+    font-weight: 700;
+    color: #92400e;
+}
+
+/* AI 결과 */
+.ai-result {
+    background: #f8fafc;
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 24px;
+    border: 1px solid rgba(139, 92, 246, 0.1);
+}
+
+.result-content {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #374151;
+    white-space: pre-wrap;
+}
+
+/* 버튼 */
+.actions {
+    display: flex;
+    gap: 12px;
+}
+
+.btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 16px 24px;
+    border-radius: 14px;
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.btn.outline {
+    background: white;
+    color: #7c3aed;
+    border: 2px solid rgba(139, 92, 246, 0.3);
+}
+
+.btn.outline:hover {
+    background: rgba(139, 92, 246, 0.05);
+    border-color: rgba(139, 92, 246, 0.5);
+}
+
+.btn.primary {
+    background: linear-gradient(135deg, #7c3aed, #a855f7);
+    color: white;
+    border: none;
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+}
+
+.btn.primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+}
+
+/* 테마별 버튼 */
+.theme-food .btn.primary { background: linear-gradient(135deg, #ea580c, #f97316); box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3); }
+.theme-drink .btn.primary { background: linear-gradient(135deg, #ca8a04, #eab308); box-shadow: 0 4px 15px rgba(234, 179, 8, 0.3); }
+.theme-movie .btn.primary { background: linear-gradient(135deg, #9333ea, #a855f7); box-shadow: 0 4px 15px rgba(168, 85, 247, 0.3); }
+.theme-book .btn.primary { background: linear-gradient(135deg, #16a34a, #22c55e); box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3); }
+.theme-music .btn.primary { background: linear-gradient(135deg, #2563eb, #3b82f6); box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3); }
+
+/* ===== 다른 레인저 ===== */
+.other-rangers {
+    text-align: center;
+}
+
+.other-rangers h3 {
+    font-size: 16px;
+    color: #6b7280;
+    margin-bottom: 16px;
+}
+
+.ranger-list {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.ranger-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 16px 20px;
+    background: white;
+    border-radius: 16px;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    transition: all 0.3s;
+    border: 2px solid transparent;
+}
+
+.ranger-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+.ranger-item .emoji {
+    font-size: 28px;
+}
+
+.ranger-item .name {
+    font-size: 12px;
+    font-weight: 700;
+}
+
+/* 레인저별 색상 */
+.ranger-item.food { border-color: rgba(249, 115, 22, 0.3); }
+.ranger-item.food .name { color: #ea580c; }
+.ranger-item.food:hover { border-color: #f97316; }
+
+.ranger-item.drink { border-color: rgba(234, 179, 8, 0.3); }
+.ranger-item.drink .name { color: #ca8a04; }
+.ranger-item.drink:hover { border-color: #eab308; }
+
+.ranger-item.movie { border-color: rgba(168, 85, 247, 0.3); }
+.ranger-item.movie .name { color: #9333ea; }
+.ranger-item.movie:hover { border-color: #a855f7; }
+
+.ranger-item.book { border-color: rgba(34, 197, 94, 0.3); }
+.ranger-item.book .name { color: #16a34a; }
+.ranger-item.book:hover { border-color: #22c55e; }
+
+.ranger-item.music { border-color: rgba(59, 130, 246, 0.3); }
+.ranger-item.music .name { color: #2563eb; }
+.ranger-item.music:hover { border-color: #3b82f6; }
+
+/* ===== 반응형 ===== */
+@media (max-width: 600px) {
+    .result-wrap {
+        padding: 90px 16px 30px;
+    }
+    
+    .result-card {
+        padding: 24px 20px;
+    }
+    
+    .result-title {
+        font-size: 20px;
+    }
+    
+    .actions {
+        flex-direction: column;
+    }
+    
+    .ranger-list {
+        gap: 8px;
+    }
+    
+    .ranger-item {
+        padding: 12px 16px;
+    }
+}
+
+/* ===== 메인 추천 카드 ===== */
+.main-recommend {
+    background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,255,255,0.85));
+    border-radius: 24px;
+    padding: 40px 32px;
+    text-align: center;
+    margin-bottom: 24px;
+    box-shadow: 0 20px 50px rgba(139, 92, 246, 0.2);
+    border: 2px solid rgba(139, 92, 246, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.main-recommend::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #7c3aed, #a855f7, #d946ef);
+}
+
+.main-badge {
+    display: inline-block;
+    padding: 8px 20px;
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 800;
+    color: white;
+    margin-bottom: 16px;
+    box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+}
+
+.main-title {
+    font-size: 32px;
+    font-weight: 900;
+    color: #1e1b4b;
+    margin-bottom: 16px;
+    line-height: 1.3;
+}
+
+.main-reason {
+    font-size: 16px;
+    color: #6b7280;
+    line-height: 1.7;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* 테마별 메인 카드 */
+.theme-food .main-recommend { border-color: rgba(249, 115, 22, 0.3); }
+.theme-food .main-recommend::before { background: linear-gradient(90deg, #dc2626, #f97316, #fbbf24); }
+
+.theme-drink .main-recommend { border-color: rgba(234, 179, 8, 0.3); }
+.theme-drink .main-recommend::before { background: linear-gradient(90deg, #ca8a04, #eab308, #facc15); }
+
+.theme-movie .main-recommend { border-color: rgba(168, 85, 247, 0.3); }
+.theme-movie .main-recommend::before { background: linear-gradient(90deg, #7c3aed, #a855f7, #d946ef); }
+
+.theme-book .main-recommend { border-color: rgba(34, 197, 94, 0.3); }
+.theme-book .main-recommend::before { background: linear-gradient(90deg, #059669, #22c55e, #4ade80); }
+
+.theme-music .main-recommend { border-color: rgba(59, 130, 246, 0.3); }
+.theme-music .main-recommend::before { background: linear-gradient(90deg, #2563eb, #3b82f6, #60a5fa); }
+
+/* ===== 서브 추천 카드 ===== */
+.sub-recommend-wrap {
+    margin-bottom: 30px;
+}
+
+.sub-title {
+    font-size: 16px;
+    color: #6b7280;
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.sub-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.sub-card {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(139, 92, 246, 0.1);
+    transition: all 0.3s;
+}
+
+.sub-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+.sub-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    background: rgba(139, 92, 246, 0.1);
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #7c3aed;
+    margin-bottom: 10px;
+}
+
+.sub-name {
+    font-size: 18px;
+    font-weight: 800;
+    color: #1e1b4b;
+    margin-bottom: 8px;
+}
+
+.sub-reason {
+    font-size: 13px;
+    color: #6b7280;
+    line-height: 1.5;
+}
+
+/* 테마별 서브 카드 */
+.theme-food .sub-badge { background: rgba(249, 115, 22, 0.1); color: #ea580c; }
+.theme-drink .sub-badge { background: rgba(234, 179, 8, 0.1); color: #ca8a04; }
+.theme-movie .sub-badge { background: rgba(168, 85, 247, 0.1); color: #9333ea; }
+.theme-book .sub-badge { background: rgba(34, 197, 94, 0.1); color: #16a34a; }
+.theme-music .sub-badge { background: rgba(59, 130, 246, 0.1); color: #2563eb; }
+
+/* ===== 반응형 ===== */
+@media (max-width: 600px) {
+    .main-recommend {
+        padding: 30px 20px;
+    }
+    
+    .main-title {
+        font-size: 24px;
+    }
+    
+    .sub-cards {
+        grid-template-columns: 1fr;
+    }
+}

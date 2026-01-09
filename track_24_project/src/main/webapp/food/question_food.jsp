@@ -25,7 +25,7 @@
     </div>
 
     <!-- 폼 시작 -->
-    <form name="foodForm" id="questionForm" method="post" action="RecommandAI">
+    <form name="foodForm" id="questionForm" method="post" action="RecommendAI">
       
       <!-- hidden input으로 답변 저장 -->
       <input type="hidden" name="category" value="food">
