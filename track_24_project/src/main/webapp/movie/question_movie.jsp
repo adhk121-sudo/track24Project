@@ -25,7 +25,7 @@
     </div>
 
     <!-- 폼 시작 -->
-    <form name="movieForm" id="questionForm" method="post" action="RecommandAI">
+    <form name="movieForm" id="questionForm" method="post" action="RecommendAI">
       
     <input type="hidden" name="category" value="movie">  <!-- 카테고리만 다르게 -->
   	<input type="hidden" name="q1" id="q1_input">

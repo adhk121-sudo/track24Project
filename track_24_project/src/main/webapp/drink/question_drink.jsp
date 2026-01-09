@@ -25,7 +25,7 @@
     </div>
 
     <!-- 폼 시작 -->
-    <form name="drinkForm" id="questionForm" method="post" action="RecommandAI">
+    <form name="drinkForm" id="questionForm" method="post" action="RecommendAI">
       
       <!-- hidden input으로 답변 저장 -->
         <input type="hidden" name="category" value="drink">  <!-- 카테고리만 다르게 -->
