@@ -1,5 +1,103 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
+    import="java.io.*,java.util.*,java.time.*,java.time.format.*" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%
+  // ============================================
+  // 결과이력 샘플 데이터 (TSV/DB 없이 화면 확인용)
+  // ============================================
+  if (request.getAttribute("foodList") == null) {
+
+    class Row {
+      String category, title, mainName, regDate;
+      LocalDate date;
+      Row(String c, String t, String m, String d, LocalDate ld){
+        category=c; title=t; mainName=m; regDate=d; date=ld;
+      }
+    }
+
+    Map<String, List<Row>> grouped = new HashMap<>();
+    grouped.put("food", new ArrayList<>());
+    grouped.put("drink", new ArrayList<>());
+    grouped.put("movie", new ArrayList<>());
+    grouped.put("book", new ArrayList<>());
+    grouped.put("music", new ArrayList<>());
+
+    DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+    // 샘플 라인: category \t title \t result(mainName) \t date(yyyy-MM-dd)
+    String[] sampleLines = {
+      "food\t오늘 뭐 먹지?\t치킨\t2026-01-11",
+      "food\t혼밥 추천\t김치찌개\t2026-01-10",
+      "food\t야식 추천\t떡볶이\t2026-01-09",
+      "food\t가벼운 한끼\t샐러드\t2026-01-08",
+
+      "drink\t오늘 뭐 마실까?\t아이스 아메리카노\t2026-01-11",
+      "drink\t카페 메뉴 추천\t카페라떼\t2026-01-10",
+      "drink\t디저트랑 어울리는 음료\t바닐라라떼\t2026-01-09",
+      "drink\t상큼한 음료\t레몬에이드\t2026-01-08",
+
+      "movie\t오늘 영화 추천\t인셉션\t2026-01-11",
+      "movie\t가볍게 보기 좋은 영화\t라라랜드\t2026-01-10",
+      "movie\t액션 추천\t존 윅\t2026-01-09",
+      "movie\t드라마 추천\t쇼생크 탈출\t2026-01-08",
+
+      "book\t책 추천\t데미안\t2026-01-11",
+      "book\t자기계발 추천\t아주 작은 습관의 힘\t2026-01-10",
+      "book\t소설 추천\t82년생 김지영\t2026-01-09",
+      "book\t인문 추천\t사피엔스\t2026-01-08",
+
+      "music\t오늘 노래 추천\tDitto\t2026-01-11",
+      "music\t출근길 추천\tDynamite\t2026-01-10",
+      "music\t집중할 때\tLofi HipHop\t2026-01-09",
+      "music\t감성 발라드\t사건의 지평선\t2026-01-08"
+    };
+
+    for(String line : sampleLines){
+      String[] p = line.split("\\t");
+      if(p.length < 4) continue;
+
+      String category = p[0].trim();
+      String title    = p[1].trim();
+      String mainName = p[2].trim();
+      String regDate  = p[3].trim();
+
+      if(!grouped.containsKey(category)) continue;
+
+      LocalDate d;
+      try { d = LocalDate.parse(regDate, fmt); }
+      catch(Exception e){ d = LocalDate.of(1970,1,1); }
+
+      grouped.get(category).add(new Row(category, title, mainName, regDate, d));
+    }
+
+    // 최신순 정렬 + 최근 3개만
+    for (String key : grouped.keySet()) {
+      grouped.get(key).sort((a,b)-> b.date.compareTo(a.date));
+      if (grouped.get(key).size() > 3) {
+        grouped.put(key, new ArrayList<>(grouped.get(key).subList(0, 3)));
+      }
+    }
+
+    // JSTL에서 쓰기 쉽게 List<Map<String,String>>로 변환
+    java.util.function.Function<List<Row>, List<Map<String,String>>> toListMap = (rows) -> {
+      List<Map<String,String>> result = new ArrayList<>();
+      for (Row r : rows) {
+        Map<String,String> m = new HashMap<>();
+        m.put("title", r.title);
+        m.put("mainName", r.mainName);
+        m.put("regDate", r.regDate);
+        result.add(m);
+      }
+      return result;
+    };
+
+    request.setAttribute("foodList",  toListMap.apply(grouped.get("food")));
+    request.setAttribute("drinkList", toListMap.apply(grouped.get("drink")));
+    request.setAttribute("movieList", toListMap.apply(grouped.get("movie")));
+    request.setAttribute("bookList",  toListMap.apply(grouped.get("book")));
+    request.setAttribute("musicList", toListMap.apply(grouped.get("music")));
+  }
+%>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -8,6 +106,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>마이페이지 | 결정러</title>
   <link rel="stylesheet" href="<%=request.getContextPath()%>/css/mypage.css">
+  <link rel="stylesheet" href="<%=request.getContextPath()%>/css/mypage_result.css">
+  
 </head>
 
 <body>
@@ -375,10 +475,120 @@
             <p>추천 결과 이력을 확인할 수 있어요</p>
           </div>
 
-          <!-- 여기만 너희 결과이력 테이블에 맞춰서 리스트 뿌리면 됨 -->
-          <div style="padding:16px;">
-            결과이력 영역 (DB 연결 후 출력)
-          </div>
+          <div class="rh-wrap" style="padding:16px;">
+  <div class="rh-sections">
+
+    <!-- 음식 -->
+    <section class="rh-section">
+  <div class="rh-sec-head">
+    <h3>🍜 음식 <span class="rh-mini">최근 3개</span></h3>
+    
+  </div>
+
+  <div class="rh-grid">
+    <c:forEach var="h" items="${foodList}">
+      <article class="rh-card"
+               data-title="${h.title}"
+               data-result="${h.mainName}"
+               data-date="${h.regDate}">
+        <div class="rh-ico food">🍜</div>
+        <div class="rh-body">
+          <p class="rh-title">${h.title}</p>
+          <p class="rh-result">결과: <b>${h.mainName}</b></p>
+          <p class="rh-date">${h.regDate}</p>
+        </div>
+      </article>
+    </c:forEach>
+  </div>
+</section>
+
+    <!-- 음료 -->
+    <section class="rh-section">
+      <div class="rh-sec-head">
+        <h3>🥤 음료 <span class="rh-mini">최근 3개</span></h3>
+        
+      </div>
+      <div class="rh-grid">
+        <c:forEach var="h" items="${drinkList}">
+          <article class="rh-card "
+                   data-title="${h.title}" data-result="${h.mainName}" data-date="${h.regDate}">
+            <div class="rh-ico drink">🥤</div>
+            <div class="rh-body">
+              <p class="rh-title">${h.title}</p>
+              <p class="rh-result">결과: <b>${h.mainName}</b></p>
+              <p class="rh-date">${h.regDate}</p>
+            </div>
+          </article>
+        </c:forEach>
+      </div>
+    </section>
+
+    <!-- 영화 -->
+    <section class="rh-section">
+      <div class="rh-sec-head">
+        <h3>🎬 영화 <span class="rh-mini">최근 3개</span></h3>
+        
+      </div>
+      <div class="rh-grid">
+        <c:forEach var="h" items="${movieList}">
+          <article class="rh-card "
+                   data-title="${h.title}" data-result="${h.mainName}" data-date="${h.regDate}">
+            <div class="rh-ico movie">🎬</div>
+            <div class="rh-body">
+              <p class="rh-title">${h.title}</p>
+              <p class="rh-result">결과: <b>${h.mainName}</b></p>
+              <p class="rh-date">${h.regDate}</p>
+            </div>
+          </article>
+        </c:forEach>
+      </div>
+    </section>
+
+    <!-- 책 -->
+    <section class="rh-section">
+      <div class="rh-sec-head">
+        <h3>📚 책 <span class="rh-mini">최근 3개</span></h3>
+        
+      </div>
+      <div class="rh-grid">
+        <c:forEach var="h" items="${bookList}">
+          <article class="rh-card "
+                   data-title="${h.title}" data-result="${h.mainName}" data-date="${h.regDate}">
+            <div class="rh-ico book">📚</div>
+            <div class="rh-body">
+              <p class="rh-title">${h.title}</p>
+              <p class="rh-result">결과: <b>${h.mainName}</b></p>
+              <p class="rh-date">${h.regDate}</p>
+            </div>
+          </article>
+        </c:forEach>
+      </div>
+    </section>
+
+    <!-- 음악 -->
+    <section class="rh-section">
+      <div class="rh-sec-head">
+        <h3>🎵 음악 <span class="rh-mini">최근 3개</span></h3>
+        
+      </div>
+      <div class="rh-grid">
+        <c:forEach var="h" items="${musicList}">
+          <article class="rh-card "
+                   data-title="${h.title}" data-result="${h.mainName}" data-date="${h.regDate}">
+            <div class="rh-ico music">🎵</div>
+            <div class="rh-body">
+              <p class="rh-title">${h.title}</p>
+              <p class="rh-result">결과: <b>${h.mainName}</b></p>
+              <p class="rh-date">${h.regDate}</p>
+            </div>
+          </article>
+        </c:forEach>
+      </div>
+    </section>
+
+  </div>
+</div>
+
         </div>
       </div>
 
@@ -413,6 +623,8 @@
       </div>
 
     </main>
+
+    
   </div>
 
   <!-- 푸터 -->
@@ -423,7 +635,7 @@
   <!-- ================= JS: 탭 전환 + 주소 고정 (중복X) ================= -->
   <script>
   
-//====== [진단] 클릭이 안 먹을 때, 실제 클릭된 요소가 뭔지 확인 ======
+/*//====== [진단] 클릭이 안 먹을 때, 실제 클릭된 요소가 뭔지 확인 ======
   document.addEventListener("click", function(e){
     // input/select 클릭 시도했는데 다른게 잡히면 범인임
     const tag = e.target.tagName;
@@ -438,7 +650,7 @@
       // 너무 많이 찍히면 렉이니 주석처리 가능
       // console.log("TOP ELEMENT:", el.tagName, el.className);
     }
-  });
+  });*/
 //탭 전환
   document.querySelectorAll('.mp-menu-item[data-tab]').forEach(item => {
     item.addEventListener('click', function () {
@@ -485,7 +697,7 @@
     });
   }
   
-  (function(){
+  /*(function(){
     const box = document.createElement('div');
     box.style.cssText =
       'position:fixed;left:12px;bottom:12px;z-index:999999;' +
@@ -505,9 +717,10 @@
         ' | z=' + (cs ? cs.zIndex : '-') +
         ' | pos=' + (cs ? cs.position : '-');
     }, true);
-  })();
+  })();*/
   
   </script>
+
 
 </body>
 </html>
