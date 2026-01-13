@@ -8,7 +8,7 @@ public class ProjectDto {
 	
 	
 	public ProjectDto(String style, String food, String drink, String music, String movie, String book,
-			String allergy) {
+			String allergy,String age) {
 		super();
 		this.style = style;
 		this.food = food;
@@ -17,6 +17,7 @@ public class ProjectDto {
 		this.movie = movie;
 		this.book = book;
 		this.allergy = allergy;
+		this.age = age;
 	}
 
 	public ProjectDto(String id, String name, String style) {

@@ -53,22 +53,22 @@
 
           <div class="options-area">
             <div class="options-grid">
-              <div class="option-btn" data-value="happy">
+              <div class="option-btn" data-value="신난다">
                 <span class="emoji">😄</span>
                 <span class="text">기분 좋아!</span>
                 <span class="desc">신나는 날이야</span>
               </div>
-              <div class="option-btn" data-value="tired">
+              <div class="option-btn" data-value="피곤하다">
                 <span class="emoji">😫</span>
                 <span class="text">피곤해...</span>
                 <span class="desc">에너지 충전 필요</span>
               </div>
-              <div class="option-btn" data-value="stressed">
+              <div class="option-btn" data-value="스트레스">
                 <span class="emoji">😤</span>
                 <span class="text">스트레스 받아</span>
                 <span class="desc">확 풀고 싶어</span>
               </div>
-              <div class="option-btn" data-value="sad">
+              <div class="option-btn" data-value="슬퍼">
                 <span class="emoji">😢</span>
                 <span class="text">우울해...</span>
                 <span class="desc">위로가 필요해</span>
@@ -99,22 +99,22 @@
 
           <div class="options-area">
             <div class="options-grid">
-              <div class="option-btn" data-value="breakfast">
+              <div class="option-btn" data-value="아침">
                 <span class="emoji">🌅</span>
                 <span class="text">아침</span>
                 <span class="desc">가볍게 시작</span>
               </div>
-              <div class="option-btn" data-value="lunch">
+              <div class="option-btn" data-value="점심">
                 <span class="emoji">☀️</span>
                 <span class="text">점심</span>
                 <span class="desc">든든하게</span>
               </div>
-              <div class="option-btn" data-value="dinner">
+              <div class="option-btn" data-value="저녁">
                 <span class="emoji">🌙</span>
                 <span class="text">저녁</span>
                 <span class="desc">하루 마무리</span>
               </div>
-              <div class="option-btn" data-value="snack">
+              <div class="option-btn" data-value="간식,야식">
                 <span class="emoji">🍿</span>
                 <span class="text">간식/야식</span>
                 <span class="desc">출출할 때</span>
@@ -145,22 +145,22 @@
 
           <div class="options-area">
             <div class="options-grid">
-              <div class="option-btn" data-value="hot">
+              <div class="option-btn" data-value="국물/찌개/탕">
                 <span class="emoji">🔥</span>
                 <span class="text">뜨끈뜨끈</span>
                 <span class="desc">국물/찌개/탕</span>
               </div>
-              <div class="option-btn" data-value="spicy">
+              <div class="option-btn" data-value="매콤하게">
                 <span class="emoji">🌶️</span>
                 <span class="text">매콤하게</span>
                 <span class="desc">화끈하게!</span>
               </div>
-              <div class="option-btn" data-value="light">
+              <div class="option-btn" data-value="가볍게">
                 <span class="emoji">🥗</span>
                 <span class="text">가볍게</span>
                 <span class="desc">건강하게</span>
               </div>
-              <div class="option-btn" data-value="heavy">
+              <div class="option-btn" data-value="양 많이">
                 <span class="emoji">🍖</span>
                 <span class="text">든든하게</span>
                 <span class="desc">푸짐하게!</span>
@@ -191,22 +191,22 @@
 
           <div class="options-area">
             <div class="options-grid">
-              <div class="option-btn" data-value="alone">
+              <div class="option-btn" data-value="혼자">
                 <span class="emoji">🧑</span>
                 <span class="text">혼밥</span>
                 <span class="desc">나만의 시간</span>
               </div>
-              <div class="option-btn" data-value="friend">
+              <div class="option-btn" data-value="둘이서">
                 <span class="emoji">👫</span>
                 <span class="text">친구랑</span>
                 <span class="desc">즐거운 식사</span>
               </div>
-              <div class="option-btn" data-value="family">
+              <div class="option-btn" data-value="가족이랑">
                 <span class="emoji">👨‍👩‍👧</span>
                 <span class="text">가족이랑</span>
                 <span class="desc">온 가족 함께</span>
               </div>
-              <div class="option-btn" data-value="date">
+              <div class="option-btn" data-value="연인이랑">
                 <span class="emoji">💑</span>
                 <span class="text">데이트</span>
                 <span class="desc">분위기 있게</span>
