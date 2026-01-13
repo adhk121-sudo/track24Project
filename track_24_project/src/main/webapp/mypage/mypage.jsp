@@ -310,7 +310,61 @@
                 </div>
               </div>
             </div>
-
+			<!-- 음료 -->
+			<div class="chip-group">
+			  <div class="chip-title">🥤 좋아하는 음료</div>
+			  <div class="checkbox-group" data-category="drink">
+			
+			    <div class="checkbox-item">
+			      <input type="checkbox" id="mp_drink_ame" name="drink" value="아메리카노"
+			        <c:if test="${pref.drink != null && pref.drink.contains('아메리카노')}">checked</c:if>>
+			      <label class="checkbox-label" for="mp_drink_ame">
+			        <span class="checkbox-box"></span><span>아메리카노</span>
+			      </label>
+			    </div>
+			
+			    <div class="checkbox-item">
+			      <input type="checkbox" id="mp_drink_latte" name="drink" value="라떼"
+			        <c:if test="${pref.drink != null && pref.drink.contains('라떼')}">checked</c:if>>
+			      <label class="checkbox-label" for="mp_drink_latte">
+			        <span class="checkbox-box"></span><span>라떼</span>
+			      </label>
+			    </div>
+			
+			    <div class="checkbox-item">
+			      <input type="checkbox" id="mp_drink_tea" name="drink" value="차"
+			        <c:if test="${pref.drink != null && pref.drink.contains('차')}">checked</c:if>>
+			      <label class="checkbox-label" for="mp_drink_tea">
+			        <span class="checkbox-box"></span><span>차</span>
+			      </label>
+			    </div>
+			
+			    <div class="checkbox-item">
+			      <input type="checkbox" id="mp_drink_ade" name="drink" value="에이드"
+			        <c:if test="${pref.drink != null && pref.drink.contains('에이드')}">checked</c:if>>
+			      <label class="checkbox-label" for="mp_drink_ade">
+			        <span class="checkbox-box"></span><span>에이드</span>
+			      </label>
+			    </div>
+			
+			    <div class="checkbox-item">
+			      <input type="checkbox" id="mp_drink_soda" name="drink" value="탄산"
+			        <c:if test="${pref.drink != null && pref.drink.contains('탄산')}">checked</c:if>>
+			      <label class="checkbox-label" for="mp_drink_soda">
+			        <span class="checkbox-box"></span><span>탄산</span>
+			      </label>
+			    </div>
+			
+			    <div class="checkbox-item">
+			      <input type="checkbox" id="mp_drink_none" name="drink" value="없음"
+			        <c:if test="${pref.drink != null && pref.drink.contains('없음')}">checked</c:if>>
+			      <label class="checkbox-label" for="mp_drink_none">
+			        <span class="checkbox-box"></span><span>없음</span>
+			      </label>
+			    </div>
+			
+			  </div>
+			</div>
             <!-- 음악 -->
             <div class="chip-group">
               <div class="chip-title">🎵 좋아하는 음악</div>
