@@ -124,7 +124,7 @@ public class ProjectDao {
 	//회원 취향 정보 조회
 	public	ProjectDto getMemberPreference(String id) {
 		ProjectDto dto =null;
-		String sql="select food,drink,movie,book,music,allergy,style from team_random_member where id = '"+id+"'";
+		String sql="select food,drink,movie,book,music,allergy,style,age from team_random_member where id = '"+id+"'";
 		
 		try {
 			conn=DBConnection.getConn();
@@ -139,8 +139,8 @@ public class ProjectDao {
 				String music = rs.getString("music");
 				String allergy = rs.getString("allergy");
 				String style = rs.getString("style");
-				
-				dto =new ProjectDto(style, food, drink, music, movie, book, allergy);
+				String age = rs.getString("age");
+				dto =new ProjectDto(style, food, drink, music, movie, book, allergy,age);
 			}
 			
 		} catch (Exception e) {

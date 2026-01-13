@@ -399,6 +399,12 @@
                     <c:if test="${pref.music != null && pref.music.contains('락')}">checked</c:if>>
                   <label class="checkbox-label" for="mp_music_rock"><span class="checkbox-box"></span><span>락</span></label>
                 </div>
+                <div class="checkbox-item">
+                  <input type="checkbox" id="mp_music_jpop" name="music" value="J-POP"
+                    <c:if test="${pref.music != null && pref.music.contains('J-POP')}">checked</c:if>>
+                  <label class="checkbox-label" for="mp_music_jpop"><span class="checkbox-box"></span><span>J-POP</span></label>
+                </div>
+                
               </div>
             </div>
 

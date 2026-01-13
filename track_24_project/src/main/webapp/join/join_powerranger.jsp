@@ -363,6 +363,12 @@
                   <span class="checkbox-box"></span><span>락</span>
                 </label>
               </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="music_jpop" name="music" value="J-POP">
+                <label class="checkbox-label" for="music_jpop">
+                  <span class="checkbox-box"></span><span>J-POP</span>
+                </label>
+              </div>
             </div>
           </div>
 
