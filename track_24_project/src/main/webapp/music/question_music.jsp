@@ -53,22 +53,22 @@
 
           <div class="options-area">
             <div class="options-grid">
-              <div class="option-btn" data-value="happy">
+              <div class="option-btn" data-value="행복해">
                 <span class="emoji">😄</span>
                 <span class="text">기분 좋아!</span>
                 <span class="desc">신나는 음악 듣고 싶어</span>
               </div>
-              <div class="option-btn" data-value="tired">
+              <div class="option-btn" data-value="피곤해">
                 <span class="emoji">😫</span>
                 <span class="text">피곤해...</span>
                 <span class="desc">편안한 음악으로 힐링</span>
               </div>
-              <div class="option-btn" data-value="energetic">
+              <div class="option-btn" data-value="에너지 충만">
                 <span class="emoji">🔥</span>
                 <span class="text">에너지 충만!</span>
                 <span class="desc">텐션 올릴 음악</span>
               </div>
-              <div class="option-btn" data-value="sad">
+              <div class="option-btn" data-value="슬퍼">
                 <span class="emoji">😢</span>
                 <span class="text">우울해...</span>
                 <span class="desc">감성적인 음악</span>
@@ -109,12 +109,12 @@
                 <span class="text">POP</span>
                 <span class="desc">해외 팝송</span>
               </div>
-              <div class="option-btn" data-value="hiphop">
+              <div class="option-btn" data-value="힙합">
                 <span class="emoji">🎤</span>
                 <span class="text">힙합/R&B</span>
                 <span class="desc">리듬 타기</span>
               </div>
-              <div class="option-btn" data-value="indie">
+              <div class="option-btn" data-value="인디">
                 <span class="emoji">🎸</span>
                 <span class="text">인디/락</span>
                 <span class="desc">감성 충전</span>
@@ -145,22 +145,22 @@
 
           <div class="options-area">
             <div class="options-grid">
-              <div class="option-btn" data-value="work">
+              <div class="option-btn" data-value="작업/공부">
                 <span class="emoji">💻</span>
                 <span class="text">작업/공부</span>
                 <span class="desc">집중할 때</span>
               </div>
-              <div class="option-btn" data-value="commute">
+              <div class="option-btn" data-value="출퇴근">
                 <span class="emoji">🚇</span>
                 <span class="text">출퇴근</span>
                 <span class="desc">이동할 때</span>
               </div>
-              <div class="option-btn" data-value="exercise">
+              <div class="option-btn" data-value="운동">
                 <span class="emoji">🏃</span>
                 <span class="text">운동</span>
                 <span class="desc">몸 움직일 때</span>
               </div>
-              <div class="option-btn" data-value="relax">
+              <div class="option-btn" data-value="휴식">
                 <span class="emoji">🛋️</span>
                 <span class="text">휴식</span>
                 <span class="desc">쉴 때</span>
@@ -191,22 +191,22 @@
 
           <div class="options-area">
             <div class="options-grid">
-              <div class="option-btn" data-value="fast">
+              <div class="option-btn" data-value="빠르게">
                 <span class="emoji">⚡</span>
                 <span class="text">빠르게</span>
                 <span class="desc">텐션 업!</span>
               </div>
-              <div class="option-btn" data-value="medium">
+              <div class="option-btn" data-value="적당히">
                 <span class="emoji">🎵</span>
                 <span class="text">적당히</span>
                 <span class="desc">리듬 타기 좋은</span>
               </div>
-              <div class="option-btn" data-value="slow">
+              <div class="option-btn" data-value="느리게,감성적">
                 <span class="emoji">🌙</span>
                 <span class="text">느리게</span>
                 <span class="desc">감성적으로</span>
               </div>
-              <div class="option-btn" data-value="any">
+              <div class="option-btn" data-value="상관없어">
                 <span class="emoji">🎲</span>
                 <span class="text">상관없어</span>
                 <span class="desc">좋으면 됨!</span>

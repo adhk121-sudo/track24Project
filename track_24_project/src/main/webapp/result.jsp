@@ -55,77 +55,155 @@
         }
     }
     
-    // ⭐ AI 결과 파싱
     String mainName = "";
+    String mainSub = "";      // 식당/카페/감독/저자/가수
+    String mainGenre = "";    // 장르
     String mainReason = "";
+    
     String sub1Name = "";
+    String sub1Sub = "";
+    String sub1Genre = "";
     String sub1Reason = "";
+    
     String sub2Name = "";
+    String sub2Sub = "";
+    String sub2Genre = "";
     String sub2Reason = "";
     
-    if(result != null) {
-        // 메인 추천 파싱
+    // 카테고리별 파싱 키워드
+    String nameKey = "";
+    String subKey = "";
+    
+    if(category != null) {
+        switch(category) {
+            case "food":  nameKey = "메뉴:"; subKey = "식당:"; break;
+            case "drink": nameKey = "음료:"; subKey = "카페:"; break;
+            case "movie": nameKey = "영화:"; subKey = "감독:"; break;
+            case "book":  nameKey = "책:";   subKey = "저자:"; break;
+            case "music": nameKey = "노래:"; subKey = "가수:"; break;
+        }
+    }
+    
+    if(result != null && nameKey.length() > 0) {
+        
+        // ===== 메인 추천 파싱 =====
         if(result.contains("[메인추천]")) {
             int mainStart = result.indexOf("[메인추천]");
             int mainEnd = result.indexOf("[서브추천1]");
             if(mainEnd == -1) mainEnd = result.length();
             String mainPart = result.substring(mainStart, mainEnd);
             
-            if(mainPart.contains("이름:")) {
-                int nameStart = mainPart.indexOf("이름:") + 3;
-                int nameEnd = mainPart.indexOf("\n", nameStart);
-                if(nameEnd == -1) nameEnd = mainPart.length();
-                mainName = mainPart.substring(nameStart, nameEnd).trim();
+            // 이름 (메뉴/음료/영화/책/노래)
+            if(mainPart.contains(nameKey)) {
+                int start = mainPart.indexOf(nameKey) + nameKey.length();
+                int end = mainPart.indexOf("\n", start);
+                if(end == -1) end = mainPart.length();
+                mainName = mainPart.substring(start, end).trim();
             }
+            
+            // 서브 (식당/카페/감독/저자/가수)
+            if(mainPart.contains(subKey)) {
+                int start = mainPart.indexOf(subKey) + subKey.length();
+                int end = mainPart.indexOf("\n", start);
+                if(end == -1) end = mainPart.length();
+                mainSub = mainPart.substring(start, end).trim();
+            }
+            
+            // 장르
+            if(mainPart.contains("장르:")) {
+                int start = mainPart.indexOf("장르:") + 3;
+                int end = mainPart.indexOf("\n", start);
+                if(end == -1) end = mainPart.length();
+                mainGenre = mainPart.substring(start, end).trim();
+            }
+            
+            // 이유
             if(mainPart.contains("이유:")) {
-                int reasonStart = mainPart.indexOf("이유:") + 3;
-                int reasonEnd = mainPart.indexOf("\n", reasonStart);
-                if(reasonEnd == -1) reasonEnd = mainPart.length();
-                mainReason = mainPart.substring(reasonStart, reasonEnd).trim();
+                int start = mainPart.indexOf("이유:") + 3;
+                int end = mainPart.indexOf("\n", start);
+                if(end == -1) end = mainPart.length();
+                mainReason = mainPart.substring(start, end).trim();
             }
         }
         
-        // 서브 추천1 파싱
+        // ===== 서브 추천1 파싱 =====
         if(result.contains("[서브추천1]")) {
             int sub1Start = result.indexOf("[서브추천1]");
             int sub1End = result.indexOf("[서브추천2]");
             if(sub1End == -1) sub1End = result.length();
             String sub1Part = result.substring(sub1Start, sub1End);
             
-            if(sub1Part.contains("이름:")) {
-                int nameStart = sub1Part.indexOf("이름:") + 3;
-                int nameEnd = sub1Part.indexOf("\n", nameStart);
-                if(nameEnd == -1) nameEnd = sub1Part.length();
-                sub1Name = sub1Part.substring(nameStart, nameEnd).trim();
+            if(sub1Part.contains(nameKey)) {
+                int start = sub1Part.indexOf(nameKey) + nameKey.length();
+                int end = sub1Part.indexOf("\n", start);
+                if(end == -1) end = sub1Part.length();
+                sub1Name = sub1Part.substring(start, end).trim();
+            }
+            if(sub1Part.contains(subKey)) {
+                int start = sub1Part.indexOf(subKey) + subKey.length();
+                int end = sub1Part.indexOf("\n", start);
+                if(end == -1) end = sub1Part.length();
+                sub1Sub = sub1Part.substring(start, end).trim();
+            }
+            if(sub1Part.contains("장르:")) {
+                int start = sub1Part.indexOf("장르:") + 3;
+                int end = sub1Part.indexOf("\n", start);
+                if(end == -1) end = sub1Part.length();
+                sub1Genre = sub1Part.substring(start, end).trim();
             }
             if(sub1Part.contains("이유:")) {
-                int reasonStart = sub1Part.indexOf("이유:") + 3;
-                int reasonEnd = sub1Part.indexOf("\n", reasonStart);
-                if(reasonEnd == -1) reasonEnd = sub1Part.length();
-                sub1Reason = sub1Part.substring(reasonStart, reasonEnd).trim();
+                int start = sub1Part.indexOf("이유:") + 3;
+                int end = sub1Part.indexOf("\n", start);
+                if(end == -1) end = sub1Part.length();
+                sub1Reason = sub1Part.substring(start, end).trim();
             }
         }
         
-        // 서브 추천2 파싱
+        // ===== 서브 추천2 파싱 =====
         if(result.contains("[서브추천2]")) {
             int sub2Start = result.indexOf("[서브추천2]");
             String sub2Part = result.substring(sub2Start);
             
-            if(sub2Part.contains("이름:")) {
-                int nameStart = sub2Part.indexOf("이름:") + 3;
-                int nameEnd = sub2Part.indexOf("\n", nameStart);
-                if(nameEnd == -1) nameEnd = sub2Part.length();
-                sub2Name = sub2Part.substring(nameStart, nameEnd).trim();
+            if(sub2Part.contains(nameKey)) {
+                int start = sub2Part.indexOf(nameKey) + nameKey.length();
+                int end = sub2Part.indexOf("\n", start);
+                if(end == -1) end = sub2Part.length();
+                sub2Name = sub2Part.substring(start, end).trim();
+            }
+            if(sub2Part.contains(subKey)) {
+                int start = sub2Part.indexOf(subKey) + subKey.length();
+                int end = sub2Part.indexOf("\n", start);
+                if(end == -1) end = sub2Part.length();
+                sub2Sub = sub2Part.substring(start, end).trim();
+            }
+            if(sub2Part.contains("장르:")) {
+                int start = sub2Part.indexOf("장르:") + 3;
+                int end = sub2Part.indexOf("\n", start);
+                if(end == -1) end = sub2Part.length();
+                sub2Genre = sub2Part.substring(start, end).trim();
             }
             if(sub2Part.contains("이유:")) {
-                int reasonStart = sub2Part.indexOf("이유:") + 3;
-                int reasonEnd = sub2Part.indexOf("\n", reasonStart);
-                if(reasonEnd == -1) reasonEnd = sub2Part.length();
-                sub2Reason = sub2Part.substring(reasonStart, reasonEnd).trim();
+                int start = sub2Part.indexOf("이유:") + 3;
+                int end = sub2Part.indexOf("\n", start);
+                if(end == -1) end = sub2Part.length();
+                sub2Reason = sub2Part.substring(start, end).trim();
             }
         }
     }
+ // 카테고리별 서브 라벨
+    String subLabel = "";
+    if(category != null) {
+        switch(category) {
+            case "food":  subLabel = "🏠"; break;
+            case "drink": subLabel = "☕"; break;
+            case "movie": subLabel = "🎬"; break;
+            case "book":  subLabel = "✍️"; break;
+            case "music": subLabel = "🎤"; break;
+        }
+    }
+    
 %>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -157,28 +235,46 @@
         
         
         <!-- ⭐ 메인 추천 카드 -->
-        <div class="main-recommend">
-            <div class="main-badge">👑 BEST 추천</div>
-            <h2 class="main-title"><%=mainName%></h2>
-            <p class="main-reason"><%=mainReason%></p>
+<div class="main-recommend">
+    <div class="main-badge">👑 BEST 추천</div>
+    <h2 class="main-title"><%=mainName%></h2>
+    <% if(!mainSub.isEmpty()) { %>
+        <p class="main-sub"><%=subLabel%> <%=mainSub%></p>
+    <% } %>
+    <% if(!mainGenre.isEmpty()) { %>
+        <span class="main-genre">#<%=mainGenre%></span>
+    <% } %>
+    <p class="main-reason"><%=mainReason%></p>
+</div>
+
+<!-- ⭐ 서브 추천 카드 -->
+<div class="sub-recommend-wrap">
+    <h3 class="sub-title">이것도 추천해요!</h3>
+    <div class="sub-cards">
+        <div class="sub-card">
+            <div class="sub-badge">2nd</div>
+            <h4 class="sub-name"><%=sub1Name%></h4>
+            <% if(!sub1Sub.isEmpty()) { %>
+                <p class="sub-sub"><%=subLabel%> <%=sub1Sub%></p>
+            <% } %>
+            <% if(!sub1Genre.isEmpty()) { %>
+                <span class="sub-genre">#<%=sub1Genre%></span>
+            <% } %>
+            <p class="sub-reason"><%=sub1Reason%></p>
         </div>
-        
-        <!-- ⭐ 서브 추천 카드 -->
-        <div class="sub-recommend-wrap">
-            <h3 class="sub-title">이것도 추천해요!</h3>
-            <div class="sub-cards">
-                <div class="sub-card">
-                    <div class="sub-badge">2nd</div>
-                    <h4 class="sub-name"><%=sub1Name%></h4>
-                    <p class="sub-reason"><%=sub1Reason%></p>
-                </div>
-                <div class="sub-card">
-                    <div class="sub-badge">3rd</div>
-                    <h4 class="sub-name"><%=sub2Name%></h4>
-                    <p class="sub-reason"><%=sub2Reason%></p>
-                </div>
-            </div>
+        <div class="sub-card">
+            <div class="sub-badge">3rd</div>
+            <h4 class="sub-name"><%=sub2Name%></h4>
+            <% if(!sub2Sub.isEmpty()) { %>
+                <p class="sub-sub"><%=subLabel%> <%=sub2Sub%></p>
+            <% } %>
+            <% if(!sub2Genre.isEmpty()) { %>
+                <span class="sub-genre">#<%=sub2Genre%></span>
+            <% } %>
+            <p class="sub-reason"><%=sub2Reason%></p>
         </div>
+    </div>
+</div>
         
         <!-- 버튼 -->
         <div class="actions">
