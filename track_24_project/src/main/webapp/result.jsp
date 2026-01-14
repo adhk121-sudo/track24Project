@@ -335,5 +335,8 @@
             location.href = "Power?t_gubun=" + gubun;
         }
     </script>
+    
+    
+	
 </body>
 </html>

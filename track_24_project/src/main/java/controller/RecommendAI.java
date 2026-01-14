@@ -37,7 +37,7 @@ public class RecommendAI extends HttpServlet {
 			request.setCharacterEncoding("utf-8");
 		//==1. 카테고리 구분==	
 		String category = request.getParameter("category");
-		
+		if(category != null) category = category.toLowerCase();
 		//==2. 공통데이터 받기==
 		String q1 = request.getParameter("q1");
         String q2 = request.getParameter("q2");
@@ -92,6 +92,29 @@ public class RecommendAI extends HttpServlet {
         
         // ===== 5. AI API 호출 =====
         String aiResponse = callAI(prompt);
+        
+     // ===== 5-1. (로그인 시) 결과이력 DB 저장 =====
+        boolean ok = (aiResponse != null
+                && aiResponse.contains("[메인추천]")
+                && !aiResponse.contains("401")
+                && !aiResponse.contains("invalid_api_key"));
+
+        if (isLogin && ok) {
+            ParsedRecommend pr = parseMainRecommend(category, aiResponse);
+            dao.insertRecommendHistory(
+                sessionId,
+                category,
+                pr.title,
+                pr.mainName,
+                pr.genre,
+                pr.reason,
+                q1, q2, q3, q4,
+                aiResponse
+            );
+        }
+        if (!ok) {
+            request.setAttribute("apiError", aiResponse); // aiResponse에 401 내용이 들어가게 AIClient도 수정하면 더 좋음
+        }
         
         // ===== 6. 결과 담기 =====
         request.setAttribute("category", category);
@@ -214,6 +237,7 @@ public class RecommendAI extends HttpServlet {
                 sb.append("메뉴: (구체적인 음식 이름)\n");
                 sb.append("식당: (추천 식당 유형)\n");
                 sb.append("이유: (간단한 이유 1문장)\n\n");
+                sb.append("※ 주의: 사용자가 응답한 답변에 꼭 맞는 주제의 음식만 추천해주세요!\n");
                 sb.append("※ 주의: 실제로 존재하는 구체적인 메뉴명을 추천해주세요!\n");
                 break;
                 
@@ -230,6 +254,7 @@ public class RecommendAI extends HttpServlet {
                 sb.append("음료: (구체적인 음료 이름)\n");
                 sb.append("카페: (추천 카페)\n");
                 sb.append("이유: (간단한 이유 1문장)\n\n");
+                sb.append("※ 주의: 사용자가 응답한 답변에 꼭 맞는 주제의 음료만 추천해주세요!\n");
                 sb.append("※ 주의: 실제로 주문할 수 있는 구체적인 음료명을 추천해주세요!\n");
                 break;
                 
@@ -249,6 +274,7 @@ public class RecommendAI extends HttpServlet {
                 sb.append("장르: (영화 장르)\n");
                 sb.append("감독: (감독 이름)\n");
                 sb.append("이유: (간단한 이유 1문장)\n\n");
+                sb.append("※ 주의: 사용자가 응답한 답변에 꼭 맞는 주제의 영화만 추천해주세요!\n");
                 sb.append("※ 주의: 실제로 존재하는 영화만 추천해주세요!\n");
                 break;
                 
@@ -268,6 +294,7 @@ public class RecommendAI extends HttpServlet {
                 sb.append("저자: (저자 이름)\n");
                 sb.append("장르: (책 장르)\n");
                 sb.append("이유: (간단한 이유 1문장)\n\n");
+                sb.append("※ 주의: 사용자가 응답한 답변에 꼭 맞는 주제의 책만 추천해주세요!\n");
                 sb.append("※ 주의: 실제로 존재하는 책만 추천해주세요!\n");
                 break;
                 
@@ -287,6 +314,7 @@ public class RecommendAI extends HttpServlet {
                 sb.append("가수: (가수/아티스트 이름)\n");
                 sb.append("장르: (음악 장르)\n");
                 sb.append("이유: (간단한 이유 1문장)\n\n");
+                sb.append("※ 주의: 사용자가 응답한 답변에 꼭 맞는 주제의 노래만 추천해주세요!\n");
                 sb.append("※ 주의: 실제로 존재하는 노래만 추천해주세요!\n");
                 break;
         }
@@ -321,6 +349,60 @@ public class RecommendAI extends HttpServlet {
      * AI API 호출 (실제 구현은 나중에)
      */
    
+    // =====================================================
+    // 결과이력 저장용 파서 (메인추천만 추출)
+    // =====================================================
+    private static class ParsedRecommend {
+        String title = "";     // 메뉴/음료/영화/책/노래
+        String mainName = "";  // 식당/카페/감독/저자/가수
+        String genre = "";
+        String reason = "";
+    }
+
+    private ParsedRecommend parseMainRecommend(String category, String result) {
+        ParsedRecommend pr = new ParsedRecommend();
+        if (result == null || category == null) return pr;
+
+        String nameKey = "";
+        String subKey  = "";
+
+        switch (category) {
+            case "food":  nameKey = "메뉴:"; subKey = "식당:"; break;
+            case "drink": nameKey = "음료:"; subKey = "카페:"; break;
+            case "movie": nameKey = "영화:"; subKey = "감독:"; break;
+            case "book":  nameKey = "책:";   subKey = "저자:"; break;
+            case "music": nameKey = "노래:"; subKey = "가수:"; break;
+            default: return pr;
+        }
+
+        // [메인추천] 블록만 자르기
+        String mainPart = result;
+        int start = result.indexOf("[메인추천]");
+        if (start != -1) {
+            int end = result.indexOf("[서브추천1]");
+            if (end == -1) end = result.length();
+            mainPart = result.substring(start, end);
+        }
+
+        pr.title    = pickLineValue(mainPart, nameKey);
+        pr.mainName = pickLineValue(mainPart, subKey);
+        pr.genre    = pickLineValue(mainPart, "장르:");
+        pr.reason   = pickLineValue(mainPart, "이유:");
+
+        return pr;
+    }
+
+    private String pickLineValue(String block, String key) {
+        if (block == null || key == null) return "";
+        int s = block.indexOf(key);
+        if (s == -1) return "";
+        s += key.length();
+        int e = block.indexOf("\n", s);
+        if (e == -1) e = block.length();
+        return block.substring(s, e).trim();
+    }
+
+    
     private String callAI(String prompt) {
         return AIClient.chat(prompt);
     }

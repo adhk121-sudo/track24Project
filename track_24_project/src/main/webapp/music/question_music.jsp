@@ -99,12 +99,12 @@
 
           <div class="options-area">
             <div class="options-grid">
-              <div class="option-btn" data-value="kpop">
+              <div class="option-btn" data-value="케이팝">
                 <span class="emoji">🇰🇷</span>
                 <span class="text">K-POP</span>
                 <span class="desc">한국 가요</span>
               </div>
-              <div class="option-btn" data-value="pop">
+              <div class="option-btn" data-value="해외 노래">
                 <span class="emoji">🌍</span>
                 <span class="text">POP</span>
                 <span class="desc">해외 팝송</span>
@@ -206,7 +206,7 @@
                 <span class="text">느리게</span>
                 <span class="desc">감성적으로</span>
               </div>
-              <div class="option-btn" data-value="상관없어">
+              <div class="option-btn" data-value="빠르던 느린던 상관없어">
                 <span class="emoji">🎲</span>
                 <span class="text">상관없어</span>
                 <span class="desc">좋으면 됨!</span>
