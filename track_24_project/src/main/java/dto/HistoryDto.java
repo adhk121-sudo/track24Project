@@ -15,7 +15,21 @@ public class HistoryDto {
 
     public HistoryDto() {}
 
-    public HistoryDto(int historyId, String category, String title, String mainName,
+    
+    
+    
+    public HistoryDto(int historyId, String category, String title, String mainName) {
+		super();
+		this.historyId = historyId;
+		this.category = category;
+		this.title = title;
+		this.mainName = mainName;
+	}
+
+
+
+
+	public HistoryDto(int historyId, String category, String title, String mainName,
                       String genre, String reason, String regDate) {
         this.historyId = historyId;
         this.category = category;

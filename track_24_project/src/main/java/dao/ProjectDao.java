@@ -551,5 +551,41 @@ public class ProjectDao {
 	    }
 	    return list;
 	}
+	/**
+	 * 분야별 최신 N개 조회 과거 이력 참고!!
+	 */
+	public java.util.List<HistoryDto> getRecentHistoryRefer(String memberId, String category, int limit) {
+	    java.util.List<HistoryDto> list = new java.util.ArrayList<>();
+	    String sql = "select history_id, category ,title, main_name  from (select history_id, category, title, main_name, genre, reason, to_char(reg_date, 'yyyy-MM-dd') as reg_date \r\n"
+	    		+ "	          from recommend_history\r\n"
+	    		+ "	          where member_id = ? and category = ? \r\n"
+	    		+ "	        order by reg_date desc\r\n"
+	    		+ "	        ) where rownum <= ?";
+	    	System.out.println(sql);
+	    try {
+	        conn = DBConnection.getConn();
+	        pstmt = conn.prepareStatement(sql);
+	        pstmt.setString(1, memberId);
+	        pstmt.setString(2, category);
+	        pstmt.setInt(3, limit);
+	        rs = pstmt.executeQuery();
+	        while (rs.next()) {
+	            HistoryDto dto = new HistoryDto(
+	                rs.getInt("history_id"),
+	                rs.getString("category"),
+	                rs.getString("title"),
+	                rs.getString("main_name")
+	            );
+	            list.add(dto);
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        System.out.println("getRecentHistoryRefer 오류: " + sql);
+	    } finally {
+	        DBConnection.closeDB(conn, pstmt, rs);
+	    }
+	    return list;
+	}
+	
 
 }
