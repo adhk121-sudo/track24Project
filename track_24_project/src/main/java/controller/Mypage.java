@@ -39,6 +39,7 @@ public class Mypage extends HttpServlet {
     String viewPage = "";
 
     // 1) 마이페이지 조회
+ // 1) 마이페이지 조회
     if (gubun.equals("view")) {
       ProjectDto member = dao.getMemberDetail(sessionId);
       ProjectDto pref = dao.getMemberPreference(sessionId);
@@ -46,8 +47,23 @@ public class Mypage extends HttpServlet {
       request.setAttribute("member", member);
       request.setAttribute("pref", pref);
 
+      // ✅ 결과이력도 기본 화면(/mypage)에서 같이 뿌리기
+      request.setAttribute("foodList",  dao.getRecentHistory(sessionId, "food", 3));
+      request.setAttribute("drinkList", dao.getRecentHistory(sessionId, "drink", 3));
+      request.setAttribute("movieList", dao.getRecentHistory(sessionId, "movie", 3));
+      request.setAttribute("bookList",  dao.getRecentHistory(sessionId, "book", 3));
+      request.setAttribute("musicList", dao.getRecentHistory(sessionId, "music", 3));
+
+      // ✅ history로 들어왔다가 돌아온 경우, 어떤 탭 열지 전달
+      String openTab = (String) session.getAttribute("openTab");
+      if (openTab != null) {
+        request.setAttribute("openTab", openTab);
+        session.removeAttribute("openTab");
+      }
+
       viewPage = "mypage/mypage.jsp";
     }
+
 
     // 2) 상세정보 수정 저장
     else if (gubun.equals("updateProfile")) {
@@ -100,17 +116,11 @@ public class Mypage extends HttpServlet {
 
  // 3-1) 결과이력 (DB에서 분야별 최신 3개)
     else if (gubun.equals("history")) {
-      ProjectDto member = dao.getMemberDetail(sessionId);
-      request.setAttribute("member", member);
-
-      request.setAttribute("foodList",  dao.getRecentHistory(sessionId, "food", 3));
-      request.setAttribute("drinkList", dao.getRecentHistory(sessionId, "drink", 3));
-      request.setAttribute("movieList", dao.getRecentHistory(sessionId, "movie", 3));
-      request.setAttribute("bookList",  dao.getRecentHistory(sessionId, "book", 3));
-      request.setAttribute("musicList", dao.getRecentHistory(sessionId, "music", 3));
-
-      viewPage = "mypage/result_history.jsp";
-    }
+    	  // ✅ 주소창을 /mypage 로 유지하고, 결과이력 탭만 열리게 만들기
+    	  session.setAttribute("openTab", "result");
+    	  response.sendRedirect(request.getContextPath() + "/mypage");
+    	  return; // ✅ 여기서 끝내야 함(아래 forward 타면 안됨)
+    	}
 
     // 4) 비밀번호 변경
     else if (gubun.equals("pwUpdate")) {
