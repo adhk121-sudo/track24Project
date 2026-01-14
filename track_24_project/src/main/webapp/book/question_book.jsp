@@ -25,7 +25,7 @@
     </div>
 
     <!-- 폼 시작 -->
-    <form name="bookForm" id="questionForm" method="post" action="RecommandAI">
+    <form name="bookForm" id="questionForm" method="post" action="RecommendAI">
       
       <!-- hidden input으로 답변 저장 -->
       <input type="hidden" name="category" value="book"> 
@@ -53,22 +53,22 @@
 
           <div class="options-area">
             <div class="options-grid">
-              <div class="option-btn" data-value="curious">
+              <div class="option-btn" data-value="호기심">
                 <span class="emoji">🤔</span>
                 <span class="text">호기심 가득</span>
                 <span class="desc">새로운 걸 알고 싶어</span>
               </div>
-              <div class="option-btn" data-value="tired">
+              <div class="option-btn" data-value="가볍게 읽고 싶어">
                 <span class="emoji">😫</span>
                 <span class="text">피곤해...</span>
                 <span class="desc">가볍게 읽고 싶어</span>
               </div>
-              <div class="option-btn" data-value="motivated">
+              <div class="option-btn" data-value="의욕,성장">
                 <span class="emoji">💪</span>
                 <span class="text">의욕 충만!</span>
                 <span class="desc">성장하고 싶어</span>
               </div>
-              <div class="option-btn" data-value="emotional">
+              <div class="option-btn" data-value="감성적">
                 <span class="emoji">🥹</span>
                 <span class="text">감성적이야</span>
                 <span class="desc">마음이 울렁거려</span>
@@ -99,25 +99,25 @@
 
           <div class="options-area">
             <div class="options-grid">
-              <div class="option-btn" data-value="novel">
+              <div class="option-btn" data-value="소설">
                 <span class="emoji">📖</span>
                 <span class="text">소설</span>
                 <span class="desc">이야기에 빠지고 싶어</span>
               </div>
-              <div class="option-btn" data-value="self">
+              <div class="option-btn" data-value="자기계발">
                 <span class="emoji">🌱</span>
                 <span class="text">자기계발</span>
                 <span class="desc">성장하고 싶어</span>
               </div>
-              <div class="option-btn" data-value="essay">
+              <div class="option-btn" data-value="에세이">
                 <span class="emoji">✍️</span>
                 <span class="text">에세이</span>
                 <span class="desc">공감하고 싶어</span>
               </div>
-              <div class="option-btn" data-value="knowledge">
+              <div class="option-btn" data-value="교양,지식">
                 <span class="emoji">🧠</span>
                 <span class="text">교양/지식</span>
-                <span class="desc">똑똒해지고 싶어</span>
+                <span class="desc">똑똑해지고 싶어</span>
               </div>
             </div>
           </div>
@@ -145,22 +145,22 @@
 
           <div class="options-area">
             <div class="options-grid">
-              <div class="option-btn" data-value="short">
+              <div class="option-btn" data-value="짧은 책">
                 <span class="emoji">📄</span>
                 <span class="text">짧게</span>
                 <span class="desc">1시간 이내</span>
               </div>
-              <div class="option-btn" data-value="medium">
+              <div class="option-btn" data-value="적당한 책">
                 <span class="emoji">📑</span>
                 <span class="text">적당히</span>
                 <span class="desc">하루 정도</span>
               </div>
-              <div class="option-btn" data-value="long">
+              <div class="option-btn" data-value="두꺼운 책">
                 <span class="emoji">📚</span>
                 <span class="text">길어도 OK</span>
                 <span class="desc">며칠 걸려도 좋아</span>
               </div>
-              <div class="option-btn" data-value="any">
+              <div class="option-btn" data-value="상관없어">
                 <span class="emoji">🤷</span>
                 <span class="text">상관없어</span>
                 <span class="desc">재밌으면 됨!</span>
@@ -191,22 +191,22 @@
 
           <div class="options-area">
             <div class="options-grid">
-              <div class="option-btn" data-value="fun">
+              <div class="option-btn" data-value="재미">
                 <span class="emoji">🎉</span>
                 <span class="text">재미</span>
                 <span class="desc">즐겁게 읽고 싶어</span>
               </div>
-              <div class="option-btn" data-value="learn">
+              <div class="option-btn" data-value="배움">
                 <span class="emoji">📝</span>
                 <span class="text">배움</span>
                 <span class="desc">새로운 걸 알고 싶어</span>
               </div>
-              <div class="option-btn" data-value="comfort">
+              <div class="option-btn" data-value="위로">
                 <span class="emoji">🤗</span>
                 <span class="text">위로</span>
                 <span class="desc">마음이 따뜻해지고 싶어</span>
               </div>
-              <div class="option-btn" data-value="inspire">
+              <div class="option-btn" data-value="영감,동기부여">
                 <span class="emoji">✨</span>
                 <span class="text">영감</span>
                 <span class="desc">동기부여 받고 싶어</span>

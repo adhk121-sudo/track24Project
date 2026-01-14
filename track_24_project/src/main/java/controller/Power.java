@@ -62,6 +62,8 @@ public class Power extends HttpServlet {
 			viewPage = "book/question_book.jsp";
 		}else if(gubun.equals("music")) {
 			viewPage = "music/question_music.jsp";
+		}else if(gubun.equals("admin_users")) {
+			viewPage = "admin/admin_users.jsp";
 		}else if(gubun.equals("mypage")) {
 		    javax.servlet.http.HttpSession session = request.getSession();
 		    String sessionId = (String)session.getAttribute("sessionId");

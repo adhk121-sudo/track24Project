@@ -124,7 +124,7 @@ public class ProjectDao {
 	//회원 취향 정보 조회
 	public	ProjectDto getMemberPreference(String id) {
 		ProjectDto dto =null;
-		String sql="select food,drink,movie,book,music,allergy,style from team_random_member where id = '"+id+"'";
+		String sql="select food,drink,movie,book,music,allergy,style,age from team_random_member where id = '"+id+"'";
 		
 		try {
 			conn=DBConnection.getConn();
@@ -139,8 +139,8 @@ public class ProjectDao {
 				String music = rs.getString("music");
 				String allergy = rs.getString("allergy");
 				String style = rs.getString("style");
-				
-				dto =new ProjectDto(style, food, drink, music, movie, book, allergy);
+				String age = rs.getString("age");
+				dto =new ProjectDto(style, food, drink, music, movie, book, allergy,age);
 			}
 			
 		} catch (Exception e) {
@@ -241,10 +241,9 @@ public class ProjectDao {
 
 	// ProjectDao.java
 
-	// 카테고리별 총 클릭 수
 	public int getCategoryTotal(String category) {
 	    int total = 0;
-	    String query = "SELECT COUNT(*) FROM click_log WHERE category = ?";
+	    String query = "SELECT COUNT(*) FROM click_log WHERE category = ? AND question_num = 1";
 	    try {
 	        conn = DBConnection.getConn();
 	        pstmt = conn.prepareStatement(query);
@@ -260,6 +259,7 @@ public class ProjectDao {
 	    }
 	    return total;
 	}
+
 
 	// 질문별 선택지 클릭 수
 	
@@ -293,7 +293,7 @@ public class ProjectDao {
 	    List<Integer> monthly = new ArrayList<>();
 	    String query = "SELECT TO_CHAR(click_date, 'MM') as month, COUNT(*) as cnt " +
 	                   "FROM click_log " +
-	                   "WHERE category = ? " +
+	                   "WHERE category = ? AND question_num = 1 " +
 	                   "GROUP BY TO_CHAR(click_date, 'MM') " +
 	                   "ORDER BY month";
 	    try {

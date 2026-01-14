@@ -53,10 +53,10 @@ ProjectDao dao = new ProjectDao();
         request.setAttribute("drinkQ3Data", mapToChartData(dao.getQuestionStats("drink", 3)));
         request.setAttribute("drinkQ4Data", mapToChartData(dao.getQuestionStats("drink", 4)));
         // 무비레인저 질문별 통계
-        request.setAttribute("movieQ1Data", mapToChartData(dao.getQuestionStats("moive", 1)));
-        request.setAttribute("movieQ2Data", mapToChartData(dao.getQuestionStats("moive", 2)));
-        request.setAttribute("movieQ3Data", mapToChartData(dao.getQuestionStats("moive", 3)));
-        request.setAttribute("movieQ4Data", mapToChartData(dao.getQuestionStats("moive", 4)));
+        request.setAttribute("movieQ1Data", mapToChartData(dao.getQuestionStats("movie", 1)));
+        request.setAttribute("movieQ2Data", mapToChartData(dao.getQuestionStats("movie", 2)));
+        request.setAttribute("movieQ3Data", mapToChartData(dao.getQuestionStats("movie", 3)));
+        request.setAttribute("movieQ4Data", mapToChartData(dao.getQuestionStats("movie", 4)));
         // 북레인저 질문별 통계
         request.setAttribute("bookQ1Data", mapToChartData(dao.getQuestionStats("book", 1)));
         request.setAttribute("bookQ2Data", mapToChartData(dao.getQuestionStats("book", 2)));

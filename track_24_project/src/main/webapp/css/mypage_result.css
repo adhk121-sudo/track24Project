@@ -1,0 +1,189 @@
+/* ===== 마이페이지 결과이력 TAB 전용 ===== */
+.rh-wrap{ margin-top: 10px; }
+.rh-sections{ display:grid; gap:14px; }
+
+.rh-section{
+  background: rgba(255,255,255,.9);
+  border:1px solid rgba(30,27,75,.12);
+  border-radius: 18px;
+  padding:14px;
+}
+
+.rh-sec-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:10px;
+  margin-bottom:10px;
+}
+.rh-sec-head h3{
+  margin:0;
+  font-size:16px;
+  font-weight:900;
+  color:#1e1b4b;
+}
+.rh-sec-head p{
+  margin:0;
+  font-size:12px;
+  opacity:.7;
+}
+
+.rh-grid{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap:10px;
+}
+@media (max-width: 980px){
+  .rh-grid{ grid-template-columns: 1fr; }
+}
+
+.rh-card{
+  border-radius:16px;
+  border:1px solid rgba(30,27,75,.12);
+  background: rgba(255,255,255,.92);
+  padding:12px;
+  display:flex;
+  gap:10px;
+  align-items:flex-start;
+  cursor:pointer;
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.rh-card:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(30,27,75,.10);
+}
+
+.rh-ico{
+  width:40px; height:40px;
+  border-radius:14px;
+  display:flex; align-items:center; justify-content:center;
+  border:1px solid rgba(30,27,75,.10);
+  flex:0 0 40px;
+  font-size:18px;
+}
+.rh-ico.food{ background: rgba(249,115,22,.12); }
+.rh-ico.drink{ background: rgba(249,115,22,.12); } /* 너 JSP에 drink 쓰니까 추가 */
+.rh-ico.movie{ background: rgba(59,130,246,.12); }
+.rh-ico.book{ background: rgba(34,197,94,.12); }
+.rh-ico.music{ background: rgba(168,85,247,.12); }
+
+.rh-title{
+  font-weight:900;
+  color:#1e1b4b;
+  margin:0 0 6px;
+  line-height:1.2;
+}
+.rh-result{
+  margin:0 0 6px;
+  font-weight:800;
+  opacity:.9;
+}
+.rh-date{
+  margin:0;
+  font-size:12px;
+  opacity:.65;
+}
+.rh-badge{
+  display:inline-flex;
+  margin-top:6px;
+  font-size:12px;
+  font-weight:800;
+  padding:6px 10px;
+  border-radius:999px;
+  border:1px solid rgba(30,27,75,.12);
+  background: rgba(255,255,255,.9);
+}
+
+/* ===== 결과이력 카드 클릭 확실하게 ===== */
+.mp-panel[data-tab="result"]{ position:relative; z-index:5; }
+.mp-panel[data-tab="result"] .mp-card{ position:relative; z-index:6; }
+.mp-panel[data-tab="result"] .rh-wrap{ position:relative; z-index:7; }
+
+.mp-panel[data-tab="result"] .js-rh-card{
+  position: relative;
+  z-index: 50;
+  cursor: pointer;
+  pointer-events: auto;
+}
+.mp-panel[data-tab="result"] .js-rh-card *{
+  pointer-events: none;
+}
+
+/* 배경 레이어가 덮는 경우만 */
+body::before{ pointer-events: none !important; }
+/* ===== 고급스러운 헤더 오른쪽 링크 ===== */
+.rh-sec-left{ display:flex; flex-direction:column; gap:2px; }
+.rh-sub{ margin:0; font-size:12px; opacity:.65; }
+
+.rh-more{
+  font-size:12px;
+  font-weight:900;
+  text-decoration:none;
+  padding:8px 12px;
+  border-radius:999px;
+  border:1px solid rgba(30,27,75,.12);
+  background: rgba(255,255,255,.75);
+  color:#1e1b4b;
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.rh-more:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(30,27,75,.10);
+}
+
+/* ===== 빈 상태 카드 고급 버전 ===== */
+.rh-card.rh-empty{
+  position:relative;
+  overflow:hidden;
+  background: rgba(255,255,255,.78);
+  border:1px dashed rgba(30,27,75,.18);
+}
+
+.rh-card.rh-empty::before{
+  content:'';
+  position:absolute; inset:-40px;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(168,85,247,.18), transparent 55%),
+    radial-gradient(circle at 80% 20%, rgba(59,130,246,.14), transparent 55%),
+    radial-gradient(circle at 30% 90%, rgba(249,115,22,.12), transparent 55%);
+  filter: blur(10px);
+  opacity:.8;
+  pointer-events:none;
+}
+
+.rh-card.rh-empty .rh-body{
+  position:relative;
+}
+
+.rh-card.rh-empty .rh-title{
+  font-size:15px;
+}
+
+.rh-card.rh-empty .rh-date{
+  font-weight:900;
+  opacity:.85;
+}
+
+/* 빈 카드 배지는 좀 더 강조 */
+.rh-card.rh-empty .rh-badge{
+  border-style:solid;
+  background: rgba(255,255,255,.92);
+}
+
+/* 빈 카드 hover 더 “누르고 싶게” */
+.rh-card.rh-empty:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(30,27,75,.12);
+}
+/* 기본은 완전히 꺼두기 (클릭 막지 않게) */
+.rh-modal { 
+  display: none;
+}
+
+/* show일 때만 켜기 */
+.rh-modal.show {
+  display: block;
+}
+/* ✅ 탭 패널이 서로 덮지 않게(클릭 막힘 해결) */
+.mp-panel{ display:none; }
+.mp-panel.active{ display:block; }

@@ -25,7 +25,7 @@
     </div>
 
     <!-- 폼 시작 -->
-    <form name="movieForm" id="questionForm" method="post" action="RecommandAI">
+    <form name="movieForm" id="questionForm" method="post" action="RecommendAI">
       
     <input type="hidden" name="category" value="movie">  <!-- 카테고리만 다르게 -->
   	<input type="hidden" name="q1" id="q1_input">
@@ -52,22 +52,22 @@
 
           <div class="options-area">
             <div class="options-grid">
-              <div class="option-btn" data-value="happy">
+              <div class="option-btn" data-value="행복해">
                 <span class="emoji">😄</span>
                 <span class="text">기분 좋아!</span>
                 <span class="desc">신나는 영화 보고 싶어</span>
               </div>
-              <div class="option-btn" data-value="bored">
+              <div class="option-btn" data-value="심심해">
                 <span class="emoji">😑</span>
                 <span class="text">심심해...</span>
                 <span class="desc">뭔가 자극적인 거</span>
               </div>
-              <div class="option-btn" data-value="romantic">
+              <div class="option-btn" data-value="설레고 싶어">
                 <span class="emoji">🥰</span>
                 <span class="text">설레고 싶어</span>
                 <span class="desc">로맨틱한 거!</span>
               </div>
-              <div class="option-btn" data-value="sad">
+              <div class="option-btn" data-value="우울해,슬퍼">
                 <span class="emoji">😢</span>
                 <span class="text">우울해...</span>
                 <span class="desc">위로가 필요해</span>
@@ -98,22 +98,22 @@
 
           <div class="options-area">
             <div class="options-grid">
-              <div class="option-btn" data-value="action">
+              <div class="option-btn" data-value="액션">
                 <span class="emoji">💥</span>
                 <span class="text">액션</span>
                 <span class="desc">화끈하게!</span>
               </div>
-              <div class="option-btn" data-value="comedy">
+              <div class="option-btn" data-value="코미디">
                 <span class="emoji">😂</span>
                 <span class="text">코미디</span>
                 <span class="desc">웃고 싶어</span>
               </div>
-              <div class="option-btn" data-value="romance">
+              <div class="option-btn" data-value="로맨스">
                 <span class="emoji">💕</span>
                 <span class="text">로맨스</span>
                 <span class="desc">설렘 충전</span>
               </div>
-              <div class="option-btn" data-value="thriller">
+              <div class="option-btn" data-value="스릴러/공포">
                 <span class="emoji">😱</span>
                 <span class="text">스릴러/공포</span>
                 <span class="desc">긴장감 있게</span>
@@ -144,22 +144,22 @@
 
           <div class="options-area">
             <div class="options-grid">
-              <div class="option-btn" data-value="light">
+              <div class="option-btn" data-value="가볍게">
                 <span class="emoji">🌈</span>
                 <span class="text">가볍게</span>
                 <span class="desc">머리 비우고</span>
               </div>
-              <div class="option-btn" data-value="deep">
+              <div class="option-btn" data-value="깊이 있게">
                 <span class="emoji">🧠</span>
                 <span class="text">깊이 있게</span>
                 <span class="desc">생각할 거리</span>
               </div>
-              <div class="option-btn" data-value="touching">
+              <div class="option-btn" data-value="감동적">
                 <span class="emoji">🥹</span>
                 <span class="text">감동적으로</span>
                 <span class="desc">눈물 준비</span>
               </div>
-              <div class="option-btn" data-value="exciting">
+              <div class="option-btn" data-value="스릴 넘치게">
                 <span class="emoji">🎢</span>
                 <span class="text">스릴 넘치게</span>
                 <span class="desc">손에 땀을!</span>

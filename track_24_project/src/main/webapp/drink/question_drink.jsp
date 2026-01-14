@@ -25,7 +25,7 @@
     </div>
 
     <!-- 폼 시작 -->
-    <form name="drinkForm" id="questionForm" method="post" action="RecommandAI">
+    <form name="drinkForm" id="questionForm" method="post" action="RecommendAI">
       
       <!-- hidden input으로 답변 저장 -->
         <input type="hidden" name="category" value="drink">  <!-- 카테고리만 다르게 -->
@@ -53,22 +53,22 @@
 
           <div class="options-area">
             <div class="options-grid">
-              <div class="option-btn" data-value="happy">
+              <div class="option-btn" data-value="신나">
                 <span class="emoji">😄</span>
                 <span class="text">기분 좋아!</span>
                 <span class="desc">상쾌한 거 마시고 싶어</span>
               </div>
-              <div class="option-btn" data-value="tired">
+              <div class="option-btn" data-value="피곤해">
                 <span class="emoji">😫</span>
                 <span class="text">피곤해...</span>
                 <span class="desc">카페인 충전!</span>
               </div>
-              <div class="option-btn" data-value="stressed">
+              <div class="option-btn" data-value="스트레스받아">
                 <span class="emoji">😤</span>
                 <span class="text">스트레스 받아</span>
                 <span class="desc">달달한 게 필요해</span>
               </div>
-              <div class="option-btn" data-value="chill">
+              <div class="option-btn" data-value="여유로워">
                 <span class="emoji">😌</span>
                 <span class="text">여유로워</span>
                 <span class="desc">천천히 즐기고 싶어</span>
@@ -99,22 +99,22 @@
 
           <div class="options-area">
             <div class="options-grid">
-              <div class="option-btn" data-value="ice">
+              <div class="option-btn" data-value="얼음">
                 <span class="emoji">🧊</span>
                 <span class="text">아이스</span>
                 <span class="desc">시원하게!</span>
               </div>
-              <div class="option-btn" data-value="hot">
+              <div class="option-btn" data-value="뜨거운">
                 <span class="emoji">♨️</span>
                 <span class="text">따뜻하게</span>
                 <span class="desc">포근하게~</span>
               </div>
-              <div class="option-btn" data-value="room">
+              <div class="option-btn" data-value="상온의">
                 <span class="emoji">🥤</span>
                 <span class="text">상온</span>
                 <span class="desc">적당하게</span>
               </div>
-              <div class="option-btn" data-value="any">
+              <div class="option-btn" data-value="상관없어">
                 <span class="emoji">🤷</span>
                 <span class="text">상관없어</span>
                 <span class="desc">아무거나!</span>
