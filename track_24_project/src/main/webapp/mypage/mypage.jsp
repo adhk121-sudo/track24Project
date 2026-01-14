@@ -1,103 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
     import="java.io.*,java.util.*,java.time.*,java.time.format.*" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%
-  // ============================================
-  // 결과이력 샘플 데이터 (TSV/DB 없이 화면 확인용)
-  // ============================================
-  if (request.getAttribute("foodList") == null) {
 
-    class Row {
-      String category, title, mainName, regDate;
-      LocalDate date;
-      Row(String c, String t, String m, String d, LocalDate ld){
-        category=c; title=t; mainName=m; regDate=d; date=ld;
-      }
-    }
-
-    Map<String, List<Row>> grouped = new HashMap<>();
-    grouped.put("food", new ArrayList<>());
-    grouped.put("drink", new ArrayList<>());
-    grouped.put("movie", new ArrayList<>());
-    grouped.put("book", new ArrayList<>());
-    grouped.put("music", new ArrayList<>());
-
-    DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-
-    // 샘플 라인: category \t title \t result(mainName) \t date(yyyy-MM-dd)
-    String[] sampleLines = {
-      "food\t오늘 뭐 먹지?\t치킨\t2026-01-11",
-      "food\t혼밥 추천\t김치찌개\t2026-01-10",
-      "food\t야식 추천\t떡볶이\t2026-01-09",
-      "food\t가벼운 한끼\t샐러드\t2026-01-08",
-
-      "drink\t오늘 뭐 마실까?\t아이스 아메리카노\t2026-01-11",
-      "drink\t카페 메뉴 추천\t카페라떼\t2026-01-10",
-      "drink\t디저트랑 어울리는 음료\t바닐라라떼\t2026-01-09",
-      "drink\t상큼한 음료\t레몬에이드\t2026-01-08",
-
-      "movie\t오늘 영화 추천\t인셉션\t2026-01-11",
-      "movie\t가볍게 보기 좋은 영화\t라라랜드\t2026-01-10",
-      "movie\t액션 추천\t존 윅\t2026-01-09",
-      "movie\t드라마 추천\t쇼생크 탈출\t2026-01-08",
-
-      "book\t책 추천\t데미안\t2026-01-11",
-      "book\t자기계발 추천\t아주 작은 습관의 힘\t2026-01-10",
-      "book\t소설 추천\t82년생 김지영\t2026-01-09",
-      "book\t인문 추천\t사피엔스\t2026-01-08",
-
-      "music\t오늘 노래 추천\tDitto\t2026-01-11",
-      "music\t출근길 추천\tDynamite\t2026-01-10",
-      "music\t집중할 때\tLofi HipHop\t2026-01-09",
-      "music\t감성 발라드\t사건의 지평선\t2026-01-08"
-    };
-
-    for(String line : sampleLines){
-      String[] p = line.split("\\t");
-      if(p.length < 4) continue;
-
-      String category = p[0].trim();
-      String title    = p[1].trim();
-      String mainName = p[2].trim();
-      String regDate  = p[3].trim();
-
-      if(!grouped.containsKey(category)) continue;
-
-      LocalDate d;
-      try { d = LocalDate.parse(regDate, fmt); }
-      catch(Exception e){ d = LocalDate.of(1970,1,1); }
-
-      grouped.get(category).add(new Row(category, title, mainName, regDate, d));
-    }
-
-    // 최신순 정렬 + 최근 3개만
-    for (String key : grouped.keySet()) {
-      grouped.get(key).sort((a,b)-> b.date.compareTo(a.date));
-      if (grouped.get(key).size() > 3) {
-        grouped.put(key, new ArrayList<>(grouped.get(key).subList(0, 3)));
-      }
-    }
-
-    // JSTL에서 쓰기 쉽게 List<Map<String,String>>로 변환
-    java.util.function.Function<List<Row>, List<Map<String,String>>> toListMap = (rows) -> {
-      List<Map<String,String>> result = new ArrayList<>();
-      for (Row r : rows) {
-        Map<String,String> m = new HashMap<>();
-        m.put("title", r.title);
-        m.put("mainName", r.mainName);
-        m.put("regDate", r.regDate);
-        result.add(m);
-      }
-      return result;
-    };
-
-    request.setAttribute("foodList",  toListMap.apply(grouped.get("food")));
-    request.setAttribute("drinkList", toListMap.apply(grouped.get("drink")));
-    request.setAttribute("movieList", toListMap.apply(grouped.get("movie")));
-    request.setAttribute("bookList",  toListMap.apply(grouped.get("book")));
-    request.setAttribute("musicList", toListMap.apply(grouped.get("music")));
-  }
-%>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -138,9 +42,9 @@
         </li>
 
         <li class="mp-menu-item" data-tab="result">
-          <span class="mp-icon">📊</span>
-          <span>결과이력</span>
-        </li>
+  <span class="mp-icon">📊</span><span>결과이력</span>
+</li>
+
 
         <li class="mp-menu-item" data-tab="pw">
           <span class="mp-icon">🔐</span>
@@ -712,20 +616,32 @@
     }
   });*/
 //탭 전환
-  document.querySelectorAll('.mp-menu-item[data-tab]').forEach(item => {
-    item.addEventListener('click', function () {
-      const tab = this.dataset.tab;
+  function activateTab(tab){
+  document.querySelectorAll('.mp-menu-item').forEach(m => m.classList.remove('active'));
+  const menu = document.querySelector('.mp-menu-item[data-tab="' + tab + '"]');
+  if(menu) menu.classList.add('active');
 
-      document.querySelectorAll('.mp-menu-item').forEach(m => m.classList.remove('active'));
-      this.classList.add('active');
+  document.querySelectorAll('.mp-panel').forEach(p => p.classList.remove('active'));
+  const panel = document.querySelector('.mp-panel[data-tab="' + tab + '"]');
+  if(panel) panel.classList.add('active');
 
-      document.querySelectorAll('.mp-panel').forEach(p => p.classList.remove('active'));
-      const target = document.querySelector('.mp-panel[data-tab="' + tab + '"]');
-      if (target) target.classList.add('active');
+  // ✅ 주소 고정
+  history.replaceState(null, '', '<%=request.getContextPath()%>/mypage');
+}
 
-      history.replaceState(null, '', '<%=request.getContextPath()%>/mypage');
-    });
+// 메뉴 클릭 -> 탭 열기
+document.querySelectorAll('.mp-menu-item[data-tab]').forEach(item => {
+  item.addEventListener('click', function () {
+    activateTab(this.dataset.tab);
   });
+});
+
+// ✅ 서버에서 전달된 openTab 있으면 그 탭 먼저 열기
+const openTab = "<c:out value='${openTab}'/>";
+if(openTab){
+  activateTab(openTab);
+}
+
 
   // ===== 상세정보: 수정모드 토글 =====
   const editBtn = document.getElementById("btnEdit");
