@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import dto.HistoryDto;
 
 import common.CommonUtil;
 import common.DBConnection;
@@ -461,6 +462,94 @@ public class ProjectDao {
 	        DBConnection.closeDB(conn, pstmt, rs);
 	    }
 	    return result;
+	}
+	// =====================================================
+	// 추천 결과 이력 (AI 결과 저장/조회)
+	// =====================================================
+	public int insertRecommendHistory(
+	        String memberId,
+	        String category,
+	        String title,
+	        String mainName,
+	        String genre,
+	        String reason,
+	        String q1,
+	        String q2,
+	        String q3,
+	        String q4,
+	        String aiRaw
+	) {
+	    int result = 0;
+	    String sql = ""
+	        + "insert into recommend_history "
+	        + "(history_id, member_id, category, title, main_name, genre, reason, q1, q2, q3, q4, ai_raw, reg_date) "
+	        + "values (recommend_history_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, sysdate)";
+
+	    try {
+	        conn = DBConnection.getConn();
+	        pstmt = conn.prepareStatement(sql);
+	        int idx = 1;
+	        pstmt.setString(idx++, memberId);
+	        pstmt.setString(idx++, category);
+	        pstmt.setString(idx++, title);
+	        pstmt.setString(idx++, mainName);
+	        pstmt.setString(idx++, genre);
+	        pstmt.setString(idx++, reason);
+	        pstmt.setString(idx++, q1);
+	        pstmt.setString(idx++, q2);
+	        pstmt.setString(idx++, q3);
+	        pstmt.setString(idx++, q4);
+	        pstmt.setString(idx++, aiRaw);
+	        result = pstmt.executeUpdate();
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        System.out.println("insertRecommendHistory 오류: " + sql);
+	    } finally {
+	        DBConnection.closeDB(conn, pstmt, rs);
+	    }
+	    return result;
+	}
+
+	/**
+	 * 분야별 최신 N개 조회 (마이페이지 결과이력에서 사용)
+	 */
+	public java.util.List<HistoryDto> getRecentHistory(String memberId, String category, int limit) {
+	    java.util.List<HistoryDto> list = new java.util.ArrayList<>();
+	    String sql = ""
+	        + "select * from ("
+	        + "  select history_id, category, title, main_name, genre, reason, "
+	        + "         to_char(reg_date, 'yyyy-MM-dd') as reg_date "
+	        + "  from recommend_history "
+	        + "  where member_id = ? and category = ? "
+	        + "  order by reg_date desc"
+	        + ") where rownum <= ?";
+
+	    try {
+	        conn = DBConnection.getConn();
+	        pstmt = conn.prepareStatement(sql);
+	        pstmt.setString(1, memberId);
+	        pstmt.setString(2, category);
+	        pstmt.setInt(3, limit);
+	        rs = pstmt.executeQuery();
+	        while (rs.next()) {
+	            HistoryDto dto = new HistoryDto(
+	                rs.getInt("history_id"),
+	                rs.getString("category"),
+	                rs.getString("title"),
+	                rs.getString("main_name"),
+	                rs.getString("genre"),
+	                rs.getString("reason"),
+	                rs.getString("reg_date")
+	            );
+	            list.add(dto);
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        System.out.println("getRecentHistory 오류: " + sql);
+	    } finally {
+	        DBConnection.closeDB(conn, pstmt, rs);
+	    }
+	    return list;
 	}
 
 }

@@ -335,5 +335,16 @@
             location.href = "Power?t_gubun=" + gubun;
         }
     </script>
+    
+    <c:if test="${not empty apiError}">
+  <div style="border:1px solid red; padding:12px; margin:12px 0;">
+    ${apiError}
+  </div>
+</c:if>
+    <pre>
+category(attr): ${category}
+result(attr): ${result}
+	</pre>
+	
 </body>
 </html>

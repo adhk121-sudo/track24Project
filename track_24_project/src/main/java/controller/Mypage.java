@@ -98,6 +98,20 @@ public class Mypage extends HttpServlet {
       viewPage = "common_alert.jsp";
     }
 
+ // 3-1) 결과이력 (DB에서 분야별 최신 3개)
+    else if (gubun.equals("history")) {
+      ProjectDto member = dao.getMemberDetail(sessionId);
+      request.setAttribute("member", member);
+
+      request.setAttribute("foodList",  dao.getRecentHistory(sessionId, "food", 3));
+      request.setAttribute("drinkList", dao.getRecentHistory(sessionId, "drink", 3));
+      request.setAttribute("movieList", dao.getRecentHistory(sessionId, "movie", 3));
+      request.setAttribute("bookList",  dao.getRecentHistory(sessionId, "book", 3));
+      request.setAttribute("musicList", dao.getRecentHistory(sessionId, "music", 3));
+
+      viewPage = "mypage/result_history.jsp";
+    }
+
     // 4) 비밀번호 변경
     else if (gubun.equals("pwUpdate")) {
     	
