@@ -523,7 +523,7 @@ public class ProjectDao {
 	        + "  where member_id = ? and category = ? "
 	        + "  order by reg_date desc"
 	        + ") where rownum <= ?";
-
+	    	System.out.println(sql);
 	    try {
 	        conn = DBConnection.getConn();
 	        pstmt = conn.prepareStatement(sql);

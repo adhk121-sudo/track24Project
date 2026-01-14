@@ -237,6 +237,7 @@ public class RecommendAI extends HttpServlet {
                 sb.append("메뉴: (구체적인 음식 이름)\n");
                 sb.append("식당: (추천 식당 유형)\n");
                 sb.append("이유: (간단한 이유 1문장)\n\n");
+                sb.append("※ 주의: 사용자가 응답한 답변에 꼭 맞는 주제의 음식만 추천해주세요!\n");
                 sb.append("※ 주의: 실제로 존재하는 구체적인 메뉴명을 추천해주세요!\n");
                 break;
                 
@@ -253,6 +254,7 @@ public class RecommendAI extends HttpServlet {
                 sb.append("음료: (구체적인 음료 이름)\n");
                 sb.append("카페: (추천 카페)\n");
                 sb.append("이유: (간단한 이유 1문장)\n\n");
+                sb.append("※ 주의: 사용자가 응답한 답변에 꼭 맞는 주제의 음료만 추천해주세요!\n");
                 sb.append("※ 주의: 실제로 주문할 수 있는 구체적인 음료명을 추천해주세요!\n");
                 break;
                 
@@ -272,6 +274,7 @@ public class RecommendAI extends HttpServlet {
                 sb.append("장르: (영화 장르)\n");
                 sb.append("감독: (감독 이름)\n");
                 sb.append("이유: (간단한 이유 1문장)\n\n");
+                sb.append("※ 주의: 사용자가 응답한 답변에 꼭 맞는 주제의 영화만 추천해주세요!\n");
                 sb.append("※ 주의: 실제로 존재하는 영화만 추천해주세요!\n");
                 break;
                 
@@ -291,6 +294,7 @@ public class RecommendAI extends HttpServlet {
                 sb.append("저자: (저자 이름)\n");
                 sb.append("장르: (책 장르)\n");
                 sb.append("이유: (간단한 이유 1문장)\n\n");
+                sb.append("※ 주의: 사용자가 응답한 답변에 꼭 맞는 주제의 책만 추천해주세요!\n");
                 sb.append("※ 주의: 실제로 존재하는 책만 추천해주세요!\n");
                 break;
                 
@@ -310,6 +314,7 @@ public class RecommendAI extends HttpServlet {
                 sb.append("가수: (가수/아티스트 이름)\n");
                 sb.append("장르: (음악 장르)\n");
                 sb.append("이유: (간단한 이유 1문장)\n\n");
+                sb.append("※ 주의: 사용자가 응답한 답변에 꼭 맞는 주제의 노래만 추천해주세요!\n");
                 sb.append("※ 주의: 실제로 존재하는 노래만 추천해주세요!\n");
                 break;
         }
