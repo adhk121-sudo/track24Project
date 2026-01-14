@@ -83,45 +83,54 @@
         </div>
 
         <!-- 질문 2: 장르 -->
-        <div class="question-panel" data-step="2">
-          <div class="question-header">
-            <div class="character-area">
-              <div class="character-icon">
-                <img src="<%=request.getContextPath()%>/images/music_ranger.png" alt="뮤직레인저">
-              </div>
-            </div>
-            <div class="question-area">
-              <div class="question-label">Q2. 장르</div>
-              <div class="question-text">어떤 장르가 땡겨? 🎵</div>
-              <div class="question-sub">오늘 듣고 싶은 장르를 골라봐!</div>
-            </div>
-          </div>
+<div class="question-panel" data-step="2">
+  <div class="question-header">
+    <div class="character-area">
+      <div class="character-icon">
+        <img src="<%=request.getContextPath()%>/images/music_ranger.png" alt="뮤직레인저">
+      </div>
+    </div>
+    <div class="question-area">
+      <div class="question-label">Q2. 장르</div>
+      <div class="question-text">어떤 장르가 땡겨? 🎵</div>
+      <div class="question-sub">오늘 듣고 싶은 장르를 골라봐!</div>
+    </div>
+  </div>
 
-          <div class="options-area">
-            <div class="options-grid">
-              <div class="option-btn" data-value="케이팝">
-                <span class="emoji">🇰🇷</span>
-                <span class="text">K-POP</span>
-                <span class="desc">한국 가요</span>
-              </div>
-              <div class="option-btn" data-value="해외 노래">
-                <span class="emoji">🌍</span>
-                <span class="text">POP</span>
-                <span class="desc">해외 팝송</span>
-              </div>
-              <div class="option-btn" data-value="힙합">
-                <span class="emoji">🎤</span>
-                <span class="text">힙합/R&B</span>
-                <span class="desc">리듬 타기</span>
-              </div>
-              <div class="option-btn" data-value="인디">
-                <span class="emoji">🎸</span>
-                <span class="text">인디/락</span>
-                <span class="desc">감성 충전</span>
-              </div>
-            </div>
-          </div>
-
+  <div class="options-area">
+    <div class="options-grid">
+      <div class="option-btn" data-value="K-POP (BTS, 뉴진스, 아이브, 에스파 같은 아이돌 댄스곡)">
+        <span class="emoji">🇰🇷</span>
+        <span class="text">K-POP</span>
+        <span class="desc">한국 아이돌</span>
+      </div>
+      <div class="option-btn" data-value="발라드 (성시경, 폴킴, 아이유 발라드 같은 감성곡)">
+        <span class="emoji">🎹</span>
+        <span class="text">발라드</span>
+        <span class="desc">감성 충전</span>
+      </div>
+      <div class="option-btn" data-value="팝송 (테일러스위프트, 위켄드, 두아리파 같은 해외 팝)">
+        <span class="emoji">🌍</span>
+        <span class="text">POP</span>
+        <span class="desc">해외 팝송</span>
+      </div>
+      <div class="option-btn" data-value="힙합/R&B (지코, 박재범, 딘 같은 힙합과 R&B)">
+        <span class="emoji">🎤</span>
+        <span class="text">힙합/R&B</span>
+        <span class="desc">리듬 타기</span>
+      </div>
+      <div class="option-btn" data-value="인디/록 (잔나비, 혁오, 데이식스 같은 밴드음악)">
+        <span class="emoji">🎸</span>
+        <span class="text">인디/락</span>
+        <span class="desc">밴드 사운드</span>
+      </div>
+      <div class="option-btn" data-value="OST (드라마, 영화 OST)">
+        <span class="emoji">🎬</span>
+        <span class="text">OST</span>
+        <span class="desc">드라마/영화</span>
+      </div>
+    </div>
+  </div>
           <div class="tip-bubble">
             <span class="icon">💡</span>
             <span class="text">취향에 맞는 음악을 찾고 있어!</span>
@@ -175,44 +184,44 @@
         </div>
 
         <!-- 질문 4: 템포 -->
-        <div class="question-panel" data-step="4">
-          <div class="question-header">
-            <div class="character-area">
-              <div class="character-icon">
-                <img src="<%=request.getContextPath()%>/images/music_ranger.png" alt="뮤직레인저">
-              </div>
-            </div>
-            <div class="question-area">
-              <div class="question-label">Q4. 템포</div>
-              <div class="question-text">어떤 빠르기가 좋아? 🎶</div>
-              <div class="question-sub">원하는 템포를 선택해!</div>
-            </div>
-          </div>
+<div class="question-panel" data-step="4">
+  <div class="question-header">
+    <div class="character-area">
+      <div class="character-icon">
+        <img src="<%=request.getContextPath()%>/images/music_ranger.png" alt="뮤직레인저">
+      </div>
+    </div>
+    <div class="question-area">
+      <div class="question-label">Q4. 템포</div>
+      <div class="question-text">어떤 빠르기가 좋아? 🎶</div>
+      <div class="question-sub">원하는 템포를 선택해!</div>
+    </div>
+  </div>
 
-          <div class="options-area">
-            <div class="options-grid">
-              <div class="option-btn" data-value="빠르게">
-                <span class="emoji">⚡</span>
-                <span class="text">빠르게</span>
-                <span class="desc">텐션 업!</span>
-              </div>
-              <div class="option-btn" data-value="적당히">
-                <span class="emoji">🎵</span>
-                <span class="text">적당히</span>
-                <span class="desc">리듬 타기 좋은</span>
-              </div>
-              <div class="option-btn" data-value="느리게,감성적">
-                <span class="emoji">🌙</span>
-                <span class="text">느리게</span>
-                <span class="desc">감성적으로</span>
-              </div>
-              <div class="option-btn" data-value="빠르던 느린던 상관없어">
-                <span class="emoji">🎲</span>
-                <span class="text">상관없어</span>
-                <span class="desc">좋으면 됨!</span>
-              </div>
-            </div>
-          </div>
+  <div class="options-area">
+    <div class="options-grid">
+      <div class="option-btn" data-value="신나고 빠른 템포 (업템포, 댄스, EDM 스타일)">
+        <span class="emoji">⚡</span>
+        <span class="text">빠르게</span>
+        <span class="desc">텐션 업!</span>
+      </div>
+      <div class="option-btn" data-value="중간 템포 (리듬감 있는, 그루비한)">
+        <span class="emoji">🎵</span>
+        <span class="text">적당히</span>
+        <span class="desc">리듬 타기 좋은</span>
+      </div>
+      <div class="option-btn" data-value="느리고 잔잔한 템포 (발라드, 어쿠스틱, 감성적인)">
+        <span class="emoji">🌙</span>
+        <span class="text">느리게</span>
+        <span class="desc">감성적으로</span>
+      </div>
+      <div class="option-btn" data-value="템포 상관없이 좋은 노래면 OK">
+        <span class="emoji">🎲</span>
+        <span class="text">상관없어</span>
+        <span class="desc">좋으면 됨!</span>
+      </div>
+    </div>
+  </div>
 
           <div class="tip-bubble">
             <span class="icon">🔥</span>
