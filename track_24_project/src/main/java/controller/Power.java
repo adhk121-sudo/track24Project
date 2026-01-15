@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import common.CommonPower;
+import common.member.MemberList;
 import common.member.PowerJoin;
 import dao.ProjectDao;
 import dto.ProjectDto;
@@ -63,6 +64,8 @@ public class Power extends HttpServlet {
 		}else if(gubun.equals("music")) {
 			viewPage = "music/question_music.jsp";
 		}else if(gubun.equals("admin_users")) {
+			CommonPower cp = new MemberList();
+			cp.Execute(request);
 			viewPage = "admin/admin_users.jsp";
 		}else if(gubun.equals("mypage")) {
 		    javax.servlet.http.HttpSession session = request.getSession();
