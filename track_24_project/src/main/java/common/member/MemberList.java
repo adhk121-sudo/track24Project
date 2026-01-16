@@ -13,8 +13,8 @@ public class MemberList implements CommonPower {
 	@Override
 	public void Execute(HttpServletRequest request) {
 		ProjectDao dao = new ProjectDao();
-		List<ProjectDto> list = dao.getMemberList();
-		request.setAttribute("list", list);
+		List<ProjectDto> list1 = dao.getMemberList();
+		request.setAttribute("list", list1);
 
 	}
 

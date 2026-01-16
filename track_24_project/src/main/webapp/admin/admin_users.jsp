@@ -138,7 +138,7 @@
                         <!-- 샘플 데이터 - 나중에 c:forEach로 변경 -->
                         <c:forEach items="${list}" var = "dto">
                         <tr>
-                            <td>1</td>
+                            <td>12</td>
                             <td>${dto.getId()}</td>
                             <td>${dto.getName()}</td>
                             <td>${dto.getAge()}</td>
