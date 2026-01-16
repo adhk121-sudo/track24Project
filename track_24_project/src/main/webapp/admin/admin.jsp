@@ -332,7 +332,11 @@ new Chart(document.getElementById('foodQ2Chart'), {
     data: {
         labels: ['아침', '점심', '저녁', '야식'],
         datasets: [{
+<<<<<<< HEAD
+            data: [${foodQ2Data.isEmpty() ? '1, 1, 1, 1' : foodQ1Data}],
+=======
             data: [${foodQ2Data.isEmpty() ? '1, 1, 1, 1' : foodQ2Data}],
+>>>>>>> branch '안준휘' of https://github.com/adhk121-sudo/track24Project.git
             backgroundColor: ['#dc2626', '#f97316', '#fbbf24', '#fb7185']
         }]
     },
@@ -344,7 +348,11 @@ new Chart(document.getElementById('foodQ3Chart'), {
     data: {
         labels: ['뜨끈뜨끈', '매콤하게', '가볍게', '든든하게'],
         datasets: [{
+<<<<<<< HEAD
+            data: [${foodQ3Data.isEmpty() ? '1, 1, 1, 1' : foodQ1Data}],
+=======
             data: [${foodQ3Data.isEmpty() ? '1, 1, 1, 1' : foodQ3Data}],
+>>>>>>> branch '안준휘' of https://github.com/adhk121-sudo/track24Project.git
             backgroundColor: ['#dc2626', '#f97316', '#fbbf24', '#fb7185']
         }]
     },
@@ -356,7 +364,11 @@ new Chart(document.getElementById('foodQ4Chart'), {
     data: {
         labels: ['혼자', '친구', '가족', '연인'],
         datasets: [{
+<<<<<<< HEAD
+            data: [${foodQ4Data.isEmpty() ? '2, 4, 1, 3' : foodQ1Data}],
+=======
             data: [${foodQ4Data.isEmpty() ? '2, 4, 1, 3' : foodQ4Data}],
+>>>>>>> branch '안준휘' of https://github.com/adhk121-sudo/track24Project.git
             backgroundColor: ['#dc2626', '#f97316', '#fbbf24', '#fb7185']
         }]
     },
@@ -369,7 +381,11 @@ new Chart(document.getElementById('drinkQ1Chart'), {
     data: {
         labels: ['기분 좋아', '피곤해', '스트레스', '여유로워'],
         datasets: [{
+<<<<<<< HEAD
+            data: [${drinkQ1Data.isEmpty() ? '1, 1, 1, 1' : foodQ1Data}],
+=======
             data: [${drinkQ1Data.isEmpty() ? '1, 1, 1, 1' : drinkQ1Data}],
+>>>>>>> branch '안준휘' of https://github.com/adhk121-sudo/track24Project.git
             backgroundColor: ['#ca8a04', '#eab308', '#a3e635', '#4ade80']
         }]
     },
@@ -381,7 +397,11 @@ new Chart(document.getElementById('drinkQ2Chart'), {
     data: {
         labels: ['아이스', '따뜻하게', '상온', '상관없어'],
         datasets: [{
+<<<<<<< HEAD
+            data: [${drinkQ2Data.isEmpty() ? '1, 1, 1, 1' : foodQ1Data}],
+=======
             data: [${drinkQ2Data.isEmpty() ? '1, 1, 1, 1' : drinkQ2Data}],
+>>>>>>> branch '안준휘' of https://github.com/adhk121-sudo/track24Project.git
             backgroundColor: ['#ca8a04', '#eab308', '#a3e635', '#4ade80']
         }]
     },
@@ -393,7 +413,11 @@ new Chart(document.getElementById('drinkQ3Chart'), {
     data: {
         labels: ['커피', '차', '주스/에이드', '스무디/쉐이크'],
         datasets: [{
+<<<<<<< HEAD
+            data: [${drinkQ3Data.isEmpty() ? '1, 1, 1, 1' : foodQ1Data}],
+=======
             data: [${drinkQ3Data.isEmpty() ? '1, 1, 1, 1' : drinkQ3Data}],
+>>>>>>> branch '안준휘' of https://github.com/adhk121-sudo/track24Project.git
             backgroundColor: ['#ca8a04', '#eab308', '#a3e635', '#4ade80']
         }]
     },
@@ -405,7 +429,11 @@ new Chart(document.getElementById('drinkQ4Chart'), {
     data: {
         labels: ['달달하게', '적당히', '덜 달게', '무가당'],
         datasets: [{
+<<<<<<< HEAD
+            data: [${drinkQ4Data.isEmpty() ? '1, 1, 1, 1' : foodQ1Data}],
+=======
             data: [${drinkQ4Data.isEmpty() ? '1, 1, 1, 1' : dirnkQ4Data}],
+>>>>>>> branch '안준휘' of https://github.com/adhk121-sudo/track24Project.git
             backgroundColor: ['#ca8a04', '#eab308', '#a3e635', '#4ade80']
         }]
     },
@@ -418,7 +446,11 @@ new Chart(document.getElementById('movieQ1Chart'), {
     data: {
         labels: ['기분 좋아', '심심해', '설레고 싶어', '우울해'],
         datasets: [{
+<<<<<<< HEAD
+            data: [${movieQ1Data.isEmpty() ? '1, 1, 1, 1' : foodQ1Data}],
+=======
             data: [${movieQ1Data.isEmpty() ? '1, 1, 1, 1' : movieQ1Data}],
+>>>>>>> branch '안준휘' of https://github.com/adhk121-sudo/track24Project.git
             backgroundColor: ['#7c3aed', '#a855f7', '#d946ef', '#f472b6']
         }]
     },
@@ -430,7 +462,11 @@ new Chart(document.getElementById('movieQ2Chart'), {
     data: {
         labels: ['액션', '코미디', '로맨스', '스릴러/공포'],
         datasets: [{
+<<<<<<< HEAD
+            data: [${movieQ2Data.isEmpty() ? '1, 1, 1, 1' : foodQ1Data}],
+=======
             data: [${movieQ2Data.isEmpty() ? '1, 1, 1, 1' : movieQ2Data}],
+>>>>>>> branch '안준휘' of https://github.com/adhk121-sudo/track24Project.git
             backgroundColor: ['#7c3aed', '#a855f7', '#d946ef', '#f472b6']
         }]
     },
@@ -442,7 +478,11 @@ new Chart(document.getElementById('movieQ3Chart'), {
     data: {
         labels: ['가볍게', '깊이 있게', '감동적으로', '스릴넘치게'],
         datasets: [{
+<<<<<<< HEAD
+            data: [${movieQ3Data.isEmpty() ? '1, 1, 1, 1' : foodQ1Data}],
+=======
             data: [${movieQ3Data.isEmpty() ? '1, 1, 1, 1' : movieQ3Data}],
+>>>>>>> branch '안준휘' of https://github.com/adhk121-sudo/track24Project.git
             backgroundColor: ['#7c3aed', '#a855f7', '#d946ef', '#f472b6']
         }]
     },
@@ -454,7 +494,11 @@ new Chart(document.getElementById('movieQ4Chart'), {
     data: {
         labels: ['혼자', '친구', '가족', '연인'],
         datasets: [{
+<<<<<<< HEAD
+            data: [${movieQ4Data.isEmpty() ? '1, 1, 1, 1' : foodQ1Data}],
+=======
             data: [${movieQ4Data.isEmpty() ? '1, 1, 1, 1' : movieQ4Data}],
+>>>>>>> branch '안준휘' of https://github.com/adhk121-sudo/track24Project.git
             backgroundColor: ['#7c3aed', '#a855f7', '#d946ef', '#f472b6']
         }]
     },
@@ -467,7 +511,11 @@ new Chart(document.getElementById('bookQ1Chart'), {
     data: {
         labels: ['호기심', '피곤해', '의욕충만', '감성적이야'],
         datasets: [{
+<<<<<<< HEAD
+            data: [${bookQ1Data.isEmpty() ? '1, 1, 1, 1' : foodQ1Data}],
+=======
             data: [${bookQ1Data.isEmpty() ? '1, 1, 1, 1' : bookQ1Data}],
+>>>>>>> branch '안준휘' of https://github.com/adhk121-sudo/track24Project.git
             backgroundColor: ['#059669', '#10b981', '#14b8a6', '#06b6d4']
         }]
     },
@@ -479,7 +527,11 @@ new Chart(document.getElementById('bookQ2Chart'), {
     data: {
         labels: ['소설', '자기계발', '에세이', '교양/지식'],
         datasets: [{
+<<<<<<< HEAD
+            data: [${bookQ2Data.isEmpty() ? '1, 1, 1, 1' : foodQ1Data}],
+=======
             data: [${bookQ2Data.isEmpty() ? '1, 1, 1, 1' : bookQ2Data}],
+>>>>>>> branch '안준휘' of https://github.com/adhk121-sudo/track24Project.git
             backgroundColor: ['#059669', '#10b981', '#14b8a6', '#06b6d4']
         }]
     },
@@ -491,7 +543,11 @@ new Chart(document.getElementById('bookQ3Chart'), {
     data: {
         labels: ['짧게', '적당히', '길어도ok', '상관없어'],
         datasets: [{
+<<<<<<< HEAD
+            data: [${bookQ3Data.isEmpty() ? '1, 1, 1, 1' : foodQ1Data}],
+=======
             data: [${bookQ3Data.isEmpty() ? '1, 1, 1, 1' : bookQ3Data}],
+>>>>>>> branch '안준휘' of https://github.com/adhk121-sudo/track24Project.git
             backgroundColor: ['#059669', '#10b981', '#14b8a6', '#06b6d4']
         }]
     },
@@ -503,7 +559,11 @@ new Chart(document.getElementById('bookQ4Chart'), {
     data: {
         labels: ['재미', '배움', '위로', '영감'],
         datasets: [{
+<<<<<<< HEAD
+            data: [${bookQ4Data.isEmpty() ? '1, 1, 1, 1' : foodQ1Data}],
+=======
             data: [${bookQ4Data.isEmpty() ? '1, 1, 1, 1' : bookQ4Data}],
+>>>>>>> branch '안준휘' of https://github.com/adhk121-sudo/track24Project.git
             backgroundColor: ['#059669', '#10b981', '#14b8a6', '#06b6d4']
         }]
     },
@@ -516,7 +576,11 @@ new Chart(document.getElementById('musicQ1Chart'), {
     data: {
         labels: ['기분좋아', '피곤해', '에너지충만', '우울해'],
         datasets: [{
+<<<<<<< HEAD
+            data: [${musicQ1Data.isEmpty() ? '1, 1, 1, 1' : foodQ1Data}],
+=======
             data: [${musicQ1Data.isEmpty() ? '1, 1, 1, 1' : musicQ1Data}],
+>>>>>>> branch '안준휘' of https://github.com/adhk121-sudo/track24Project.git
             backgroundColor: ['#2563eb', '#3b82f6', '#0ea5e9', '#06b6d4']
         }]
     },
@@ -528,7 +592,11 @@ new Chart(document.getElementById('musicQ2Chart'), {
     data: {
         labels: ['KR', 'POP', '힙합', '인디/락'],
         datasets: [{
+<<<<<<< HEAD
+            data: [${musicQ2Data.isEmpty() ? '1, 1, 1, 1' : foodQ1Data}],
+=======
             data: [${musicQ2Data.isEmpty() ? '1, 1, 1, 1' : musicQ2Data}],
+>>>>>>> branch '안준휘' of https://github.com/adhk121-sudo/track24Project.git
             backgroundColor: ['#2563eb', '#3b82f6', '#0ea5e9', '#06b6d4']
         }]
     },
@@ -540,7 +608,11 @@ new Chart(document.getElementById('musicQ3Chart'), {
     data: {
         labels: ['작업/공부', '출퇴근', '운동', '휴식'],
         datasets: [{
+<<<<<<< HEAD
+            data: [${musicQ3Data.isEmpty() ? '1, 1, 1, 1' : foodQ1Data}],
+=======
             data: [${musicQ3Data.isEmpty() ? '1, 1, 1, 1' : musicQ3Data}],
+>>>>>>> branch '안준휘' of https://github.com/adhk121-sudo/track24Project.git
             backgroundColor: ['#2563eb', '#3b82f6', '#0ea5e9', '#06b6d4']
         }]
     },
@@ -552,7 +624,11 @@ new Chart(document.getElementById('musicQ4Chart'), {
     data: {
         labels: ['빠르게', '적당히', '느리게', '상관없어'],
         datasets: [{
+<<<<<<< HEAD
+            data: [${musicQ4Data.isEmpty() ? '1, 1, 1, 1' : foodQ1Data}],
+=======
             data: [${musicQ4Data.isEmpty() ? '1, 1, 1, 1' : musicQ4Data}],
+>>>>>>> branch '안준휘' of https://github.com/adhk121-sudo/track24Project.git
             backgroundColor: ['#2563eb', '#3b82f6', '#0ea5e9', '#06b6d4']
         }]
     },

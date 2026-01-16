@@ -463,6 +463,37 @@ public class ProjectDao {
 	    }
 	    return result;
 	}
+<<<<<<< HEAD
+	
+	public List<ProjectDto> getMemberList(){
+		List<ProjectDto> list = new ArrayList();
+		String query = "select id, name, age, gender, area, mbti, to_char(reg_date, 'yyyy-MM-dd') as reg_date\r\n"
+				+ "from team_random_member\r\n"
+				+ "where id != 'manager'\r\n"
+				+ "order by reg_date desc";
+		try {
+			conn = DBConnection.getConn();
+			pstmt = conn.prepareStatement(query);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				String id1       = rs.getString("id");
+				String name     = rs.getString("name");
+				String age      = rs.getString("age");
+				String gender   = rs.getString("gender");
+				String area     = rs.getString("area");
+				String mbti     = rs.getString("mbti");
+				String reg_date = rs.getString("reg_date");
+				ProjectDto dto = new ProjectDto(id1, name, age, area, gender, mbti, reg_date);
+				list.add(dto);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBConnection.closeDB(conn, pstmt, rs);
+		}
+		return list;
+	}
+=======
 	// =====================================================
 	// 추천 결과 이력 (AI 결과 저장/조회)
 	// =====================================================
@@ -587,5 +618,6 @@ public class ProjectDao {
 	    return list;
 	}
 	
+>>>>>>> branch '안준휘' of https://github.com/adhk121-sudo/track24Project.git
 
 }

@@ -136,20 +136,31 @@
                     </thead>
                     <tbody>
                         <!-- 샘플 데이터 - 나중에 c:forEach로 변경 -->
+                        <c:forEach items="${list}" var = "dto">
                         <tr>
-                            <td>1</td>
-                            <td>user001</td>
-                            <td>홍길동</td>
-                            <td>25</td>
-                            <td><span class="badge male">남</span></td>
-                            <td>서울</td>
-                            <td>ENFP</td>
-                            <td>2025-01-10</td>
+                            <td>12</td>
+                            <td>${dto.getId()}</td>
+                            <td>${dto.getName()}</td>
+                            <td>${dto.getAge()}</td>
+                            <c:if test="${dto.getGender() eq 'M'}">
+                          	  <td><span class="badge male">남</span></td>
+                            </c:if>
+                            <c:if test="${dto.getGender() eq 'F'}">
+                          	  <td><span class="badge female">남</span></td>
+                            </c:if>
+                            <c:if test="${dto.getGender() eq 'N'}">
+                          	  <td><span class="badge other">비공개</span></td>
+                            </c:if>
+                            <td>${dto.getArea()}</td>
+                            <td>${dto.getMbti()}</td>
+                            <td>${dto.getReg_date()}</td>
                             <td>
-                                <button class="btn-view" onclick="viewUser('user001')">상세</button>
-                                <button class="btn-delete" onclick="deleteUser('user001')">삭제</button>
+                                <button class="btn-view" onclick="viewUser('${dto.getId()}')">상세</button>
+                                <button class="btn-delete" onclick="deleteUser('${dto.getId()}')">삭제</button>
                             </td>
                         </tr>
+                        </c:forEach>
+                        <!-- 
                         <tr>
                             <td>2</td>
                             <td>user002</td>
@@ -206,7 +217,7 @@
                                 <button class="btn-delete" onclick="deleteUser('user005')">삭제</button>
                             </td>
                         </tr>
-                        
+                         -->
                         <!-- 실제 데이터는 이렇게 -->
                         <!--
                         <c:forEach var="user" items="${userList}" varStatus="status">
