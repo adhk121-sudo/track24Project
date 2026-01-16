@@ -463,7 +463,7 @@ public class ProjectDao {
 	    }
 	    return result;
 	}
-<<<<<<< HEAD
+
 	
 	public List<ProjectDto> getMemberList(){
 		List<ProjectDto> list = new ArrayList();
@@ -493,7 +493,7 @@ public class ProjectDao {
 		}
 		return list;
 	}
-=======
+
 	// =====================================================
 	// 추천 결과 이력 (AI 결과 저장/조회)
 	// =====================================================
@@ -554,7 +554,7 @@ public class ProjectDao {
 	        + "  where member_id = ? and category = ? "
 	        + "  order by reg_date desc"
 	        + ") where rownum <= ?";
-	    	System.out.println(sql);
+	    	
 	    try {
 	        conn = DBConnection.getConn();
 	        pstmt = conn.prepareStatement(sql);
@@ -618,6 +618,5 @@ public class ProjectDao {
 	    return list;
 	}
 	
->>>>>>> branch '안준휘' of https://github.com/adhk121-sudo/track24Project.git
 
 }

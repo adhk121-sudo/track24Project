@@ -53,7 +53,7 @@
       </ul>
 
       <div class="mp-logout">
-        <a href="<%=request.getContextPath()%>/auth/logout.jsp" class="btn-logout">로그아웃</a>
+        <a href="<%=request.getContextPath()%>/Logout" class="btn-logout">로그아웃</a>
       </div>
     </aside>
 
