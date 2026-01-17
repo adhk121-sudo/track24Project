@@ -52,7 +52,7 @@
 
           <div class="options-area">
             <div class="options-grid">
-              <div class="option-btn" data-value="행복해">
+              <div class="option-btn" data-value="기분좋아">
                 <span class="emoji">😄</span>
                 <span class="text">기분 좋아!</span>
                 <span class="desc">신나는 영화 보고 싶어</span>

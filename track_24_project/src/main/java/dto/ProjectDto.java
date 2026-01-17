@@ -57,9 +57,9 @@ public class ProjectDto {
 	
 	
 
-	public ProjectDto(String id1, String name, String age, String area, String gender, String mbti, String reg_date) {
+	public ProjectDto(String id, String name, String age, String area, String gender, String mbti, String reg_date) {
 		super();
-		this.id = id1;
+		this.id = id;
 		this.name = name;
 		this.age = age;
 		this.area = area;

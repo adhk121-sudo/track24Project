@@ -86,7 +86,7 @@ public class Login extends HttpServlet {
 
 			if(dto.getId().equals("manager")||dto.getId().equals("admin")) {  // 또는 dto.getRole().equals("admin")
 		        session.setAttribute("sessionTop", "admin");
-		        
+		        session.setAttribute("sessionTop", "manager");
 		    } else {
 		        session.setAttribute("sessionTop", "user");
 		    }

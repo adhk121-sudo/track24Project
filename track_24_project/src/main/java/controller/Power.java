@@ -64,8 +64,8 @@ public class Power extends HttpServlet {
 		}else if(gubun.equals("music")) {
 			viewPage = "music/question_music.jsp";
 		}else if(gubun.equals("admin_users")) {
-			CommonPower cp1 = new MemberList();
-			cp1.Execute(request);
+			CommonPower cp = new MemberList();
+			cp.Execute(request);
 			viewPage = "admin/admin_users.jsp";
 		}else if(gubun.equals("mypage")) {
 		    javax.servlet.http.HttpSession session = request.getSession();

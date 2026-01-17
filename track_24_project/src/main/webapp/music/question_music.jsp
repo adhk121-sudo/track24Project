@@ -99,32 +99,32 @@
 
   <div class="options-area">
     <div class="options-grid">
-      <div class="option-btn" data-value="K-POP (BTS, 뉴진스, 아이브, 에스파 같은 아이돌 댄스곡)">
+      <div class="option-btn" data-value="K-POP">
         <span class="emoji">🇰🇷</span>
         <span class="text">K-POP</span>
         <span class="desc">한국 아이돌</span>
       </div>
-      <div class="option-btn" data-value="발라드 (성시경, 폴킴, 아이유 발라드 같은 감성곡)">
+      <div class="option-btn" data-value="발라드">
         <span class="emoji">🎹</span>
         <span class="text">발라드</span>
         <span class="desc">감성 충전</span>
       </div>
-      <div class="option-btn" data-value="팝송 (테일러스위프트, 위켄드, 두아리파 같은 해외 팝)">
+      <div class="option-btn" data-value="팝송">
         <span class="emoji">🌍</span>
         <span class="text">POP</span>
         <span class="desc">해외 팝송</span>
       </div>
-      <div class="option-btn" data-value="힙합/R&B (지코, 박재범, 딘 같은 힙합과 R&B)">
+      <div class="option-btn" data-value="힙합/R&B">
         <span class="emoji">🎤</span>
         <span class="text">힙합/R&B</span>
         <span class="desc">리듬 타기</span>
       </div>
-      <div class="option-btn" data-value="인디/록 (잔나비, 혁오, 데이식스 같은 밴드음악)">
+      <div class="option-btn" data-value="인디/록">
         <span class="emoji">🎸</span>
         <span class="text">인디/락</span>
         <span class="desc">밴드 사운드</span>
       </div>
-      <div class="option-btn" data-value="OST (드라마, 영화 OST)">
+      <div class="option-btn" data-value="OST">
         <span class="emoji">🎬</span>
         <span class="text">OST</span>
         <span class="desc">드라마/영화</span>

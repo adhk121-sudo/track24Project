@@ -7,10 +7,10 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import dto.HistoryDto;
 
 import common.CommonUtil;
 import common.DBConnection;
+import dto.HistoryDto;
 import dto.ProjectDto;
 public class ProjectDao {
 	Connection conn = null;
@@ -272,6 +272,8 @@ public class ProjectDao {
 	                   "WHERE category = ? AND question_num = ? " +
 	                   "GROUP BY answer_value " +
 	                   "ORDER BY answer_value";  // 순서 정렬
+	    
+	    
 	    try {
 	        conn = DBConnection.getConn();
 	        pstmt = conn.prepareStatement(query);
@@ -476,14 +478,14 @@ public class ProjectDao {
 			pstmt = conn.prepareStatement(query);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
-				String id1       = rs.getString("id");
+				String id       = rs.getString("id");
 				String name     = rs.getString("name");
 				String age      = rs.getString("age");
 				String gender   = rs.getString("gender");
 				String area     = rs.getString("area");
 				String mbti     = rs.getString("mbti");
 				String reg_date = rs.getString("reg_date");
-				ProjectDto dto = new ProjectDto(id1, name, age, area, gender, mbti, reg_date);
+				ProjectDto dto = new ProjectDto(id, name, age, area, gender, mbti, reg_date);
 				list.add(dto);
 			}
 		}catch(Exception e) {
@@ -592,7 +594,7 @@ public class ProjectDao {
 	    		+ "	          where member_id = ? and category = ? \r\n"
 	    		+ "	        order by reg_date desc\r\n"
 	    		+ "	        ) where rownum <= ?";
-	    	System.out.println(sql);
+	    	
 	    try {
 	        conn = DBConnection.getConn();
 	        pstmt = conn.prepareStatement(sql);
@@ -618,5 +620,140 @@ public class ProjectDao {
 	    return list;
 	}
 	
+	// ProjectDao.java
 
+	// 전체 회원 수
+	public int getTotalUserCount() {
+	    int count = 0;
+	    String sql = "SELECT COUNT(*) FROM team_random_member";
+	    try {
+	        conn = DBConnection.getConn();
+	        pstmt = conn.prepareStatement(sql);
+	        rs = pstmt.executeQuery();
+	        if (rs.next()) {
+	            count = rs.getInt(1);
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        DBConnection.closeDB(conn, pstmt, rs);
+	    }
+	    return count;
+	}
+
+	// 이번 달 가입자 수
+	public int getMonthlyUserCount() {
+	    int count = 0;
+	    String sql = "SELECT COUNT(*) FROM team_random_member WHERE TO_CHAR(reg_date, 'YYYY-MM') = TO_CHAR(SYSDATE, 'YYYY-MM')";
+	    try {
+	        conn = DBConnection.getConn();
+	        pstmt = conn.prepareStatement(sql);
+	        rs = pstmt.executeQuery();
+	        if (rs.next()) {
+	            count = rs.getInt(1);
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        DBConnection.closeDB(conn, pstmt, rs);
+	    }
+	    return count;
+	}
+
+	// 오늘 가입자 수
+	public int getTodayUserCount() {
+	    int count = 0;
+	    String sql = "SELECT COUNT(*) FROM team_random_member WHERE TO_CHAR(reg_date, 'YYYY-MM-DD') = TO_CHAR(SYSDATE, 'YYYY-MM-DD')";
+	    try {
+	        conn = DBConnection.getConn();
+	        pstmt = conn.prepareStatement(sql);
+	        rs = pstmt.executeQuery();
+	        if (rs.next()) {
+	            count = rs.getInt(1);
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        DBConnection.closeDB(conn, pstmt, rs);
+	    }
+	    return count;
+	}
+
+	// 성별별 회원 수
+	public int getGenderCount(String gender) {
+	    int count = 0;
+	    String sql = "SELECT COUNT(*) FROM team_random_member WHERE gender = ?";
+	    try {
+	        conn = DBConnection.getConn();
+	        pstmt = conn.prepareStatement(sql);
+	        pstmt.setString(1, gender);
+	        rs = pstmt.executeQuery();
+	        if (rs.next()) {
+	            count = rs.getInt(1);
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        DBConnection.closeDB(conn, pstmt, rs);
+	    }
+	    return count;
+	}
+	// 회원 목록 (페이징)
+	public List<ProjectDto> getMemberList(int page, int pageSize) {
+	    List<ProjectDto> list = new ArrayList<>();
+	    int startRow = (page - 1) * pageSize + 1;
+	    int endRow = page * pageSize;
+	    
+	    String sql = "SELECT * FROM (" +
+	                 "  SELECT ROWNUM rn, a.* FROM (" +
+	                 "    SELECT id, name, age, area, gender, mbti, " +
+	                 "           TO_CHAR(reg_date, 'YYYY-MM-DD') as reg_date " +
+	                 "    FROM team_random_member " +
+	                 "    ORDER BY reg_date DESC" +
+	                 "  ) a WHERE ROWNUM <= ?" +
+	                 ") WHERE rn >= ?";
+	    try {
+	        conn = DBConnection.getConn();
+	        pstmt = conn.prepareStatement(sql);
+	        pstmt.setInt(1, endRow);
+	        pstmt.setInt(2, startRow);
+	        rs = pstmt.executeQuery();
+	        
+	        while (rs.next()) {
+	            
+	            String id = rs.getString("id");
+	            String name = rs.getString("name");
+	            String age = rs.getString("age");
+	            String area = rs.getString("area");
+	            String gender = rs.getString("gender");
+	            String mbti = rs.getString("mbti");
+	            String reg_date = rs.getString("reg_date");
+	            ProjectDto dto = new ProjectDto(id, name, age, area, gender, mbti, reg_date);
+	            list.add(dto);
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        DBConnection.closeDB(conn, pstmt, rs);
+	    }
+	    return list;
+	}
+
+	// 회원 삭제
+	public int deleteMember(String id) {
+	    int result = 0;
+	    String sql = "DELETE FROM team_random_member WHERE id = ?";
+	    try {
+	        conn = DBConnection.getConn();
+	        pstmt = conn.prepareStatement(sql);
+	        pstmt.setString(1, id);
+	        result = pstmt.executeUpdate();
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        DBConnection.closeDB(conn, pstmt, rs);
+	    }
+	    return result;
+	}
+	
 }
