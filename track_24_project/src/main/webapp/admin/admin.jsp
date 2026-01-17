@@ -318,7 +318,7 @@
 new Chart(document.getElementById('foodQ1Chart'), {
     type: 'doughnut',
     data: {
-        labels: ['기분 좋아', '피곤해', '스트레스', '우울해'],
+        labels: ['신난다', '피곤해', '스트레스', '슬퍼'],
         datasets: [{
             data: [${foodQ1Data.isEmpty() ? '1, 1, 1, 1' : foodQ1Data}],
             backgroundColor: ['#dc2626', '#f97316', '#fbbf24', '#fb7185']
@@ -332,7 +332,9 @@ new Chart(document.getElementById('foodQ2Chart'), {
     data: {
         labels: ['아침', '점심', '저녁', '야식'],
         datasets: [{
+
             data: [${foodQ2Data.isEmpty() ? '1, 1, 1, 1' : foodQ2Data}],
+
             backgroundColor: ['#dc2626', '#f97316', '#fbbf24', '#fb7185']
         }]
     },
@@ -356,7 +358,7 @@ new Chart(document.getElementById('foodQ4Chart'), {
     data: {
         labels: ['혼자', '친구', '가족', '연인'],
         datasets: [{
-            data: [${foodQ4Data.isEmpty() ? '2, 4, 1, 3' : foodQ4Data}],
+            data: [${foodQ4Data.isEmpty() ? '1, 1, 1, 1' : foodQ4Data}],
             backgroundColor: ['#dc2626', '#f97316', '#fbbf24', '#fb7185']
         }]
     },
@@ -367,7 +369,7 @@ new Chart(document.getElementById('foodQ4Chart'), {
 new Chart(document.getElementById('drinkQ1Chart'), {
     type: 'doughnut',
     data: {
-        labels: ['기분 좋아', '피곤해', '스트레스', '여유로워'],
+        labels: ['신나', '피곤해', '스트레스', '여유로워'],
         datasets: [{
             data: [${drinkQ1Data.isEmpty() ? '1, 1, 1, 1' : drinkQ1Data}],
             backgroundColor: ['#ca8a04', '#eab308', '#a3e635', '#4ade80']
@@ -393,7 +395,9 @@ new Chart(document.getElementById('drinkQ3Chart'), {
     data: {
         labels: ['커피', '차', '주스/에이드', '스무디/쉐이크'],
         datasets: [{
+        	
             data: [${drinkQ3Data.isEmpty() ? '1, 1, 1, 1' : drinkQ3Data}],
+
             backgroundColor: ['#ca8a04', '#eab308', '#a3e635', '#4ade80']
         }]
     },
@@ -418,6 +422,7 @@ new Chart(document.getElementById('movieQ1Chart'), {
     data: {
         labels: ['기분 좋아', '심심해', '설레고 싶어', '우울해'],
         datasets: [{
+
             data: [${movieQ1Data.isEmpty() ? '1, 1, 1, 1' : movieQ1Data}],
             backgroundColor: ['#7c3aed', '#a855f7', '#d946ef', '#f472b6']
         }]
@@ -492,6 +497,7 @@ new Chart(document.getElementById('bookQ3Chart'), {
         labels: ['짧게', '적당히', '길어도ok', '상관없어'],
         datasets: [{
             data: [${bookQ3Data.isEmpty() ? '1, 1, 1, 1' : bookQ3Data}],
+
             backgroundColor: ['#059669', '#10b981', '#14b8a6', '#06b6d4']
         }]
     },
@@ -504,6 +510,7 @@ new Chart(document.getElementById('bookQ4Chart'), {
         labels: ['재미', '배움', '위로', '영감'],
         datasets: [{
             data: [${bookQ4Data.isEmpty() ? '1, 1, 1, 1' : bookQ4Data}],
+
             backgroundColor: ['#059669', '#10b981', '#14b8a6', '#06b6d4']
         }]
     },
@@ -514,7 +521,7 @@ new Chart(document.getElementById('bookQ4Chart'), {
 new Chart(document.getElementById('musicQ1Chart'), {
     type: 'doughnut',
     data: {
-        labels: ['기분좋아', '피곤해', '에너지충만', '우울해'],
+        labels: ['행복해', '피곤해', '에너지충만', '우울해'],
         datasets: [{
             data: [${musicQ1Data.isEmpty() ? '1, 1, 1, 1' : musicQ1Data}],
             backgroundColor: ['#2563eb', '#3b82f6', '#0ea5e9', '#06b6d4']
@@ -526,10 +533,10 @@ new Chart(document.getElementById('musicQ1Chart'), {
 new Chart(document.getElementById('musicQ2Chart'), {
     type: 'doughnut',
     data: {
-        labels: ['KR', 'POP', '힙합', '인디/락'],
+    	labels: ['K-POP', '발라드', 'POP', '힙합/R&B', '인디/락', 'OST'],  // ⭐ 6개
         datasets: [{
-            data: [${musicQ2Data.isEmpty() ? '1, 1, 1, 1' : musicQ2Data}],
-            backgroundColor: ['#2563eb', '#3b82f6', '#0ea5e9', '#06b6d4']
+            data: [${musicQ2Data.isEmpty() ? '1, 1, 1, 1, 1, 1' : musicQ2Data}],  // ⭐ 6개
+            backgroundColor: ['#2563eb', '#3b82f6', '#0ea5e9', '#06b6d4', '#8b5cf6', '#a855f7']  // ⭐ 6개
         }]
     },
     options: { responsive: true, plugins: { legend: { position: 'bottom' } } }

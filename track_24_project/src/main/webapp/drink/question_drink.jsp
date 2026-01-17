@@ -114,7 +114,7 @@
                 <span class="text">상온</span>
                 <span class="desc">적당하게</span>
               </div>
-              <div class="option-btn" data-value="상관없어">
+              <div class="option-btn" data-value="온도는 상관없어">
                 <span class="emoji">🤷</span>
                 <span class="text">상관없어</span>
                 <span class="desc">아무거나!</span>
@@ -145,22 +145,22 @@
 
           <div class="options-area">
             <div class="options-grid">
-              <div class="option-btn" data-value="coffee">
+              <div class="option-btn" data-value="커피">
                 <span class="emoji">☕</span>
                 <span class="text">커피</span>
                 <span class="desc">에스프레소 베이스</span>
               </div>
-              <div class="option-btn" data-value="tea">
+              <div class="option-btn" data-value="차">
                 <span class="emoji">🍵</span>
                 <span class="text">차</span>
                 <span class="desc">녹차/홍차/허브티</span>
               </div>
-              <div class="option-btn" data-value="juice">
+              <div class="option-btn" data-value="주스/에이드">
                 <span class="emoji">🧃</span>
                 <span class="text">주스/에이드</span>
                 <span class="desc">과일 베이스</span>
               </div>
-              <div class="option-btn" data-value="smoothie">
+              <div class="option-btn" data-value="스무디/쉐이크">
                 <span class="emoji">🥤</span>
                 <span class="text">스무디/쉐이크</span>
                 <span class="desc">블렌딩 음료</span>
@@ -191,22 +191,22 @@
 
           <div class="options-area">
             <div class="options-grid">
-              <div class="option-btn" data-value="sweet">
+              <div class="option-btn" data-value="당 많이">
                 <span class="emoji">🍭</span>
                 <span class="text">달달하게</span>
                 <span class="desc">당 충전!</span>
               </div>
-              <div class="option-btn" data-value="half">
+              <div class="option-btn" data-value="당 적당히">
                 <span class="emoji">🍬</span>
                 <span class="text">적당히</span>
                 <span class="desc">반반으로</span>
               </div>
-              <div class="option-btn" data-value="less">
+              <div class="option-btn" data-value="당 조금">
                 <span class="emoji">🌿</span>
                 <span class="text">덜 달게</span>
                 <span class="desc">건강하게</span>
               </div>
-              <div class="option-btn" data-value="none">
+              <div class="option-btn" data-value="무가당">
                 <span class="emoji">💧</span>
                 <span class="text">무가당</span>
                 <span class="desc">깔끔하게</span>

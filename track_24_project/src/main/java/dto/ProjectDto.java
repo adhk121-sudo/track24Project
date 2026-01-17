@@ -54,6 +54,19 @@ public class ProjectDto {
 		this.reg_date = reg_date;
 		this.update_date = update_date;
 	}
+	
+	
+
+	public ProjectDto(String id, String name, String age, String area, String gender, String mbti, String reg_date) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.age = age;
+		this.area = area;
+		this.gender = gender;
+		this.mbti = mbti;
+		this.reg_date = reg_date;
+	}
 
 	public String getId() {
 		return id;

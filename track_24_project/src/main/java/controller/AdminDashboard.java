@@ -64,7 +64,8 @@ ProjectDao dao = new ProjectDao();
         request.setAttribute("bookQ4Data", mapToChartData(dao.getQuestionStats("book", 4)));
         // 뮤직레인저 질문별 통계
         request.setAttribute("musicQ1Data", mapToChartData(dao.getQuestionStats("music", 1)));
-        request.setAttribute("musicQ2Data", mapToChartData(dao.getQuestionStats("music", 2)));
+        String[] musicQ2Labels = {"K-POP", "발라드", "POP", "힙합/R&B", "인디/락", "OST"};
+        request.setAttribute("musicQ2Data", getOrderedChartData(dao.getQuestionStats("music", 2), musicQ2Labels));
         request.setAttribute("musicQ3Data", mapToChartData(dao.getQuestionStats("music", 3)));
         request.setAttribute("musicQ4Data", mapToChartData(dao.getQuestionStats("music", 4)));
         
@@ -106,7 +107,29 @@ ProjectDao dao = new ProjectDao();
         }
         return sb.toString();
     }
-
+ // AdminDashboard.java에 추가
+    private String getOrderedChartData(Map<String, Integer> stats, String[] labels) {
+        StringBuilder sb = new StringBuilder();
+        boolean hasData = false;
+        
+        for (int i = 0; i < labels.length; i++) {
+            if (i > 0) sb.append(", ");
+            int value = stats.getOrDefault(labels[i], 0);
+            sb.append(value);
+            if (value > 0) hasData = true;
+        }
+        
+        // 데이터 없으면 기본값 (전부 1)
+        if (!hasData) {
+            sb = new StringBuilder();
+            for (int i = 0; i < labels.length; i++) {
+                if (i > 0) sb.append(", ");
+                sb.append("1");
+            }
+        }
+        
+        return sb.toString();
+    }
 	
 
 	/**

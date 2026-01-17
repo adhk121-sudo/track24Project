@@ -239,7 +239,7 @@
     .character-card[data-color="purple"]:hover { border-color: #a855f7; box-shadow: 0 15px 40px rgba(168,85,247,0.25); }
     .character-card[data-color="green"]:hover { border-color: #22c55e; box-shadow: 0 15px 40px rgba(34,197,94,0.25); }
     .character-card[data-color="blue"]:hover { border-color: #3b82f6; box-shadow: 0 15px 40px rgba(59,130,246,0.25); }
-    .character-card[data-color="yellow"]:hover { border-color: #d4d700; box-shadow: 0 15px 40px rgba(212, 215, 0, 0.25); }
+    .character-card[data-color="yellow"]:hover { border-color: #fbbf24; box-shadow: 0 15px 40px rgba(212, 215, 0, 0.25); }
 
     .character-avatar {
       width: 100px;
@@ -273,7 +273,7 @@
       animation-delay: 0.6s;
     }
     .character-card[data-color="yellow"] .character-avatar {
-      background: linear-gradient(135deg, #d4d700, #ecef4c);
+      background: linear-gradient(135deg, #fbbf24, #ca8a04);
       animation-delay: 0.8s;
     }
 

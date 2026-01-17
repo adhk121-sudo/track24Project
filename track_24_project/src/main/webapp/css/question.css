@@ -46,8 +46,8 @@ body::before {
 
 /* 드링크레인저 (레몬) */
 .theme-drink {
-  --theme-primary: #d4d700;
-  --theme-secondary: #ecef4c;
+  --theme-primary: #fbbf24;
+  --theme-secondary: #ca8a04;
   --theme-light: rgba(212, 215, 0, 0.1);
   --theme-shadow: rgba(212, 215, 0, 0.3);
 }
