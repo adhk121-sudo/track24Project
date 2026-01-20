@@ -70,27 +70,27 @@
                     <div class="stat-card food">
                         <div class="label">🍜 맛레인저</div>
                         <div class="value">${foodTotal}</div>
-                        <div class="change">↑ 12% 이번 주</div>
+                        <div class="change"></div><br>
                     </div>
                     <div class="stat-card drink">
                         <div class="label">🥤 드링크레인저</div>
                         <div class="value">${drinkTotal}</div>
-                        <div class="change">↑ 8% 이번 주</div>
+                        <div class="change"></div>
                     </div>
                     <div class="stat-card movie">
                         <div class="label">🎬 무비레인저</div>
                         <div class="value">${movieTotal}</div>
-                        <div class="change">↑ 15% 이번 주</div>
+                        <div class="change"></div>
                     </div>
                     <div class="stat-card book">
                         <div class="label">📚 북레인저</div>
                         <div class="value">${bookTotal}</div>
-                        <div class="change">↑ 5% 이번 주</div>
+                        <div class="change"></div>
                     </div>
                     <div class="stat-card music">
                         <div class="label">📚 뮤직레인저</div>
                         <div class="value">${musicTotal}</div>
-                        <div class="change">↑ 5% 이번 주</div>
+                        <div class="change"></div>
                     </div>
                     
                 </div>
@@ -409,7 +409,7 @@ new Chart(document.getElementById('drinkQ4Chart'), {
     data: {
         labels: ['달달하게', '적당히', '덜 달게', '무가당'],
         datasets: [{
-            data: [${drinkQ4Data.isEmpty() ? '1, 1, 1, 1' : dirnkQ4Data}],
+            data: [${drinkQ4Data.isEmpty() ? '1, 1, 1, 1' : drinkQ4Data}],
             backgroundColor: ['#ca8a04', '#eab308', '#a3e635', '#4ade80']
         }]
     },

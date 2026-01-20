@@ -6,7 +6,7 @@ public class ProjectDto {
 	gender, mbti, style, food, drink, music, movie, book, allergy, reg_date, update_date;
 
 	
-	
+	public ProjectDto() {}
 	public ProjectDto(String style, String food, String drink, String music, String movie, String book,
 			String allergy,String age) {
 		super();
