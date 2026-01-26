@@ -100,7 +100,9 @@
         <span class="emoji">🔥</span>
       </p>
     </div>
-
+	<%
+		if (!isLogin) {
+		%>
     <!-- 로그인 배너 - 가운데 정렬 -->
     <div class="mission-banner">
       <div class="mission-text">
@@ -109,6 +111,7 @@
       </div>
       <button class="mission-btn" onclick="goPage('login')">출동!</button>
     </div>
+    <%} %>
   </main>
 </body>
 <!-- footer.jsp -->
